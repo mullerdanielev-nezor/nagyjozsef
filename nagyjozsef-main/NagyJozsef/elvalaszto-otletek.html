@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Szekció-elválasztó vonalak — ötletek</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;800;900&family=Public+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg1:#ffffff;--bg2:#eaece4;--head:#3f1717;--accent:#b7472a;--label:#6d2c1c;--sub:#555555;--line:rgba(63,23,23,.16)}
+body{font-family:"Public Sans",system-ui,sans-serif;background:#1c1413;color:#efe7e4;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+.pagehead{padding:50px clamp(20px,5vw,70px) 16px;max-width:1000px;margin:0 auto;text-align:center}
+.pagehead h1{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(2rem,5vw,3rem)}
+.pagehead p{margin:12px auto 0;color:#b6a9a5;max-width:64ch}
+
+.gallery{max-width:1080px;margin:0 auto;padding:14px clamp(10px,2.5vw,30px) 90px;display:grid;gap:26px}
+.concept{border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -42px rgba(0,0,0,.85);border:1px solid rgba(255,255,255,.08)}
+.cmeta{display:flex;align-items:baseline;gap:12px;padding:13px 20px;background:#2a1d1b;border-bottom:1px solid rgba(255,255,255,.07)}
+.cmeta .id{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:1.3rem;color:var(--accent)}
+.cmeta .nm{font-weight:700;font-size:.98rem}
+.cmeta .desc{margin-left:auto;font-family:"Spline Sans Mono",monospace;font-size:.6rem;letter-spacing:.05em;color:#b09a95;text-transform:uppercase}
+
+.demo{background:linear-gradient(125deg,var(--bg1),var(--bg2));color:var(--head)}
+.block{padding:34px clamp(24px,4vw,54px)}
+.block .ey{font-family:"Spline Sans Mono",monospace;text-transform:uppercase;font-size:.66rem;letter-spacing:.24em;color:var(--label)}
+.block .h{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;font-size:1.5rem;margin-top:6px;color:var(--head)}
+.sep{padding:0 clamp(24px,4vw,54px)}
+
+/* ===== dividers ===== */
+.d1{height:1px;background:var(--line)}
+.d2{display:flex;justify-content:center}.d2 i{width:64px;height:3px;background:var(--accent);border-radius:3px}
+.d3{height:8px;background-image:radial-gradient(var(--accent) 2px,transparent 2.4px);background-size:22px 8px;background-position:center;opacity:.7}
+.d4{display:flex;justify-content:center}.d4 svg{width:min(420px,80%);height:26px;opacity:.85}
+.d5{display:flex;justify-content:center}.d5 svg{width:100%;height:22px;opacity:.5;color:var(--accent)}
+.d6{display:flex;justify-content:center}.d6 svg{width:100%;height:16px;opacity:.5;color:var(--accent)}
+.d7{position:relative;height:1px;background:var(--line)}
+.d7::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:11px;background:var(--accent);transform:translate(-50%,-50%) rotate(45deg)}
+.d8{display:flex;align-items:center;gap:16px;color:var(--line)}
+.d8::before,.d8::after{content:"";flex:1;height:1px;background:var(--line)}
+.d8 span{font-family:"Spline Sans Mono",monospace;font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--label);white-space:nowrap}
+.d9{height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.d10{display:flex;justify-content:center;gap:5px}.d10 i{width:34px;height:7px;border-radius:2px}
+
+footer{text-align:center;padding:20px;color:#8a7a76;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.14em}
+</style>
+</head>
+<body>
+
+<header class="pagehead">
+  <h1>Szekció-elválasztó vonalak</h1>
+  <p>10 elválasztó a szekciók közé, kontextusban (két minta-szekció között). Válassz egyet.</p>
+</header>
+
+<main class="gallery" id="gallery"></main>
+<footer>Válassz egy számot (01–10), és beépítem a szekciók közé az igazi index.html-en</footer>
+
+<script>
+const brush=`<svg viewBox="0 0 420 26" fill="none"><path d="M6 14 C90 4 150 22 220 12 C280 4 350 18 414 10" stroke="#b7472a" stroke-width="9" stroke-linecap="round"/></svg>`;
+const wave=`<svg viewBox="0 0 1200 22" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 11 Q 30 1 60 11 T 120 11 T 180 11 T 240 11 T 300 11 T 360 11 T 420 11 T 480 11 T 540 11 T 600 11 T 660 11 T 720 11 T 780 11 T 840 11 T 900 11 T 960 11 T 1020 11 T 1080 11 T 1140 11 T 1200 11"/></svg>`;
+const zig=`<svg viewBox="0 0 1200 16" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 14 L20 2 L40 14 L60 2 L80 14 L100 2 L120 14 L140 2 L160 14 L180 2 L200 14 L220 2 L240 14 L260 2 L280 14 L300 2 L320 14 L340 2 L360 14 L380 2 L400 14 L420 2 L440 14 L460 2 L480 14 L500 2 L520 14 L540 2 L560 14 L580 2 L600 14 L620 2 L640 14 L660 2 L680 14 L700 2 L720 14 L740 2 L760 14 L780 2 L800 14 L820 2 L840 14 L860 2 L880 14 L900 2 L920 14 L940 2 L960 14 L980 2 L1000 14 L1020 2 L1040 14 L1060 2 L1080 14 L1100 2 L1120 14 L1140 2 L1160 14 L1180 2 L1200 14"/></svg>`;
+const pal=['#eaece4','#d98a6b','#b7472a','#6d2c1c','#3f1717'];
+
+const D={
+ '01':['Vékony vonal','teljes szélességű hajszálvonal','<div class="d1"></div>'],
+ '02':['Rövid terrakotta vonal','központi akcentus','<div class="d2"><i></i></div>'],
+ '03':['Festékpöttyök','pontsor','<div class="d3"></div>'],
+ '04':['Ecsetvonás','festett sáv','<div class="d4">'+brush+'</div>'],
+ '05':['Hullámvonal','lágy hullám','<div class="d5">'+wave+'</div>'],
+ '06':['Cikcakk','éles zegzug','<div class="d6">'+zig+'</div>'],
+ '07':['Vonal + rombusz','középső jel','<div class="d7"></div>'],
+ '08':['Címkés vonal','felirat középen','<div class="d8"><span>Nagy József · festés-mázolás</span></div>'],
+ '09':['Elhalványuló vonal','gradient','<div class="d9"></div>'],
+ '10':['Festékcsík','paletta-blokkok','<div class="d10">'+pal.map(c=>`<i style="background:${c}"></i>`).join('')+'</div>'],
+};
+
+document.getElementById('gallery').innerHTML=Object.entries(D).map(([id,d])=>`
+  <section class="concept">
+    <div class="cmeta"><span class="id">${id}</span><span class="nm">${d[0]}</span><span class="desc">${d[1]}</span></div>
+    <div class="demo">
+      <div class="block"><div class="ey">Mivel segíthetek</div><div class="h">Szolgáltatások</div></div>
+      <div class="sep">${d[2]}</div>
+      <div class="block"><div class="ey">Válogatott munkák</div><div class="h">Referenciák</div></div>
+    </div>
+  </section>`).join('');
+</script>
+</body>
+</html>

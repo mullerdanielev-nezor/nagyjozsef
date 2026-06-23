@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nyírlugos térkép — stílusok</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;800;900&family=Public+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg1:#f1ede3;--bg2:#e8e2d6;--head:#3f1717;--accent:#b7472a;--label:#6d2c1c;--sub:#555555;--line:rgba(63,23,23,.16)}
+body{font-family:"Public Sans",system-ui,sans-serif;background:#1c1413;color:#efe7e4;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+.pagehead{padding:50px clamp(20px,5vw,70px) 16px;max-width:1000px;margin:0 auto;text-align:center}
+.pagehead h1{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(2rem,5vw,3rem)}
+.pagehead p{margin:12px auto 0;color:#b6a9a5;max-width:64ch}
+
+.gallery{max-width:1120px;margin:0 auto;padding:14px clamp(10px,2.5vw,30px) 90px;display:grid;gap:30px}
+.concept{border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -42px rgba(0,0,0,.85);border:1px solid rgba(255,255,255,.08)}
+.cmeta{display:flex;align-items:baseline;gap:12px;padding:14px 22px;background:#2a1d1b;border-bottom:1px solid rgba(255,255,255,.07)}
+.cmeta .id{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:1.35rem;color:var(--accent)}
+.cmeta .nm{font-weight:700;font-size:1rem}
+.cmeta .desc{margin-left:auto;font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.05em;color:#b09a95;text-transform:uppercase}
+
+.sec{background:linear-gradient(125deg,var(--bg1),var(--bg2));padding:clamp(34px,4vw,52px) clamp(24px,4vw,54px);color:var(--head);text-align:center}
+.eyebrow{font-family:"Spline Sans Mono",monospace;text-transform:uppercase;font-size:.7rem;letter-spacing:.26em;color:var(--label)}
+h2{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;color:var(--head);font-size:clamp(1.7rem,3.2vw,2.4rem);margin:8px 0 22px}
+
+/* map frame */
+.frame{max-width:920px;margin:0 auto;border:3px solid var(--accent);border-radius:12px;overflow:hidden;box-shadow:0 30px 60px -40px rgba(40,12,8,.45);aspect-ratio:16/9;background:#e8e2d6;position:relative}
+.frame iframe{width:100%;height:100%;border:0;display:block}
+
+/* A meleg szűrő */
+.A .frame iframe{filter:sepia(.45) saturate(1.25) hue-rotate(-12deg) contrast(.96) brightness(1.02)}
+
+/* C stilizált SVG */
+.svgmap{width:100%;height:100%;display:block;background:#efe7d8}
+.svgmap .region{fill:color-mix(in oklab,var(--accent) 7%,#f6efe2);stroke:color-mix(in oklab,var(--accent) 30%,transparent);stroke-width:2}
+.svgmap .road{fill:none;stroke:color-mix(in oklab,var(--accent) 38%,transparent);stroke-width:2.4;stroke-linecap:round}
+.svgmap .town{fill:var(--head)}
+.svgmap .town.main{fill:var(--accent)}
+.svgmap .lbl{font-family:"Spline Sans Mono",monospace;font-size:13px;letter-spacing:.04em;fill:var(--head);text-transform:uppercase}
+.svgmap .lbl.main{font-family:"Big Shoulders Display";font-weight:800;font-size:19px;fill:var(--accent)}
+
+/* D radar */
+.radar{position:relative;width:min(440px,86%);aspect-ratio:1/1;margin:0 auto}
+.radar .ring{position:absolute;inset:0;margin:auto;border:1.5px solid color-mix(in oklab,var(--accent) 30%,transparent);border-radius:50%}
+.radar .ring.r2{width:68%;height:68%}.radar .ring.r3{width:38%;height:38%}
+.radar .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--accent);color:#fff;padding:8px 14px;border-radius:100px;font-family:"Big Shoulders Display";font-weight:800;font-size:.95rem;white-space:nowrap}
+.radar .pin{position:absolute;font-family:"Spline Sans Mono",monospace;font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--head);background:#fff;border:1px solid var(--line);padding:5px 9px;border-radius:100px;transform:translate(-50%,-50%);white-space:nowrap}
+.radar .pin::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:5px;vertical-align:middle}
+
+.note{margin-top:16px;font-family:"Spline Sans Mono",monospace;font-size:.66rem;letter-spacing:.06em;color:var(--sub)}
+footer{text-align:center;padding:20px;color:#8a7a76;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.14em}
+</style>
+</head>
+<body>
+
+<header class="pagehead">
+  <h1>Nyírlugos térkép — stílusok</h1>
+  <p>Négy térkép-megoldás, ami illik a meleg terrakotta dizájnhoz. Válassz egyet.</p>
+</header>
+
+<main class="gallery">
+
+  <!-- A -->
+  <section class="concept A">
+    <div class="cmeta"><span class="id">A</span><span class="nm">Élő térkép meleg szűrővel</span><span class="desc">OSM + sepia</span></div>
+    <div class="sec">
+      <div class="eyebrow">Hol dolgozom</div><h2>Nyírlugos és környéke</h2>
+      <div class="frame"><iframe title="OSM" src="https://www.openstreetmap.org/export/embed.html?bbox=21.86%2C47.62%2C22.22%2C47.77&layer=mapnik&marker=47.6928%2C22.0419" loading="lazy"></iframe></div>
+      <div class="note">Valódi, interaktív — de meleg színszűrővel a palettához hangolva</div>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section class="concept B">
+    <div class="cmeta"><span class="id">B</span><span class="nm">Humanitarian réteg</span><span class="desc">OSM · eleve bézs/meleg</span></div>
+    <div class="sec">
+      <div class="eyebrow">Hol dolgozom</div><h2>Nyírlugos és környéke</h2>
+      <div class="frame"><iframe title="OSM HOT" src="https://www.openstreetmap.org/export/embed.html?bbox=21.86%2C47.62%2C22.22%2C47.77&layer=hot&marker=47.6928%2C22.0419" loading="lazy"></iframe></div>
+      <div class="note">Az OSM bézsesebb, lágyabb stílusú rétege — kevésbé „rikító"</div>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section class="concept C">
+    <div class="cmeta"><span class="id">C</span><span class="nm">Stilizált saját térkép</span><span class="desc">brand színek · rajzolt</span></div>
+    <div class="sec">
+      <div class="eyebrow">Hol dolgozom</div><h2>Nyírlugos és környéke</h2>
+      <div class="frame">
+        <svg class="svgmap" viewBox="0 0 600 338" preserveAspectRatio="xMidYMid slice">
+          <path class="region" d="M70,150 C50,90 150,55 240,70 C330,40 460,60 520,120 C575,160 560,250 480,285 C400,320 250,318 180,290 C100,300 80,210 70,150 Z"/>
+          <path class="road" d="M120,120 C220,150 330,130 470,170"/>
+          <path class="road" d="M300,70 C320,150 300,230 330,300"/>
+          <path class="road" d="M180,260 C280,220 360,250 470,230"/>
+          <!-- towns -->
+          <g><circle class="town" cx="300" cy="80" r="5"/><text class="lbl" x="312" y="84">Nyíregyháza</text></g>
+          <g><circle class="town" cx="160" cy="170" r="5"/><text class="lbl" x="172" y="174">Nyíradony</text></g>
+          <g><circle class="town" cx="470" cy="180" r="5"/><text class="lbl" x="482" y="184">Nyírbátor</text></g>
+          <g><circle class="town" cx="300" cy="250" r="5"/><text class="lbl" x="312" y="254">Nyírbéltek</text></g>
+          <g><circle class="town" cx="450" cy="270" r="5"/><text class="lbl" x="462" y="274">Penészlek</text></g>
+          <g><circle class="town" cx="160" cy="290" r="5"/><text class="lbl" x="172" y="294">Debrecen</text></g>
+          <!-- main -->
+          <g><circle class="town main" cx="330" cy="175" r="8"/><text class="lbl main" x="345" y="181">Nyírlugos</text></g>
+        </svg>
+      </div>
+      <div class="note">Teljesen a dizájnhoz szabva — nem interaktív, de mindig illik</div>
+    </div>
+  </section>
+
+  <!-- D -->
+  <section class="concept D">
+    <div class="cmeta"><span class="id">D</span><span class="nm">Radar / hatótáv</span><span class="desc">körök + települések</span></div>
+    <div class="sec">
+      <div class="eyebrow">Hol dolgozom</div><h2>Nyírlugos és környéke</h2>
+      <div class="radar">
+        <span class="ring"></span><span class="ring r2"></span><span class="ring r3"></span>
+        <span class="core">Nyírlugos</span>
+        <span class="pin" style="left:50%;top:6%">Nyíregyháza</span>
+        <span class="pin" style="left:88%;top:40%">Nyírbátor</span>
+        <span class="pin" style="left:74%;top:82%">Penészlek</span>
+        <span class="pin" style="left:24%;top:80%">Debrecen</span>
+        <span class="pin" style="left:12%;top:38%">Nyíradony</span>
+        <span class="pin" style="left:50%;top:94%">Nyírbéltek</span>
+      </div>
+      <div class="note">Egyszerű, grafikus „hatótáv" — Nyírlugos a középpont</div>
+    </div>
+  </section>
+
+</main>
+<footer>Válassz egy betűt (A–D), és azt építem be az igazi index.html-be</footer>
+
+</body>
+</html>

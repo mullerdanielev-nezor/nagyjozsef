@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nagy József — Szobafestő, festés-mázolás személyesen</title>
+<meta name="description" content="Festés-mázolás, homlokzatfestés, tapétázás Nagy Józseftől, egyéni vállalkozó szobafestőtől. Egy ember, az első hívástól az átadásig — korrekt árajánlat, tiszta munka." />
+<meta property="og:title" content="Nagy József — Szobafestő, személyesen" />
+<meta property="og:description" content="A kopott fal helyett egy fal, amit megszeret. Egyetlen ember, az első hívástól az átadásig." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.14/lenis.min.js"></script>
+
+<style>
+:root{
+  --clay:#b7472a; --linen:#f5f1eb; --ink:#2b2620; --slate:#5a5248; --gold:#d9a23b; --mist:#e4ded3; --pine:#241d16;
+  --bg-a:#efe3d2; --bg-b:#e3c79e; --accent:#b7472a; --paper:#f5f1eb; --type:#2b2620; --soft:rgba(43,38,32,.58);
+  --maxw:1240px; --gap:clamp(18px,4vw,46px);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;color:var(--type);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.55}
+
+.atmosphere{position:fixed;inset:0;z-index:-2;background:radial-gradient(120% 80% at 78% 8%, color-mix(in oklab, var(--bg-a) 88%, #fff) 0%, transparent 48%),linear-gradient(180deg, var(--bg-a) 0%, var(--bg-b) 100%)}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:var(--grain);background-size:160px;opacity:.05;mix-blend-mode:multiply}
+
+h1,h2,h3,.display{font-family:"Fraunces",Georgia,serif;font-weight:380;letter-spacing:-.012em;line-height:1.02}
+.eyebrow{font-family:"Spline Sans Mono",monospace;text-transform:uppercase;font-size:.72rem;letter-spacing:.28em;color:var(--soft)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gap)}
+section{position:relative}
+.ph img,img.cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+/* bar + menu */
+.bar{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(18px,4vw,46px);transition:background .4s,border-color .4s,padding .3s;border-bottom:1px solid transparent}
+.bar.scrolled{background:color-mix(in oklab,var(--paper) 82%,transparent);backdrop-filter:blur(11px);border-bottom:1px solid color-mix(in oklab,var(--type) 10%,transparent);padding-top:12px;padding-bottom:12px}
+.brand{font-family:"Fraunces",serif;font-size:1.18rem;color:var(--type);text-decoration:none;line-height:1;z-index:42}
+.brand small{font-family:"Spline Sans Mono",monospace;display:block;font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--soft);margin-top:4px}
+.nav{display:flex;align-items:center;gap:clamp(14px,2vw,30px)}
+.nav>a{font-family:"Spline Sans Mono",monospace;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--type);opacity:.78;transition:color .3s,opacity .25s;position:relative}
+.nav>a:hover{opacity:1}
+.nav>a.link::after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:1px;background:var(--accent);transition:right .3s}
+.nav>a.link:hover::after{right:0}
+.navcta{border:1px solid color-mix(in oklab,var(--type) 30%,transparent);border-radius:100px;padding:9px 16px;opacity:1 !important;transition:.3s}
+.navcta:hover{background:var(--type);color:var(--paper) !important;border-color:var(--type)}
+.bar:not(.scrolled) .brand,.bar:not(.scrolled) .brand small,.bar:not(.scrolled) .nav>a{color:#f5f1eb}
+.bar:not(.scrolled) .navcta{border-color:rgba(245,241,235,.55)}
+.bar:not(.scrolled) .navcta:hover{background:#f5f1eb;color:#2b2620 !important;border-color:#f5f1eb}
+.bar:not(.scrolled) .burger span{background:#f5f1eb}
+.burger{display:none;z-index:42;width:42px;height:42px;border:none;background:none;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.burger span{display:block;width:24px;height:2px;background:var(--type);transition:.35s}
+.burger.open span:nth-child(1){transform:translateY(4px) rotate(45deg);background:var(--type)}
+.burger.open span:nth-child(2){transform:translateY(-4px) rotate(-45deg);background:var(--type)}
+.menu-overlay{position:fixed;inset:0;z-index:39;background:color-mix(in oklab,var(--paper) 97%,#fff);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.menu-overlay.open{opacity:1;visibility:visible}
+.menu-overlay nav{display:flex;flex-direction:column;gap:6px;text-align:center}
+.menu-overlay nav a{font-family:"Fraunces",serif;font-size:2.1rem;font-style:italic;text-decoration:none;color:var(--type);padding:8px;transition:.25s}
+.menu-overlay nav a:hover{color:var(--accent)}
+.menu-overlay .ov-call{font-family:"Spline Sans Mono",monospace;font-style:normal;font-size:1rem;margin-top:18px;color:var(--accent);letter-spacing:.08em}
+@media(max-width:880px){.nav{display:none}.burger{display:flex}}
+
+/* sticky call pill */
+.callpill{position:fixed;z-index:41;right:clamp(16px,3vw,40px);bottom:clamp(16px,3vw,40px);display:flex;align-items:center;gap:12px;padding:12px 20px 12px 12px;border-radius:100px;background:var(--type);color:var(--paper);text-decoration:none;box-shadow:0 18px 40px -22px rgba(20,14,8,.6);transition:transform .3s,box-shadow .3s}
+.callpill:hover{transform:translateY(-3px)}
+.callpill .ring{width:38px;height:38px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callpill .ring svg{width:18px;height:18px}
+.callpill .lab{font-family:"Spline Sans Mono",monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.callpill .num{font-family:"Spline Sans Mono",monospace;font-size:.92rem;font-weight:600}
+@media(max-width:420px){.callpill .txt{display:none}.callpill{padding:12px}}
+
+/* HERO */
+.hero{height:100svh;min-height:600px;display:flex;align-items:flex-end;overflow:hidden}
+.scene{position:absolute;inset:0;z-index:0}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) brightness(.94);z-index:0}
+.scrim{position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,rgba(20,12,6,.28),rgba(20,12,6,0) 32%,rgba(20,12,6,.12) 60%,rgba(20,12,6,.66))}
+.hero-copy{position:relative;z-index:5;padding-bottom:clamp(48px,8vw,110px);color:#f6efe3}
+.hero h1{font-size:clamp(2.7rem,8vw,6.6rem);max-width:15ch;color:#fbf5ea;text-shadow:0 2px 30px rgba(20,10,4,.35)}
+.hero h1 em{font-style:italic;font-weight:340}
+.hero .sub{margin-top:22px;max-width:46ch;font-size:clamp(1rem,1.5vw,1.18rem);color:rgba(246,239,227,.85)}
+.hero .scrollcue{margin-top:34px;display:inline-flex;align-items:center;gap:11px;font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,239,227,.8)}
+.hero .scrollcue .line{width:46px;height:1px;background:currentColor;position:relative;overflow:hidden}
+.hero .scrollcue .line::after{content:"";position:absolute;inset:0;width:40%;background:#fff;animation:slide 2.4s linear infinite}
+@keyframes slide{0%{transform:translateX(-110%)}100%{transform:translateX(260%)}}
+
+/* STYLES CONTRAST SLIDER */
+.contrast{height:100svh;min-height:560px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.cw{position:relative;width:100%;height:100%}
+.side{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(28px,8vw,130px)}
+.side .ph{position:absolute;inset:0;z-index:-1}
+.side .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(20,14,8,.32),rgba(20,14,8,.62))}
+.side.b{clip-path:inset(0 0 0 50%)}
+.side .inner{position:relative;z-index:1;color:#fbeeda}
+.side .k{font-family:"Fraunces",serif;font-style:italic;font-size:clamp(2.2rem,6vw,4.4rem);font-weight:340;line-height:1}
+.side .t{font-family:"Hanken Grotesk",sans-serif;font-size:clamp(1rem,1.6vw,1.2rem);margin-top:10px;max-width:22ch;color:rgba(251,238,218,.88)}
+.side .tag{font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;opacity:.85;margin-bottom:16px;color:var(--gold)}
+.side.b .inner{margin-left:auto;text-align:right;align-items:flex-end;display:flex;flex-direction:column}
+.handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:rgba(255,255,255,.85);z-index:6;transform:translateX(-1px)}
+.handle .grip{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;color:#444;box-shadow:0 14px 30px -10px rgba(0,0,0,.5);font-family:"Spline Sans Mono",monospace;font-size:.7rem;cursor:ew-resize}
+.contrast .cap{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);z-index:7;text-align:center;font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:#fff;mix-blend-mode:difference}
+
+/* SERVICES */
+.services{padding:clamp(90px,12vw,160px) 0}
+.services h2{font-size:clamp(2rem,4.6vw,3.6rem);max-width:18ch;margin-top:14px}
+.svc-grid{margin-top:clamp(46px,6vw,80px);display:grid;gap:2px;border-top:1px solid color-mix(in oklab,var(--type) 14%,transparent)}
+@media(min-width:760px){.svc-grid{grid-template-columns:1fr 1fr}}
+.svc-item{padding:clamp(26px,3.4vw,40px) 0;border-bottom:1px solid color-mix(in oklab,var(--type) 14%,transparent);display:flex;gap:20px}
+@media(min-width:760px){.svc-item:nth-child(odd){padding-right:clamp(20px,4vw,50px)}.svc-item:nth-child(even){padding-left:clamp(20px,4vw,50px)}}
+.svc-item .n{font-family:"Spline Sans Mono",monospace;font-size:.74rem;color:var(--accent);min-width:30px;padding-top:6px}
+.svc-item h3{font-size:1.35rem;margin-bottom:8px}
+.svc-item p{color:var(--soft);max-width:42ch}
+
+/* PERSON */
+.person{padding:clamp(90px,13vw,180px) 0}
+.person .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(30px,6vw,86px);align-items:center}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:4px;overflow:hidden;box-shadow:0 50px 90px -50px rgba(20,12,6,.65);background:linear-gradient(155deg,#caa37c 0%,#8a6a4c 55%,#5d4733 100%)}
+.portrait .tile{position:absolute;inset:0;z-index:2;background-repeat:no-repeat}
+.portrait .label{position:absolute;left:18px;bottom:16px;z-index:5;color:#f4ead9;font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;opacity:.85;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.person h2{font-size:clamp(2rem,4.4vw,3.6rem);max-width:14ch}
+.person h2 em{font-style:italic}
+.person p.lead{margin-top:22px;font-size:1.1rem;color:var(--soft);max-width:48ch}
+.person ul{list-style:none;margin:30px 0 0;display:grid;gap:2px}
+.person li{display:flex;align-items:baseline;gap:14px;padding:11px 0;border-top:1px solid color-mix(in oklab,var(--type) 14%,transparent)}
+.person li .n{font-family:"Spline Sans Mono",monospace;font-size:.72rem;color:var(--accent);min-width:34px}
+.person li b{font-weight:600}
+.person li span{color:var(--soft);font-size:.96rem}
+.person .nope{margin-top:30px;font-family:"Fraunces",serif;font-size:clamp(1.15rem,2vw,1.7rem);font-style:italic;line-height:1.25}
+.person .nope b{font-style:normal;font-weight:480;color:var(--accent)}
+
+/* PORTFOLIO */
+.work{background:color-mix(in oklab,var(--type) 92%,#000);color:var(--mist)}
+.work .intro{padding:clamp(80px,11vw,150px) 0 0}
+.work .eyebrow{color:rgba(255,255,255,.5)}
+.work h2{color:#f3ece0;font-size:clamp(2rem,5vw,4rem);max-width:18ch;margin-top:14px}
+.track-pin{height:100svh;display:flex;align-items:center;overflow:hidden}
+.track{display:flex;gap:clamp(20px,3vw,46px);padding:0 clamp(28px,7vw,120px);will-change:transform}
+.proj{flex:0 0 min(78vw,560px)}
+.proj .img{position:relative;aspect-ratio:5/6;border-radius:5px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(0,0,0,.7);background:#2a2520}
+.proj .img .ph{position:absolute;inset:0}
+.proj .img .ph::after{content:"";position:absolute;inset:0;background:var(--grain);background-size:150px;opacity:.1;mix-blend-mode:overlay}
+.proj .img .meta{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:22px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.6))}
+.proj .img .meta .place{font-family:"Spline Sans Mono",monospace;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.proj .img .meta .name{font-family:"Fraunces",serif;font-size:1.5rem;color:#fff;margin-top:4px}
+.proj .story{margin-top:22px;display:grid;gap:14px}
+.proj .story .row{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:baseline}
+.proj .story .row .k{font-family:"Spline Sans Mono",monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45);padding-top:3px}
+.proj .story .row .v{color:#e7e0d4;font-size:.98rem}
+.proj .story .row.res .v{color:#fff;font-family:"Fraunces",serif;font-size:1.15rem;font-style:italic}
+.work .scrollhint{padding:0 0 clamp(60px,8vw,110px);text-align:center;font-family:"Spline Sans Mono",monospace;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+@media(max-width:760px){.track-pin{height:auto;padding:30px 0 10px}.track{flex-direction:column;overflow:visible;transform:none !important}.proj{flex:none;width:100%}}
+
+/* PROCESS */
+.process{padding:clamp(90px,13vw,180px) 0}
+.process h2{font-size:clamp(2rem,4.6vw,3.6rem);max-width:16ch;margin-top:14px}
+.steps{position:relative;margin-top:clamp(50px,7vw,90px)}
+.steps .spine{position:absolute;left:30px;top:0;bottom:0;width:2px;background:color-mix(in oklab,var(--type) 14%,transparent)}
+.steps .fill{position:absolute;left:30px;top:0;width:2px;height:0;background:var(--accent)}
+.step{position:relative;display:grid;grid-template-columns:62px 1fr;gap:clamp(18px,4vw,46px);padding:clamp(20px,3.2vw,42px) 0;align-items:start}
+.step .dot{position:relative;z-index:2;width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--paper);border:2px solid color-mix(in oklab,var(--type) 20%,transparent);font-family:"Spline Sans Mono",monospace;font-size:1rem;font-weight:600;transition:.4s}
+.step.on .dot{border-color:var(--accent);background:var(--accent);color:var(--paper);transform:scale(1.06)}
+.step h3{font-size:clamp(1.4rem,2.6vw,2.1rem)}
+.step p{margin-top:8px;color:var(--soft);max-width:50ch}
+.step .when{font-family:"Spline Sans Mono",monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;opacity:0;transition:.4s}
+.step.on .when{opacity:1}
+
+/* AREAS */
+.areas{padding:clamp(80px,11vw,160px) 0;text-align:center}
+.areas h2{font-size:clamp(2rem,4.4vw,3.4rem);max-width:20ch;margin:14px auto 0}
+.areas .sub{color:var(--soft);margin:14px auto 0;max-width:50ch}
+.mapwrap{position:relative;max-width:880px;margin:clamp(40px,6vw,70px) auto 0;aspect-ratio:16/11}
+.mapwrap svg{width:100%;height:100%;overflow:visible}
+.region{fill:color-mix(in oklab,var(--accent) 10%,transparent);stroke:color-mix(in oklab,var(--accent) 45%,transparent);stroke-width:1.4;stroke-dasharray:1600;stroke-dashoffset:1600}
+.road{stroke:color-mix(in oklab,var(--type) 18%,transparent);stroke-width:1;fill:none}
+.pin{opacity:0}
+.pin circle.core{fill:var(--accent)}
+.pin circle.ring{fill:none;stroke:var(--accent);stroke-width:1.5;opacity:.5}
+.pin text{font-family:"Spline Sans Mono",monospace;font-size:13px;letter-spacing:.06em;fill:var(--type);text-transform:uppercase}
+.area-list{list-style:none;display:none;flex-wrap:wrap;justify-content:center;gap:10px;margin:36px auto 0;max-width:560px;padding:0}
+.area-list li{font-family:"Spline Sans Mono",monospace;font-size:.8rem;letter-spacing:.05em;padding:12px 18px;border:1px solid color-mix(in oklab,var(--accent) 40%,transparent);border-radius:100px;color:var(--type);background:color-mix(in oklab,var(--paper) 55%,transparent);opacity:0;transform:translateY(10px)}
+@media(max-width:760px){.mapwrap{display:none}.area-list{display:flex}}
+
+/* REVIEWS */
+.reviews{padding:clamp(80px,11vw,160px) 0}
+.reviews h2{font-size:clamp(2rem,4.4vw,3.4rem);max-width:18ch;margin-top:14px}
+.reviews .disclaimer{margin-top:10px;font-size:.82rem;color:var(--soft)}
+.rgrid{margin-top:clamp(46px,6vw,80px);display:grid;gap:clamp(30px,5vw,70px)}
+.review{display:grid;grid-template-columns:0.85fr 1fr;gap:clamp(24px,4vw,56px);align-items:center}
+.review:nth-child(even){grid-template-columns:1fr 0.85fr}
+.review:nth-child(even) .rimg{order:2}
+.rimg{position:relative;aspect-ratio:4/3;border-radius:5px;overflow:hidden;box-shadow:0 40px 80px -45px rgba(20,12,6,.6);background:#2a2520}
+.rimg .ph{position:absolute;inset:0}
+.rimg .ph::after{content:"";position:absolute;inset:0;background:var(--grain);background-size:150px;opacity:.1;mix-blend-mode:overlay}
+.rimg .chip{position:absolute;left:16px;top:16px;z-index:2;background:color-mix(in oklab,var(--paper) 85%,transparent);backdrop-filter:blur(6px);font-family:"Spline Sans Mono",monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;padding:7px 11px;border-radius:100px;color:var(--type)}
+.review blockquote{font-family:"Fraunces",serif;font-size:clamp(1.35rem,2.6vw,2.2rem);font-weight:340;line-height:1.22}
+.review .by{margin-top:18px;font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.12em;color:var(--soft)}
+.review .res{margin-top:14px;display:inline-block;border-top:1px solid var(--accent);padding-top:10px;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+@media(max-width:760px){.review,.review:nth-child(even){grid-template-columns:1fr}.review:nth-child(even) .rimg{order:0}}
+
+/* FAQ */
+.faq{padding:clamp(80px,11vw,150px) 0}
+.faq h2{font-size:clamp(2rem,4.4vw,3.4rem);max-width:18ch;margin-top:14px}
+.faq-list{margin-top:clamp(40px,5vw,64px);max-width:760px}
+.faq-item{border-top:1px solid color-mix(in oklab,var(--type) 16%,transparent)}
+.faq-item:last-child{border-bottom:1px solid color-mix(in oklab,var(--type) 16%,transparent)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:24px 4px;background:none;border:none;cursor:pointer;text-align:left;font-family:"Fraunces",serif;font-size:1.25rem;color:var(--type)}
+.faq-q .plus{font-family:"Spline Sans Mono",monospace;font-size:1.3rem;color:var(--accent);transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-q .plus{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-a p{padding:0 4px 24px;color:var(--soft);max-width:60ch;font-size:1rem;line-height:1.65}
+
+/* FINAL */
+.final{min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:clamp(80px,12vw,160px) 0;position:relative;overflow:hidden}
+.final::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(90% 70% at 50% 30%, color-mix(in oklab,var(--mist) 70%,#fff) 0%, transparent 60%)}
+.final .inner{max-width:760px}
+.final .eyebrow{justify-content:center}
+.final h2{font-size:clamp(2.4rem,6vw,5rem);margin-top:18px;line-height:1.04}
+.final h2 em{font-style:italic}
+.final .phone{display:inline-block;margin-top:34px;font-family:"Spline Sans Mono",monospace;font-size:clamp(1.6rem,4vw,2.6rem);letter-spacing:.02em;color:var(--type);text-decoration:none}
+.final .phone:hover{color:var(--accent)}
+.final .email{display:block;margin-top:8px;font-family:"Spline Sans Mono",monospace;font-size:1rem;color:var(--soft);text-decoration:none}
+.final .email:hover{color:var(--accent)}
+.final .cta{display:inline-flex;margin-top:30px;align-items:center;gap:12px;background:var(--type);color:var(--paper);text-decoration:none;font-family:"Spline Sans Mono",monospace;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;padding:16px 28px;border-radius:100px;transition:.3s}
+.final .cta:hover{background:var(--accent);transform:translateY(-2px)}
+.final .note{margin-top:22px;color:var(--soft);font-size:.92rem}
+footer{padding:40px 0 90px;text-align:center;color:var(--soft);font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;line-height:1.8}
+
+.rev{opacity:0;transform:translateY(28px)}
+@media(max-width:760px){.person .grid{grid-template-columns:1fr}.side.b .inner{margin-left:0;text-align:left;align-items:flex-start}}
+@media (prefers-reduced-motion: reduce){.rev{opacity:1 !important;transform:none !important}.hero .scrollcue .line::after{animation:none}.area-list li{opacity:1 !important;transform:none !important}}
+</style>
+</head>
+<body>
+
+<div class="atmosphere"></div>
+<div class="grain"></div>
+
+<header class="bar" id="bar">
+  <a class="brand" href="#top">Nagy József<small>Festés-mázolás · személyesen</small></a>
+  <nav class="nav">
+    <a class="link" href="#szolgaltatasok">Szolgáltatások</a>
+    <a class="link" href="#work">Munkáim</a>
+    <a class="link" href="#process">Folyamat</a>
+    <a class="link" href="#reviews">Vélemények</a>
+    <a class="navcta" href="#final">Ajánlatkérés</a>
+  </nav>
+  <button class="burger" id="burger" aria-label="Menü megnyitása" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<div class="menu-overlay" id="overlay">
+  <nav>
+    <a href="#szolgaltatasok">Szolgáltatások</a>
+    <a href="#work">Munkáim</a>
+    <a href="#process">Folyamat</a>
+    <a href="#reviews">Vélemények</a>
+    <a href="#gyik">GYIK</a>
+    <a href="#final">Ajánlatkérés</a>
+    <a class="ov-call" href="tel:+36706039556">06 70 603 9556</a>
+  </nav>
+</div>
+
+<a class="callpill" href="tel:+36706039556">
+  <span class="ring"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" style="color:#f5f1eb"><path d="M70 30c10 0 18 24 18 32s-12 14-12 22c0 16 38 54 54 54 8 0 14-12 22-12s32 8 32 18c0 16-14 32-32 32-44 0-104-60-104-104 0-18 16-32 22-42z"/></svg></span>
+  <span class="txt"><span class="lab">Hívjon most</span><br><span class="num">06 70 603 9556</span></span>
+</a>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="scene">
+    <img class="hero-photo" id="heroPhoto" src="assets/1000010639-full.webp" alt="Nagy József munkája: sötétkék, arany mintás hangsúlyos fal">
+    <div class="scrim"></div>
+  </div>
+  <div class="wrap hero-copy">
+    <h1>A fal,<br><em>amit megszeret.</em></h1>
+    <p class="sub">Kopott, fáradt vagy egyszerűen személytelen a fal otthonában? Festés-mázolással új hangulatot kap a lakása — tiszta munkával, korrekt árajánlattal, az első hívástól az átadásig egyetlen szakemberrel.</p>
+    <div class="scrollcue"><span class="line"></span> Görgessen, nézze meg a munkáimat</div>
+  </div>
+</section>
+
+<!-- STYLES CONTRAST -->
+<section class="contrast" id="contrast">
+  <div class="cw">
+    <div class="side a">
+      <div class="ph"><img src="assets/1000010558-full.webp" alt="Pasztell rózsaszín fürdőszobai fal"></div>
+      <div class="inner">
+        <div class="tag">Stílus A</div><div class="k">Pasztell</div>
+        <div class="t">Lágy, visszafogott rózsaszín tónus — nyugalmat ad egy fürdőszobának.</div>
+      </div>
+    </div>
+    <div class="side b" id="coolSide">
+      <div class="ph"><img src="assets/1000010639-full.webp" alt="Sötétkék, arany mintás grafikus fal"></div>
+      <div class="inner">
+        <div class="tag">Stílus B</div><div class="k">Grafikus</div>
+        <div class="t">Éles geometriai minta, sötétkék alapon arany vonalakkal — karakteres hálószobai fal.</div>
+      </div>
+    </div>
+    <div class="handle" id="handle"><div class="grip">↔</div></div>
+    <div class="cap">Két elkészült fal · csúsztassa a határt</div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="szolgaltatasok">
+  <div class="wrap">
+    <div class="eyebrow rev">Mivel segíthetek</div>
+    <h2 class="rev">Festés-mázolás minden falra, amire szükség van.</h2>
+    <div class="svc-grid">
+      <div class="svc-item rev"><div class="n">01</div><div><h3>Lakásfestés</h3><p>Belső falak, mennyezetek festése, glettelés, sarokerősítés — akár bútormozgatással is.</p></div></div>
+      <div class="svc-item rev"><div class="n">02</div><div><h3>Homlokzatfestés</h3><p>Időjárásálló homlokzatfesték felhordása, repedések javítása, alapozás.</p></div></div>
+      <div class="svc-item rev"><div class="n">03</div><div><h3>Tapétázás</h3><p>Papír és vinyl tapéták pontos illesztéssel, buborékmentes felhelyezéssel.</p></div></div>
+      <div class="svc-item rev"><div class="n">04</div><div><h3>Mázolás, felújítás</h3><p>Ajtók, ablakok, korlátok mázolása, kisebb építőipari javítások egy kézből.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSON -->
+<section class="person" id="person">
+  <div class="wrap grid">
+    <div class="portrait" id="portrait" data-img="assets/1000010531-full.webp">
+      <div class="label">Fotó · egy frissen elkészült fal</div>
+    </div>
+    <div class="copy">
+      <div class="eyebrow rev">Aki a munka mögött áll</div>
+      <h2 class="rev">Egyetlen ember,<br>az <em>első hívástól</em> a végéig.</h2>
+      <p class="lead rev">Nagy József vagyok, egyéni vállalkozó szobafestő. Nem cégként dolgozom, ahol minden lépéshez más arc érkezik. Én megyek ki Önhöz, én végzem el a munkát, és én veszem fel a telefont évek múlva is, ha kérdése van.</p>
+      <ul>
+        <li class="rev"><span class="n">01</span><div><b>A felmérés</b> <span>— megnézem a falakat, és meghallgatom, milyen hangulatot szeretne.</span></div></li>
+        <li class="rev"><span class="n">02</span><div><b>Az ajánlat</b> <span>— egy világos ár, általam leírva, rejtett tételek nélkül.</span></div></li>
+        <li class="rev"><span class="n">03</span><div><b>A festés</b> <span>— saját kézzel, tiszta vonalvezetéssel, leterítve, bútorvédelemmel.</span></div></li>
+        <li class="rev"><span class="n">04</span><div><b>Az átadás</b> <span>— minden eredeti állapotban, festékfolt nélkül a parketten.</span></div></li>
+        <li class="rev"><span class="n">05</span><div><b>A kapcsolat</b> <span>— engem hív közvetlenül. Nincs várólista, nincs hibajegyszám.</span></div></li>
+      </ul>
+      <p class="nope rev">Nincs alvállalkozó. Nincs összevont csapat. <b>Nincs ügyfélszolgálat.</b><br>Csak az ember, aki ott fog állni az otthonában.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="work" id="work">
+  <div class="wrap intro">
+    <div class="eyebrow rev">Válogatott falak</div>
+    <h2 class="rev">Minden festés egy szoba, amit végre újra megszeretnek.</h2>
+  </div>
+  <div class="track-pin" id="trackpin">
+    <div class="track" id="track">
+
+      <article class="proj p1">
+        <div class="img"><div class="ph"><img src="assets/1000010531-full.webp" alt="Terrakotta hangsúlyos fal hálószobában" loading="lazy" decoding="async"></div>
+          <div class="meta"><div class="place">Hálószoba · hangsúlyos fal</div><div class="name">A fal, ami karaktert kapott</div></div>
+        </div>
+        <div class="story">
+          <div class="row"><div class="k">Probléma</div><div class="v">A szoba semleges, fehér fala személytelen volt, hiányzott belőle a karakter.</div></div>
+          <div class="row"><div class="k">Megoldás</div><div class="v">Meleg, terrakotta tónusú hangsúlyos falat festettem, a környező falak érintetlenül, tiszta vonalvezetéssel.</div></div>
+          <div class="row res"><div class="k">Eredmény</div><div class="v">A szoba azonnal otthonosabb, melegebb hangulatot kapott.</div></div>
+        </div>
+      </article>
+
+      <article class="proj p2">
+        <div class="img"><div class="ph"><img src="assets/1000010639-full.webp" alt="Sötétkék, arany mintás hangsúlyos fal hálószobában" loading="lazy" decoding="async"></div>
+          <div class="meta"><div class="place">Hálószoba · mintás hangsúlyos fal</div><div class="name">Grafikus minta, kéz alatt</div></div>
+        </div>
+        <div class="story">
+          <div class="row"><div class="k">Probléma</div><div class="v">A megrendelő egyedi, designos hangsúlyos falat szeretett volna a hálószobába.</div></div>
+          <div class="row"><div class="k">Megoldás</div><div class="v">Sötétkék alapra arany vonalakból álló geometrikus mintát festettem, szabadkézzel kimérve.</div></div>
+          <div class="row res"><div class="k">Eredmény</div><div class="v">Olyan fal készült, amit bútorboltban nem kapnak meg — teljesen egyedi.</div></div>
+        </div>
+      </article>
+
+      <article class="proj p3">
+        <div class="img"><div class="ph"><img src="assets/1000010596-full.webp" alt="Dekor téglaburkolat ablak körül, kerámia díszekkel" loading="lazy" decoding="async"></div>
+          <div class="meta"><div class="place">Terasz · dekor téglafal</div><div class="name">Karakteres térelválasztó</div></div>
+        </div>
+        <div class="story">
+          <div class="row"><div class="k">Probléma</div><div class="v">A fedett terasz fala unalmas, befejezetlen hatást keltett.</div></div>
+          <div class="row"><div class="k">Megoldás</div><div class="v">Dekor téglaburkolatot építettünk ki, az ablak körül kerámia díszekkel kiegészítve.</div></div>
+          <div class="row res"><div class="k">Eredmény</div><div class="v">A terasz ma a ház egyik legkedveltebb pontja.</div></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+  <div class="scrollhint">Húzza · vagy görgessen tovább →</div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="eyebrow rev">Hogyan zajlik</div>
+    <h2 class="rev">Öt lépés, egy ember, semmi meglepetés.</h2>
+    <div class="steps" id="steps">
+      <div class="spine"></div>
+      <div class="fill" id="spinefill"></div>
+      <div class="step" data-step="0"><div class="dot">1</div>
+        <div><div class="when">Általában még aznap</div><h3>Felhív</h3>
+        <p>Engem ér el, nem egy központot. Beszélünk a falról, a hangulatról, amit szeretne. Öt perc alatt kiderül a lényeg.</p></div></div>
+      <div class="step" data-step="1"><div class="dot">2</div>
+        <div><div class="when">Ingyenes · kötöttség nélkül</div><h3>Kimegyek és felmérek</h3>
+        <p>Kimegyek, megnézem a falakat, a felületet, és átbeszéljük, mi lenne a legjobb megoldás. A felmérés ingyenes.</p></div></div>
+      <div class="step" data-step="2"><div class="dot">3</div>
+        <div><div class="when">Egy-két napon belül</div><h3>Egy világos ajánlatot kap</h3>
+        <p>Fix ár, érthető nyelven. Mit festek, mivel, és mibe kerül — amit megbeszéltünk, annyit fizet.</p></div></div>
+      <div class="step" data-step="3"><div class="dot">4</div>
+        <div><div class="when">A munka méretétől függ</div><h3>Felfestem</h3>
+        <p>Tiszta munka, leterített bútorok, rendezett vonalak, és úgy hagyom az otthonát, ahogy találtam — csak szebben. Indulás előtt mindent átnézünk együtt.</p></div></div>
+      <div class="step" data-step="4"><div class="dot">5</div>
+        <div><div class="when">Amíg csak az otthona</div><h3>Maradok az elérhetősége</h3>
+        <p>Ha bármi gond adódna, visszamegyek és helyszínen orvosoljuk. Mindig ugyanaz az ember.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AREAS -->
+<section class="areas" id="areas">
+  <div class="wrap">
+    <div class="eyebrow rev">Hol dolgozom</div>
+    <h2 class="rev">Elég közel, hogy visszajöjjek.</h2>
+    <p class="sub rev">Szándékosan tartom karnyújtásnyira a munkáimat — hogy a festés utáni szerviz olyan egyszerű legyen, mint a hívás előtte. A pontos munkaterületet telefonon egyezzük le.</p>
+    <div class="mapwrap">
+      <svg viewBox="0 0 880 600" id="map">
+        <path class="region" id="region" d="M120,250 C90,160 200,90 330,110 C430,70 600,90 690,160 C800,200 800,360 700,430 C640,520 460,540 350,500 C220,520 120,420 120,250 Z"/>
+        <path class="road" d="M150,300 C320,240 520,300 720,250"/>
+        <path class="road" d="M380,140 C400,300 360,420 420,500"/>
+        <g id="pins">
+          <g class="pin" data-x="300" data-y="250"><circle class="ring" r="16"/><circle class="core" r="5"/><text x="16" y="5">Belváros</text></g>
+          <g class="pin" data-x="470" data-y="195"><circle class="ring" r="16"/><circle class="core" r="5"/><text x="16" y="5">Agglomeráció</text></g>
+          <g class="pin" data-x="560" data-y="330"><circle class="ring" r="16"/><circle class="core" r="5"/><text x="16" y="5">Kertváros</text></g>
+          <g class="pin" data-x="360" data-y="405"><circle class="ring" r="16"/><circle class="core" r="5"/><text x="16" y="5">Lakópark</text></g>
+          <g class="pin" data-x="645" data-y="250"><circle class="ring" r="16"/><circle class="core" r="5"/><text x="16" y="5">Vidéki munkák</text></g>
+        </g>
+      </svg>
+    </div>
+    <ul class="area-list" id="areaList">
+      <li>Belváros</li><li>Agglomeráció</li><li>Kertváros</li><li>Lakópark</li><li>Vidéki munkák</li>
+    </ul>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="eyebrow rev">Az ő szavaikkal</div>
+    <h2 class="rev">Minden vélemény egy szoba, ami megváltozott.</h2>
+    <p class="disclaimer rev">Demó szöveg — kérésére valódi véleményekre cserélem, amint rendelkezésre állnak.</p>
+    <div class="rgrid">
+      <div class="review a rev">
+        <div class="rimg"><div class="ph"><img src="assets/1000010558-full.webp" alt="Pasztell rózsaszín fürdőszobai fal" loading="lazy" decoding="async"></div><div class="chip">Fürdőszoba · pasztell fal</div></div>
+        <div class="txt">
+          <blockquote>„Úgy bánt a lakásunkkal, mintha számítana. A fürdőnk most az egész lakás kedvenc helye.”</blockquote>
+          <div class="by">— Demó vélemény, illusztratív</div>
+          <div class="res">Semleges fal → hangulatos, pasztell fürdő</div>
+        </div>
+      </div>
+      <div class="review b rev">
+        <div class="rimg"><div class="ph"><img src="assets/1000010636-full.webp" alt="Lila hangsúlyos fal nappaliban" loading="lazy" decoding="async"></div><div class="chip">Nappali · hangsúlyos fal</div></div>
+        <div class="txt">
+          <blockquote>„Egy látogatás, egy ár, egy ember. Pontosan azt kaptuk, amit megbeszéltünk.”</blockquote>
+          <div class="by">— Demó vélemény, illusztratív</div>
+          <div class="res">Egyedi színű fal, pontosan a kért hangulattal</div>
+        </div>
+      </div>
+      <div class="review c rev">
+        <div class="rimg"><div class="ph"><img src="assets/1000010597-full.webp" alt="Dekor téglaburkolat közelről" loading="lazy" decoding="async"></div><div class="chip">Terasz · dekor téglafal</div></div>
+        <div class="txt">
+          <blockquote>„A terasz fala lett a legszebb pont a házban. Mindenki megkérdezi, ki csinálta.”</blockquote>
+          <div class="by">— Demó vélemény, illusztratív</div>
+          <div class="res">Befejezetlen fal → karakteres térelválasztó</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="gyik">
+  <div class="wrap">
+    <div class="eyebrow rev">Gyakori kérdések</div>
+    <h2 class="rev">Amit a megrendelők leggyakrabban kérdeznek.</h2>
+    <div class="faq-list">
+      <div class="faq-item rev">
+        <button class="faq-q">Mennyi idő alatt kapok árajánlatot?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Telefonos leírás vagy helyszíni szemle alapján általában 24 órán belül küldöm a pontos árajánlatot.</p></div>
+      </div>
+      <div class="faq-item rev">
+        <button class="faq-q">Kell-e nekem festéket, eszközöket biztosítanom?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Nem, minden szerszámot és alapanyagot én biztosítok. Konkrét márkát vagy színt is szívesen beépítek az árajánlatba.</p></div>
+      </div>
+      <div class="faq-item rev">
+        <button class="faq-q">Mennyi idő alatt készül el egy átlagos lakásfestés?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Egy átlagos, 2-3 szobás lakás festése jellemzően 3-5 munkanapot vesz igénybe, ezt mindig pontosan megbeszéljük előre.</p></div>
+      </div>
+      <div class="faq-item rev">
+        <button class="faq-q">Mozgatni kell a bútorokat, vagy ezt Ön elvégzi?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Kérésre a kisebb bútorokat én mozgatom és letakarom, így a munka zökkenőmentesen halad.</p></div>
+      </div>
+      <div class="faq-item rev">
+        <button class="faq-q">Ad garanciát az elvégzett munkára?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Igen, minden elvégzett munkára garanciát vállalok. Ha bármilyen probléma adódna, visszamegyek és helyszínen orvosoljuk.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final" id="final">
+  <div class="wrap inner">
+    <div class="eyebrow">Ha elege van a kopott falból</div>
+    <h2>Pontosan tudni fogja,<br><em>kit hívjon.</em></h2>
+    <a class="phone" href="tel:+36706039556">06 70 603 9556</a>
+    <a class="email" href="mailto:jozyefn@gmail.com">jozyefn@gmail.com</a><br>
+    <a class="cta" href="mailto:jozyefn@gmail.com?subject=%C3%81raj%C3%A1nlat%20k%C3%A9r%C3%A9s">Ajánlatkérés →</a>
+    <p class="note">Nagy József E.V. · szobafestő · ingyenes helyszíni felmérés</p>
+  </div>
+</section>
+
+<footer>© <span id="yr"></span> · Nagy József E.V. — Szobafestő<br>A munkaterület-térkép és a vélemények illusztratívak, kérésre valós adatokra cserélem.</footer>
+
+</main>
+
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+let lenis=null;
+if(!reduce && window.Lenis){
+  lenis=new Lenis({lerp:0.09,wheelMultiplier:1});
+  function raf(t){lenis.raf(t);requestAnimationFrame(raf);}
+  requestAnimationFrame(raf);
+}
+
+const burger=document.getElementById('burger'),overlay=document.getElementById('overlay'),bar=document.getElementById('bar');
+function toggleMenu(force){
+  const open=(typeof force==='boolean')?force:!overlay.classList.contains('open');
+  overlay.classList.toggle('open',open);
+  burger.classList.toggle('open',open);
+  burger.setAttribute('aria-expanded',open);
+  if(lenis){ open?lenis.stop():lenis.start(); }
+  document.body.style.overflow=open?'hidden':'';
+}
+burger.addEventListener('click',()=>toggleMenu());
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href'); if(id.length<2) return;
+    const el=document.querySelector(id); if(!el) return;
+    e.preventDefault(); toggleMenu(false);
+    if(lenis){ lenis.scrollTo(el,{offset:-70}); }
+    else{ const y=el.getBoundingClientRect().top+window.pageYOffset-70; window.scrollTo({top:y,behavior:reduce?'auto':'smooth'}); }
+  });
+});
+
+function onScroll(){ bar.classList.toggle('scrolled', window.scrollY>40); }
+window.addEventListener('scroll',onScroll,{passive:true});
+if(lenis) lenis.on('scroll',onScroll);
+onScroll();
+
+/* FAQ accordion */
+document.querySelectorAll('.faq-item').forEach(item=>{
+  const q=item.querySelector('.faq-q'),a=item.querySelector('.faq-a');
+  q.addEventListener('click',()=>{
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(o=>{o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null;});
+    if(!isOpen){ item.classList.add('open'); a.style.maxHeight=a.scrollHeight+'px'; }
+  });
+});
+
+if(window.gsap && window.ScrollTrigger){
+  gsap.registerPlugin(ScrollTrigger);
+  if(lenis){ lenis.on('scroll',ScrollTrigger.update); }
+
+  gsap.to('.hero-copy',{yPercent:-16,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('#heroPhoto',{scale:1.07,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+
+  /* CONTRAST slider */
+  const cool=document.getElementById('coolSide'),handle=document.getElementById('handle');
+  let manual=false;
+  function setSplit(x){const pos=Math.max(0.04,Math.min(0.96,x));cool.style.clipPath=`inset(0 0 0 ${pos*100}%)`;handle.style.left=(pos*100)+'%';}
+  setSplit(0.5);
+  ScrollTrigger.create({trigger:'#contrast',start:'top top',end:'+=90%',pin:true,scrub:true,onUpdate:s=>{if(!manual){setSplit(0.5-(s.progress-0.5)*0.001);}}});
+  function drag(e){manual=true;const r=document.getElementById('contrast').getBoundingClientRect();const cx=(e.touches?e.touches[0].clientX:e.clientX)-r.left;setSplit(cx/r.width);}
+  function endDrag(){setTimeout(()=>manual=false,1200);window.removeEventListener('pointermove',drag);window.removeEventListener('pointerup',endDrag);}
+  handle.addEventListener('pointerdown',e=>{e.preventDefault();window.addEventListener('pointermove',drag);window.addEventListener('pointerup',endDrag);});
+
+  /* reveals */
+  gsap.utils.toArray('.rev').forEach(el=>{gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%'}});});
+
+  /* PORTFOLIO horizontal */
+  const track=document.getElementById('track');
+  if(window.innerWidth>760){
+    const dist=()=>track.scrollWidth-window.innerWidth+(window.innerWidth*0.12);
+    gsap.to(track,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#trackpin',start:'top top',end:()=>'+='+dist(),pin:true,scrub:1,invalidateOnRefresh:true}});
+  }
+
+  /* PROCESS */
+  gsap.to('#spinefill',{height:'100%',ease:'none',scrollTrigger:{trigger:'#steps',start:'top 60%',end:'bottom 70%',scrub:true}});
+  gsap.utils.toArray('.step').forEach(s=>{
+    ScrollTrigger.create({trigger:s,start:'top 65%',end:'bottom 50%',onToggle:self=>s.classList.toggle('on',self.isActive)});
+    gsap.from(s,{opacity:0,x:-24,duration:.7,ease:'power3.out',scrollTrigger:{trigger:s,start:'top 82%'}});
+  });
+
+  /* MAP (desktop) */
+  document.querySelectorAll('#pins .pin').forEach(p=>{p.setAttribute('transform',`translate(${p.dataset.x},${p.dataset.y})`);});
+  gsap.to('#region',{strokeDashoffset:0,duration:2,ease:'power2.inOut',scrollTrigger:{trigger:'#areas',start:'top 70%'}});
+  gsap.utils.toArray('#pins .pin').forEach((pin,i)=>{
+    gsap.fromTo(pin,{opacity:0,y:-14},{opacity:1,y:0,duration:.5,ease:'back.out(2)',scrollTrigger:{trigger:'#areas',start:'top 60%'},delay:.6+i*0.22});
+    if(!reduce){const ring=pin.querySelector('.ring');gsap.fromTo(ring,{scale:.6,opacity:.6,transformOrigin:'center'},{scale:1.6,opacity:0,duration:2.2,repeat:-1,ease:'power1.out',delay:1+i*0.22});}
+  });
+  gsap.utils.toArray('#areaList li').forEach((li,i)=>{
+    gsap.to(li,{opacity:1,y:0,duration:.5,ease:'power2.out',scrollTrigger:{trigger:'#areas',start:'top 75%'},delay:.3+i*0.14});
+  });
+
+  /* PORTRAIT -> photo shatter */
+  (function(){
+    const pr=document.getElementById('portrait');if(!pr)return;
+    const img=pr.dataset.img;const cols=3,rows=4,tiles=[];
+    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+      const t=document.createElement('div');t.className='tile';
+      t.style.clipPath=`inset(${r/rows*100}% ${100-(c+1)/cols*100}% ${100-(r+1)/rows*100}% ${c/cols*100}%)`;
+      t.style.backgroundImage=`url('${img}')`;
+      t.style.backgroundSize='100% 100%';
+      pr.appendChild(t);tiles.push({el:t,c,r});
+    }
+    if(reduce)return;
+    tiles.forEach(({el,c,r})=>{
+      const dx=(c-1)*gsap.utils.random(40,120), dy=(r-1.5)*gsap.utils.random(20,70);
+      gsap.to(el,{xPercent:dx,yPercent:dy,rotation:gsap.utils.random(-8,8),opacity:0,ease:'none',scrollTrigger:{trigger:'#person',start:'center center',end:'bottom top',scrub:true}});
+    });
+  })();
+
+  ScrollTrigger.refresh();
+}
+</script>
+</body>
+</html>

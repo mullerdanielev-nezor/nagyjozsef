@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nagy József — 10 stílusötlet (háttér + betűtípus)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&family=Libre+Caslon+Display&family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Mulish:wght@400;600;700&family=Archivo:wght@400;600;700&family=Roboto+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;700&family=Schibsted+Grotesk:wght@400;600;800&family=Bricolage+Grotesque:wght@500;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")}
+body{font-family:"Inter",system-ui,sans-serif;background:#181613;color:#f3efe7;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+/* page header */
+.pagehead{padding:60px clamp(20px,5vw,70px) 30px;max-width:1100px;margin:0 auto;text-align:center}
+.pagehead h1{font-family:"Fraunces",serif;font-weight:380;font-size:clamp(1.9rem,4.5vw,3rem);letter-spacing:-.01em;line-height:1.05}
+.pagehead p{margin-top:14px;color:#b8b0a3;max-width:60ch;margin-left:auto;margin-right:auto}
+.legend{margin-top:22px;font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#7d756a}
+
+/* concept card */
+.gallery{max-width:1180px;margin:0 auto;padding:20px clamp(14px,3vw,40px) 90px;display:grid;gap:40px}
+.concept{border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -40px rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.07)}
+.meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;padding:18px 22px;background:#211e1a;border-bottom:1px solid rgba(255,255,255,.06)}
+.meta .id{font-family:"Spline Sans Mono",monospace;font-size:.95rem;color:#d9a23b;font-weight:600}
+.meta .nm{font-family:"Fraunces",serif;font-size:1.25rem}
+.meta .fonts{margin-left:auto;font-family:"Spline Sans Mono",monospace;font-size:.66rem;letter-spacing:.08em;color:#9a9286;text-transform:uppercase;text-align:right}
+.swatches{display:flex;gap:6px;padding:0 22px 16px;background:#211e1a}
+.swatches i{width:34px;height:18px;border-radius:4px;border:1px solid rgba(255,255,255,.12)}
+
+/* the live hero mock */
+.mock{position:relative;min-height:440px;display:grid;align-items:center;overflow:hidden}
+.mock .grain{position:absolute;inset:0;background-image:var(--grain);background-size:160px;opacity:.05;mix-blend-mode:multiply;pointer-events:none}
+.mgrid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(20px,4vw,50px);align-items:center;width:100%;max-width:1000px;margin:0 auto;padding:clamp(34px,5vw,56px) clamp(24px,4vw,50px)}
+@media(max-width:760px){.mgrid{grid-template-columns:1fr}.card-photo{display:none}}
+.eyebrow{font-family:"Spline Sans Mono",monospace;text-transform:uppercase;font-size:.68rem;letter-spacing:.26em;display:block;margin-bottom:16px;opacity:.85}
+.htitle{font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.04;letter-spacing:-.01em}
+.htitle em{font-style:italic}
+.sub{margin-top:16px;max-width:40ch;font-size:1rem;line-height:1.6;opacity:.82}
+.row{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:"Spline Sans Mono",monospace;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:14px 24px;border-radius:100px}
+.trust{font-size:.86rem;font-weight:600}
+.trust .st{letter-spacing:2px}
+.card-photo{aspect-ratio:3/4;border-radius:8px;overflow:hidden;box-shadow:0 40px 70px -34px rgba(0,0,0,.55);position:relative}
+.card-photo img{width:100%;height:100%;object-fit:cover}
+.float{position:absolute;bottom:-14px;left:-14px;padding:14px 16px;border-radius:6px;max-width:160px}
+.float .num{font-family:"Fraunces",serif;font-size:1.7rem;line-height:1}
+.float p{font-size:.78rem;font-weight:600;margin-top:4px;line-height:1.3}
+
+/* ============ 1. Friss meszelés ============ */
+#c1 .mock{background:radial-gradient(120% 80% at 78% 8%,#fbf6ee 0%,transparent 48%),linear-gradient(180deg,#f5f1eb,#e8dcc8);color:#2b2620}
+#c1 .eyebrow,#c1 .htitle em{color:#b7472a}
+#c1 .htitle{font-family:"Fraunces",serif;font-weight:380}
+#c1 .sub{color:#5a5248}
+#c1 .btn{background:#b7472a;color:#fff}
+#c1 .trust .st{color:#d9a23b}
+#c1 .float{background:#2b2620;color:#f5f1eb}#c1 .float .num{color:#d9a23b}
+#c1 .eyebrow{font-family:"Spline Sans Mono"}
+
+/* ============ 2. Festékesvödör kobalt ============ */
+#c2 .mock{background:#1d3a5f;color:#ede4d3}
+#c2 .eyebrow,#c2 .trust .st{color:#c89b3c}
+#c2 .htitle{font-family:"Libre Caslon Display",serif}
+#c2 .htitle em{color:#c89b3c}
+#c2 .sub{color:#c3cbd6}
+#c2 .btn{background:#c89b3c;color:#1d3a5f}
+#c2 .float{background:#0f2034;color:#ede4d3}#c2 .float .num{color:#c89b3c}
+
+/* ============ 3. Pigment & vászon ============ */
+#c3 .mock{background:#efe7d6;color:#33291d}
+#c3 .eyebrow,#c3 .htitle em{color:#b7472a}
+#c3 .htitle{font-family:"Fraunces",serif;font-weight:380}
+#c3 .sub{font-family:"Source Serif 4",serif;color:#6a5e4c}
+#c3 .btn{background:#b7472a;color:#fff}
+#c3 .trust .st{color:#c08a2d}
+#c3 .float{background:#33291d;color:#efe7d6}#c3 .float .num{color:#d9a23b}
+
+/* ============ 4. Színskála / színkártya ============ */
+#c4 .mock{background:#ededed;color:#222}
+#c4 .mock::before{content:"";position:absolute;top:0;bottom:0;right:0;width:46px;z-index:0;background:linear-gradient(#c98a3a 0 25%,#8a9a6b 25% 50%,#b7472a 50% 75%,#3a5a7a 75% 100%)}
+#c4 .eyebrow{color:#b7472a}
+#c4 .htitle{font-family:"Space Grotesk",sans-serif;font-weight:700}
+#c4 .htitle em{font-style:normal;color:#b7472a}
+#c4 .sub{font-family:"IBM Plex Sans";color:#555}
+#c4 .btn{background:#222;color:#fff}
+#c4 .trust .st{color:#c98a3a}
+#c4 .float{background:#222;color:#fff}#c4 .float .num{color:#c98a3a}
+
+/* ============ 5. Sötét stúdió / éjszakai ============ */
+#c5 .mock{background:radial-gradient(90% 70% at 75% 30%,rgba(217,162,59,.28),transparent 60%),#1c1a17;color:#f3ece0}
+#c5 .grain{opacity:.08}
+#c5 .eyebrow,#c5 .trust .st{color:#d9a23b}
+#c5 .htitle{font-family:"Playfair Display",serif;font-weight:500}
+#c5 .htitle em{color:#d9a23b}
+#c5 .sub{color:#bcb3a4}
+#c5 .btn{background:#d9a23b;color:#1c1a17}
+#c5 .float{background:#000;color:#f3ece0}#c5 .float .num{color:#d9a23b}
+
+/* ============ 6. Zsálya & gipsz ============ */
+#c6 .mock{background:linear-gradient(180deg,#cdd3c4,#eef0e8);color:#2e342a}
+#c6 .eyebrow,#c6 .htitle em{color:#7a6a4a}
+#c6 .htitle{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(2.4rem,5vw,3.8rem)}
+#c6 .sub{font-family:"Mulish";color:#525c4a}
+#c6 .btn{background:#5e6b4e;color:#f3f5ee}
+#c6 .trust .st{color:#a98c4a}
+#c6 .float{background:#2e342a;color:#eef0e8}#c6 .float .num{color:#cdd3c4}
+
+/* ============ 7. Maszkolószalag & blueprint ============ */
+#c7 .mock{background:#f3efe7;background-image:linear-gradient(rgba(40,60,90,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(40,60,90,.07) 1px,transparent 1px);background-size:26px 26px;color:#26303d}
+#c7 .eyebrow{color:#26303d;background:#e8b84b;display:inline-block;padding:4px 10px;margin-bottom:16px}
+#c7 .htitle{font-family:"Archivo",sans-serif;font-weight:700}
+#c7 .htitle em{font-style:normal;color:#2e5a8a}
+#c7 .sub{font-family:"Roboto Mono";font-size:.9rem;color:#4a5663}
+#c7 .btn{background:#26303d;color:#fff}
+#c7 .trust .st{color:#e0a93b}
+#c7 .float{background:#26303d;color:#f3efe7}#c7 .float .num{color:#e8b84b}
+
+/* ============ 8. Terrakotta meleg ============ */
+#c8 .mock{background:linear-gradient(135deg,#c2562f,#e6b48a);color:#2a1409}
+#c8 .eyebrow{color:#41200f}
+#c8 .htitle{font-family:"DM Serif Display",serif}
+#c8 .htitle em{color:#fbe9d3}
+#c8 .sub{font-family:"DM Sans";color:#5a2c16}
+#c8 .btn{background:#2a1409;color:#fbe9d3}
+#c8 .trust .st{color:#fbe9d3}
+#c8 .float{background:#2a1409;color:#fbe9d3}#c8 .float .num{color:#e6b48a}
+
+/* ============ 9. Tiszta minimál ============ */
+#c9 .mock{background:#ffffff;color:#1a1a1a}
+#c9 .eyebrow,#c9 .htitle em{color:#b7472a}
+#c9 .htitle{font-family:"Schibsted Grotesk",sans-serif;font-weight:800;letter-spacing:-.02em}
+#c9 .htitle em{font-style:normal}
+#c9 .sub{color:#666}
+#c9 .btn{background:#b7472a;color:#fff}
+#c9 .trust .st{color:#d9a23b}
+#c9 .float{background:#1a1a1a;color:#fff}#c9 .float .num{color:#b7472a}
+#c9 .card-photo{box-shadow:0 30px 60px -36px rgba(0,0,0,.3)}
+
+/* ============ 10. Retro festőműhely ============ */
+#c10 .mock{background:#f0e6d2;color:#234032;background-image:radial-gradient(rgba(35,64,50,.10) 1px,transparent 1px);background-size:6px 6px}
+#c10 .eyebrow{color:#9a7b1f}
+#c10 .htitle{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;letter-spacing:-.01em}
+#c10 .htitle em{font-style:normal;color:#c79a2b}
+#c10 .sub{font-family:"Work Sans";color:#4a5d4f}
+#c10 .btn{background:#234032;color:#f0e6d2}
+#c10 .trust .st{color:#c79a2b}
+#c10 .float{background:#234032;color:#f0e6d2}#c10 .float .num{color:#c79a2b}
+
+footer{text-align:center;padding:30px 20px 60px;color:#7d756a;font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.14em}
+</style>
+</head>
+<body>
+
+<header class="pagehead">
+  <h1>10 stílusötlet — Nagy József, szobafestő</h1>
+  <p>Mindegyik kártya egy élő hero-mockup a saját hátterével és betűtípusával, a festő-mázoló szakmához igazítva. Görgess végig, és szólj, melyik számot építsem be az igazi oldalba.</p>
+  <div class="legend">Háttér · Betűtípus-páros · Színpaletta</div>
+</header>
+
+<main class="gallery">
+
+  <!-- 1 -->
+  <section class="concept" id="c1">
+    <div class="meta"><span class="id">01</span><span class="nm">Friss meszelés</span><span class="fonts">Fraunces · Hanken Grotesk · Spline Mono</span></div>
+    <div class="swatches"><i style="background:#f5f1eb"></i><i style="background:#e8dcc8"></i><i style="background:#b7472a"></i><i style="background:#d9a23b"></i><i style="background:#2b2620"></i></div>
+    <div class="mock"><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal,<br><em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <!-- 2 -->
+  <section class="concept" id="c2">
+    <div class="meta"><span class="id">02</span><span class="nm">Festékesvödör kobalt</span><span class="fonts">Libre Caslon Display · Inter</span></div>
+    <div class="swatches"><i style="background:#1d3a5f"></i><i style="background:#0f2034"></i><i style="background:#c89b3c"></i><i style="background:#ede4d3"></i></div>
+    <div class="mock"><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal,<br><em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <!-- 3 -->
+  <section class="concept" id="c3">
+    <div class="meta"><span class="id">03</span><span class="nm">Pigment &amp; vászon</span><span class="fonts">Fraunces · Source Serif 4</span></div>
+    <div class="swatches"><i style="background:#efe7d6"></i><i style="background:#33291d"></i><i style="background:#b7472a"></i><i style="background:#c08a2d"></i></div>
+    <div class="mock"><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal,<br><em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <!-- 4 -->
+  <section class="concept" id="c4">
+    <div class="meta"><span class="id">04</span><span class="nm">Színskála / színkártya</span><span class="fonts">Space Grotesk · IBM Plex Sans</span></div>
+    <div class="swatches"><i style="background:#ededed"></i><i style="background:#c98a3a"></i><i style="background:#8a9a6b"></i><i style="background:#3a5a7a"></i><i style="background:#222"></i></div>
+    <div class="mock"><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal, <em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <!-- 5 -->
+  <section class="concept" id="c5">
+    <div class="meta"><span class="id">05</span><span class="nm">Sötét stúdió / éjszakai</span><span class="fonts">Playfair Display · Hanken Grotesk</span></div>
+    <div class="swatches"><i style="background:#1c1a17"></i><i style="background:#000"></i><i style="background:#d9a23b"></i><i style="background:#f3ece0"></i></div>
+    <div class="mock"><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal,<br><em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <!-- 6 -->
+  <section class="concept" id="c6">
+    <div class="meta"><span class="id">06</span><span class="nm">Zsálya &amp; gipsz</span><span class="fonts">Cormorant Garamond · Mulish</span></div>
+    <div class="swatches"><i style="background:#cdd3c4"></i><i style="background:#eef0e8"></i><i style="background:#5e6b4e"></i><i style="background:#2e342a"></i></div>
+    <div class="mock"><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal,<br><em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <!-- 7 -->
+  <section class="concept" id="c7">
+    <div class="meta"><span class="id">07</span><span class="nm">Maszkolószalag &amp; blueprint</span><span class="fonts">Archivo · Roboto Mono</span></div>
+    <div class="swatches"><i style="background:#f3efe7"></i><i style="background:#26303d"></i><i style="background:#e8b84b"></i><i style="background:#2e5a8a"></i></div>
+    <div class="mock"><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás</span><h2 class="htitle">A fal, <em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <!-- 8 -->
+  <section class="concept" id="c8">
+    <div class="meta"><span class="id">08</span><span class="nm">Terrakotta meleg</span><span class="fonts">DM Serif Display · DM Sans</span></div>
+    <div class="swatches"><i style="background:#c2562f"></i><i style="background:#e6b48a"></i><i style="background:#2a1409"></i><i style="background:#fbe9d3"></i></div>
+    <div class="mock"><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal,<br><em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <!-- 9 -->
+  <section class="concept" id="c9">
+    <div class="meta"><span class="id">09</span><span class="nm">Tiszta minimál</span><span class="fonts">Schibsted Grotesk · Inter</span></div>
+    <div class="swatches"><i style="background:#ffffff"></i><i style="background:#f4f4f4"></i><i style="background:#b7472a"></i><i style="background:#1a1a1a"></i></div>
+    <div class="mock"><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal, <em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <!-- 10 -->
+  <section class="concept" id="c10">
+    <div class="meta"><span class="id">10</span><span class="nm">Retro festőműhely</span><span class="fonts">Bricolage Grotesque · Work Sans</span></div>
+    <div class="swatches"><i style="background:#f0e6d2"></i><i style="background:#234032"></i><i style="background:#c79a2b"></i></div>
+    <div class="mock"><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal, <em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+</main>
+
+<footer>Nagy József · szobafestő · stílus-előnézet — válassz egy számot, és beépítem</footer>
+
+</body>
+</html>

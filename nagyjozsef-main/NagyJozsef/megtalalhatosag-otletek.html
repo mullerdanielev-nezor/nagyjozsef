@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Megtalálhatóság — szekció ötletek</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;800;900&family=Public+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg1:#f1ede3;--bg2:#e8e2d6;--head:#3f1717;--accent:#b7472a;--label:#6d2c1c;--sub:#555555;--line:rgba(63,23,23,.16)}
+body{font-family:"Public Sans",system-ui,sans-serif;background:#1c1413;color:#efe7e4;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+.pagehead{padding:50px clamp(20px,5vw,70px) 16px;max-width:1000px;margin:0 auto;text-align:center}
+.pagehead h1{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(2rem,5vw,3rem)}
+.pagehead p{margin:12px auto 0;color:#b6a9a5;max-width:64ch}
+
+.gallery{max-width:1200px;margin:0 auto;padding:14px clamp(10px,2.5vw,30px) 90px;display:grid;gap:30px}
+.concept{border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -42px rgba(0,0,0,.85);border:1px solid rgba(255,255,255,.08)}
+.cmeta{display:flex;align-items:baseline;gap:12px;padding:14px 22px;background:#2a1d1b;border-bottom:1px solid rgba(255,255,255,.07)}
+.cmeta .id{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:1.35rem;color:var(--accent)}
+.cmeta .nm{font-weight:700;font-size:1rem}
+.cmeta .desc{margin-left:auto;font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.05em;color:#b09a95;text-transform:uppercase}
+
+.sec{position:relative;overflow:hidden;background:linear-gradient(125deg,var(--bg1),var(--bg2));padding:clamp(40px,5vw,64px) clamp(24px,4vw,54px);color:var(--head)}
+.eyebrow{font-family:"Spline Sans Mono",monospace;text-transform:uppercase;font-size:.72rem;letter-spacing:.26em;color:var(--label);display:block}
+h2{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;color:var(--head);font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.02;margin-top:12px;max-width:18ch}
+.sub{color:var(--sub);margin-top:14px;max-width:50ch}
+.chip{display:inline-flex;align-items:center;gap:8px;font-family:"Spline Sans Mono",monospace;font-size:.78rem;letter-spacing:.04em;padding:11px 18px;border:1px solid color-mix(in oklab,var(--accent) 40%,transparent);border-radius:100px;color:var(--head);background:#fff}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.cta{display:inline-flex;align-items:center;gap:10px;font-family:"Spline Sans Mono",monospace;font-size:.86rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;background:#1a1a1a;color:#fff;padding:15px 26px;border-radius:100px;text-decoration:none;margin-top:6px}
+.phone{font-family:"Spline Sans Mono",monospace;font-weight:600}
+
+/* A chip-felhő központi */
+.A{text-align:center}.A .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px}.A .cta{margin-top:26px}
+
+/* B kétoszlop kontakt + lista */
+.B .g{display:grid;gap:clamp(26px,4vw,56px);align-items:center}
+@media(min-width:780px){.B .g{grid-template-columns:1fr 1fr}}
+.B .areas{display:grid;gap:10px}
+.B .areas .row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.B .areas .row svg{width:18px;height:18px;color:var(--accent);flex-shrink:0}
+.B .areas .row b{font-weight:600}
+.B .cta{margin-top:18px}
+
+/* C terület-kártyák */
+.C .grid{display:grid;gap:14px;margin-top:26px}
+@media(min-width:560px){.C .grid{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.C .grid{grid-template-columns:repeat(3,1fr)}}
+.C .card{background:#fff;border-radius:12px;padding:22px;border:1px solid var(--line);box-shadow:0 16px 36px -30px rgba(40,12,8,.4)}
+.C .card .ic{width:40px;height:40px;border-radius:10px;background:color-mix(in oklab,var(--accent) 12%,#fff);display:flex;align-items:center;justify-content:center;color:var(--accent);margin-bottom:12px}
+.C .card h3{font-family:"Public Sans";font-weight:700;font-size:1.1rem}
+.C .card p{color:var(--sub);font-size:.88rem;margin-top:4px}
+
+/* D koncentrikus körök */
+.D{text-align:center}
+.D .radar{position:relative;width:min(420px,86%);aspect-ratio:1/1;margin:26px auto 0}
+.D .ring{position:absolute;inset:0;margin:auto;border:1.5px solid color-mix(in oklab,var(--accent) 30%,transparent);border-radius:50%}
+.D .ring.r2{width:70%;height:70%}.D .ring.r3{width:42%;height:42%}
+.D .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Big Shoulders Display";font-weight:800;font-size:.8rem;text-align:center;line-height:1}
+.D .pin{position:absolute;font-family:"Spline Sans Mono",monospace;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--head);background:#fff;border:1px solid var(--line);padding:5px 10px;border-radius:100px;transform:translate(-50%,-50%);white-space:nowrap}
+
+/* E stilizált térkép-folt */
+.E .g{display:grid;gap:clamp(24px,4vw,50px);align-items:center}
+@media(min-width:780px){.E .g{grid-template-columns:1.1fr .9fr}}
+.E .mapwrap{position:relative;aspect-ratio:4/3}
+.E .mapwrap .blob{position:absolute;inset:0;color:color-mix(in oklab,var(--accent) 14%,transparent)}
+.E .mapwrap .dot{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in oklab,var(--accent) 22%,transparent)}
+.E .mapwrap .lbl{position:absolute;font-family:"Spline Sans Mono",monospace;font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--head);transform:translate(14px,-6px);white-space:nowrap}
+.E .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.E .cta{margin-top:18px}
+
+/* F nagy felirat sáv */
+.F{text-align:center}
+.F .big{font-family:"Big Shoulders Display";font-weight:900;text-transform:uppercase;font-size:clamp(2.6rem,8vw,6rem);line-height:.92;color:var(--head)}
+.F .big em{font-style:normal;color:var(--accent)}
+.F .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:20px}
+.F .cta{margin-top:24px}
+
+footer{text-align:center;padding:20px;color:#8a7a76;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.14em}
+</style>
+</head>
+<body>
+
+<header class="pagehead">
+  <h1>Megtalálhatóság — szekció ötletek</h1>
+  <p>Hol dolgozol + hogyan érnek el. A területek és a telefonszámod a te adataiddal. 6 elrendezés — válassz egyet.</p>
+</header>
+
+<main class="gallery" id="gallery"></main>
+<footer>Válassz egy betűt (A–F), és beépítem az igazi index.html megtalálhatóság-szekciójába</footer>
+
+<script>
+const AREAS=['Belváros','Agglomeráció','Kertváros','Lakópark','Vidéki munkák'];
+const PHONE='06 70 603 9556';
+const pin=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>`;
+const eyebrow='<span class="eyebrow">Hol dolgozom</span>';
+const h2='<h2>Elég közel, hogy visszajöjjek.</h2>';
+const sub='<p class="sub">Szándékosan tartom karnyújtásnyira a munkáimat — hogy a festés utáni szerviz olyan egyszerű legyen, mint a hívás előtte.</p>';
+const cta=`<a class="cta" href="tel:+36706039556">Hívjon · ${PHONE}</a>`;
+const chips=AREAS.map(a=>`<span class="chip">${a}</span>`).join('');
+
+const V={
+ 'A':{nm:'Chip-felhő (központi)',desc:'területek + hívás CTA',cls:'A',
+   html:`${eyebrow}${h2}${sub}<div class="chips">${chips}</div>${cta}`},
+ 'B':{nm:'Kétoszlop kontakt + lista',desc:'szöveg | terület-lista',cls:'B',
+   html:`<div class="g"><div>${eyebrow}${h2}${sub}${cta}</div><div class="areas">${AREAS.map(a=>`<div class="row">${pin}<b>${a}</b></div>`).join('')}</div></div>`},
+ 'C':{nm:'Terület-kártyák',desc:'rács',cls:'C',
+   html:`${eyebrow}${h2}<div class="grid">${AREAS.map(a=>`<div class="card"><span class="ic">${pin}</span><h3>${a}</h3><p>Festés-mázolás helyben, gyors kiszállással.</p></div>`).join('')}</div>`},
+ 'D':{nm:'Koncentrikus körök',desc:'„hatótáv" radar',cls:'D',
+   html:`${eyebrow}${h2}<div class="radar"><span class="ring"></span><span class="ring r2"></span><span class="ring r3"></span><span class="core">BUDA-<br>PEST</span><span class="pin" style="left:50%;top:8%">${AREAS[4]}</span><span class="pin" style="left:84%;top:38%">${AREAS[1]}</span><span class="pin" style="left:72%;top:78%">${AREAS[2]}</span><span class="pin" style="left:20%;top:70%">${AREAS[3]}</span><span class="pin" style="left:16%;top:30%">${AREAS[0]}</span></div>`},
+ 'E':{nm:'Stilizált térkép-folt',desc:'organikus folt + pinek',cls:'E',
+   html:`<div class="g"><div class="mapwrap"><svg class="blob" viewBox="0 0 200 150"><path fill="currentColor" d="M30,60 C20,30 60,15 100,22 C150,12 185,40 180,75 C188,110 150,140 105,132 C60,140 30,115 30,60 Z"/></svg><span class="dot" style="left:42%;top:42%"></span><span class="lbl" style="left:42%;top:42%">Belváros</span><span class="dot" style="left:66%;top:32%"></span><span class="lbl" style="left:66%;top:32%">Agglomeráció</span><span class="dot" style="left:60%;top:64%"></span><span class="lbl" style="left:60%;top:64%">Kertváros</span></div><div>${eyebrow}${h2}${sub}<div class="chips">${chips}</div>${cta}</div></div>`},
+ 'F':{nm:'Nagy felirat sáv',desc:'„BUDAPEST ÉS KÖRNYÉKE"',cls:'F',
+   html:`${eyebrow}<div class="big">Budapest <em>és környéke</em></div><div class="chips">${chips}</div>${cta}`},
+};
+
+document.getElementById('gallery').innerHTML=Object.entries(V).map(([id,v])=>`
+  <section class="concept">
+    <div class="cmeta"><span class="id">${id}</span><span class="nm">${v.nm}</span><span class="desc">${v.desc}</span></div>
+    <div class="sec ${v.cls}">${v.html}</div>
+  </section>`).join('');
+</script>
+</body>
+</html>

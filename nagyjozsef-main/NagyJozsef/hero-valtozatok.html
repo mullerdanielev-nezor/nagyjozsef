@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hero-változatok — 12 tipográfia + 03 háttér</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800;900&family=Public+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sage:#cdd3c4; --plaster:#eef0e8; --deep:#5e6b4e; --pine:#2e342a; --gold:#a98c4a; --olive:#3f4a33;
+  --grad:linear-gradient(120deg,#eef0e8 0%,#d6dbcd 45%,#9fae8e 100%);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+body{font-family:"Public Sans",system-ui,sans-serif;background:var(--pine);color:#eef0e8;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+.pagehead{padding:54px clamp(20px,5vw,70px) 22px;max-width:1000px;margin:0 auto;text-align:center}
+.pagehead h1{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(2rem,5vw,3.2rem);line-height:1.05}
+.pagehead p{margin:12px auto 0;color:#aeb4a4;max-width:62ch}
+.pagehead .tag{margin-top:16px;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#7c8472}
+
+.gallery{max-width:1240px;margin:0 auto;padding:14px clamp(12px,3vw,36px) 90px;display:grid;gap:34px}
+.concept{border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -42px rgba(0,0,0,.85);border:1px solid rgba(255,255,255,.07)}
+.meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;padding:15px 22px;background:#252b21;border-bottom:1px solid rgba(255,255,255,.06)}
+.meta .id{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:1.4rem;color:var(--gold)}
+.meta .nm{font-family:"Public Sans",sans-serif;font-weight:700;font-size:1.02rem;letter-spacing:.01em}
+.meta .desc{margin-left:auto;font-family:"Spline Sans Mono",monospace;font-size:.64rem;letter-spacing:.05em;color:#9aa28c;text-transform:uppercase;text-align:right}
+
+/* shared hero pieces */
+.hero{position:relative;min-height:540px;overflow:hidden;background:var(--grad);color:#2e342a;display:flex}
+.hero .grain{position:absolute;inset:0;background-image:var(--grain);background-size:160px;opacity:.06;mix-blend-mode:multiply;pointer-events:none;z-index:4}
+.eyebrow{font-family:"Spline Sans Mono",monospace;text-transform:uppercase;font-size:.66rem;letter-spacing:.26em;color:var(--deep);display:block}
+.h{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;line-height:.92;letter-spacing:.01em;color:#2e342a}
+.h .ac{color:var(--gold)}
+.sub{font-family:"Public Sans",sans-serif;color:#46513f;line-height:1.6}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:"Spline Sans Mono",monospace;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;padding:14px 26px;border-radius:100px;background:var(--olive);color:#f3f5ee;white-space:nowrap}
+.btn.ghost{background:transparent;border:1px solid #5e6b4e;color:#2e342a}
+.trust{font-family:"Public Sans";font-size:.85rem;font-weight:700;color:#2e342a}
+.trust .st{letter-spacing:2px;color:var(--gold)}
+.photo{position:relative;overflow:hidden;border-radius:8px}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.badge{position:absolute;background:#2e342a;color:#eef0e8;padding:13px 16px;border-radius:6px;max-width:170px}
+.badge .n{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:2.1rem;line-height:1;color:var(--gold)}
+.badge p{font-size:.76rem;font-weight:700;line-height:1.3;margin-top:2px}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+@media(max-width:780px){.hero{min-height:0}}
+
+/* ===== V1 Klasszikus split ===== */
+#v1 .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,4vw,56px);align-items:center;width:100%;max-width:1080px;margin:auto;padding:clamp(40px,5vw,64px) clamp(26px,4vw,52px);position:relative;z-index:3}
+#v1 .h{font-size:clamp(3rem,7vw,5.4rem)}
+#v1 .eyebrow{margin-bottom:18px}#v1 .sub{margin-top:18px;max-width:40ch}#v1 .actions{margin-top:26px}
+#v1 .photo{aspect-ratio:4/5;box-shadow:0 40px 70px -34px rgba(20,26,16,.5)}
+#v1 .badge{bottom:-14px;left:-14px}
+@media(max-width:780px){#v1 .wrap{grid-template-columns:1fr}#v1 .photo{display:none}}
+
+/* ===== V2 Fordított, jobbra zárt ===== */
+#v2 .wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(24px,4vw,56px);align-items:center;width:100%;max-width:1080px;margin:auto;padding:clamp(40px,5vw,64px) clamp(26px,4vw,52px);position:relative;z-index:3}
+#v2 .copy{order:2;text-align:right;display:flex;flex-direction:column;align-items:flex-end}
+#v2 .photo{order:1;aspect-ratio:4/5;box-shadow:0 40px 70px -34px rgba(20,26,16,.5)}
+#v2 .h{font-size:clamp(3rem,7vw,5.4rem)}
+#v2 .eyebrow{margin-bottom:18px}#v2 .sub{margin-top:18px;max-width:38ch}#v2 .actions{margin-top:26px;justify-content:flex-end}
+#v2 .badge{bottom:-14px;right:-14px}
+@media(max-width:780px){#v2 .wrap{grid-template-columns:1fr}#v2 .photo{display:none}#v2 .copy{text-align:left;align-items:flex-start}#v2 .actions{justify-content:flex-start}}
+
+/* ===== V3 Teljes képes háttér ===== */
+#v3 .hero{color:#f4f1e9}
+#v3 .cover{position:absolute;inset:0;z-index:1}#v3 .cover img{width:100%;height:100%;object-fit:cover}
+#v3 .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,33,22,.82) 0%,rgba(28,33,22,.5) 45%,rgba(28,33,22,.15) 100%)}
+#v3 .wrap{position:relative;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;width:100%;max-width:1120px;margin:auto;padding:clamp(40px,6vw,80px) clamp(26px,4vw,56px)}
+#v3 .eyebrow{color:var(--gold);margin-bottom:16px}
+#v3 .h{color:#fff;font-size:clamp(3.2rem,8vw,6rem)}
+#v3 .sub{color:#e6e2d8;margin-top:18px;max-width:44ch}
+#v3 .actions{margin-top:28px}#v3 .btn{background:var(--gold);color:#23281a}#v3 .btn.ghost{border-color:rgba(255,255,255,.5);color:#fff}
+#v3 .trust{color:#fff}
+
+/* ===== V4 Tipográfiai óriás (központi) ===== */
+#v4 .wrap{position:relative;z-index:3;text-align:center;width:100%;max-width:1000px;margin:auto;padding:clamp(48px,7vw,90px) clamp(24px,4vw,40px);display:flex;flex-direction:column;align-items:center}
+#v4 .eyebrow{margin-bottom:22px}
+#v4 .h{font-size:clamp(3.4rem,11vw,8rem);font-weight:900}
+#v4 .sub{margin-top:20px;max-width:50ch}#v4 .actions{margin-top:28px;justify-content:center}
+#v4 .stats{margin-top:40px;display:flex;gap:clamp(20px,5vw,60px);flex-wrap:wrap;justify-content:center;border-top:1px solid rgba(46,52,42,.18);padding-top:26px}
+#v4 .stats .it .n{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:2.4rem;color:var(--deep);line-height:1}
+#v4 .stats .it .l{font-size:.78rem;font-weight:600;color:#46513f;text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+
+/* ===== V5 Átfedő headline ===== */
+#v5 .wrap{position:relative;z-index:3;width:100%;max-width:1140px;margin:auto;padding:clamp(40px,5vw,64px) clamp(26px,4vw,52px);display:grid;grid-template-columns:1fr .8fr;align-items:center;gap:0}
+#v5 .photo{aspect-ratio:1/1;box-shadow:0 40px 70px -34px rgba(20,26,16,.5)}
+#v5 .copy{position:relative;z-index:5}
+#v5 .h{font-size:clamp(3.4rem,9vw,7rem);margin-left:0}
+#v5 .panel{background:color-mix(in oklab,#eef0e8 86%,transparent);backdrop-filter:blur(2px);padding:26px 30px;border-radius:8px;box-shadow:0 30px 60px -40px rgba(0,0,0,.4);margin-right:-22%}
+#v5 .eyebrow{margin-bottom:14px}#v5 .sub{margin-top:16px;max-width:40ch}#v5 .actions{margin-top:24px}
+@media(max-width:780px){#v5 .wrap{grid-template-columns:1fr}#v5 .photo{display:none}#v5 .panel{margin-right:0}}
+
+/* ===== V6 Magazin felső sáv ===== */
+#v6 .wrap{position:relative;z-index:3;width:100%;max-width:1160px;margin:auto;padding:clamp(40px,5vw,60px) clamp(26px,4vw,52px)}
+#v6 .topline{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;border-bottom:2px solid #2e342a;padding-bottom:14px}
+#v6 .h{font-size:clamp(2.8rem,9vw,7rem);font-weight:900;flex:1}
+#v6 .topline .yr{font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.2em;color:var(--deep);text-transform:uppercase;white-space:nowrap;padding-bottom:10px}
+#v6 .lower{margin-top:30px;display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(24px,4vw,50px);align-items:center}
+#v6 .eyebrow{margin-bottom:14px}#v6 .sub{max-width:38ch}#v6 .actions{margin-top:22px}
+#v6 .photo{aspect-ratio:16/10;box-shadow:0 36px 64px -36px rgba(20,26,16,.5)}
+@media(max-width:780px){#v6 .lower{grid-template-columns:1fr}#v6 .photo{aspect-ratio:16/10}}
+
+/* ===== V7 Kollázs (két kép) ===== */
+#v7 .wrap{position:relative;z-index:3;width:100%;max-width:1100px;margin:auto;padding:clamp(40px,5vw,64px) clamp(26px,4vw,52px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,50px);align-items:center}
+#v7 .h{font-size:clamp(3rem,7.5vw,5.6rem)}
+#v7 .eyebrow{margin-bottom:16px}#v7 .sub{margin-top:16px;max-width:36ch}#v7 .actions{margin-top:24px}
+#v7 .stack{position:relative;aspect-ratio:1/1}
+#v7 .p1{position:absolute;top:0;right:0;width:72%;aspect-ratio:3/4;box-shadow:0 36px 60px -34px rgba(20,26,16,.5);z-index:1}
+#v7 .p2{position:absolute;bottom:0;left:0;width:52%;aspect-ratio:4/5;border:5px solid var(--plaster);box-shadow:0 30px 50px -30px rgba(20,26,16,.45);z-index:2}
+#v7 .badge{top:6%;left:-6%;z-index:3}
+@media(max-width:780px){#v7 .wrap{grid-template-columns:1fr}#v7 .stack{display:none}}
+
+/* ===== V8 Kártyás overlap ===== */
+#v8 .hero{padding:clamp(24px,3vw,40px)}
+#v8 .frame{position:relative;width:100%;max-width:1120px;margin:auto;z-index:3}
+#v8 .photo{aspect-ratio:16/9;width:100%;box-shadow:0 40px 70px -38px rgba(20,26,16,.55)}
+#v8 .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,33,22,.25),transparent 60%)}
+#v8 .card{position:absolute;left:clamp(16px,4vw,56px);bottom:-26px;background:var(--plaster);padding:clamp(24px,3vw,38px);border-radius:10px;max-width:min(540px,82%);box-shadow:0 36px 64px -36px rgba(0,0,0,.45);z-index:4}
+#v8 .eyebrow{margin-bottom:12px}#v8 .h{font-size:clamp(2.4rem,5.4vw,4rem)}
+#v8 .sub{margin-top:14px;max-width:42ch}#v8 .actions{margin-top:22px}
+#v8 .concept{padding-bottom:0}
+
+/* ===== V9 Stat-szalag ===== */
+#v9 .hero{flex-direction:column}
+#v9 .wrap{position:relative;z-index:3;width:100%;max-width:1100px;margin:auto;padding:clamp(40px,5vw,60px) clamp(26px,4vw,52px) clamp(20px,3vw,34px);display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,50px);align-items:center}
+#v9 .h{font-size:clamp(3rem,7vw,5.2rem)}
+#v9 .eyebrow{margin-bottom:16px}#v9 .sub{margin-top:16px;max-width:38ch}#v9 .actions{margin-top:24px}
+#v9 .photo{aspect-ratio:5/4;box-shadow:0 36px 60px -34px rgba(20,26,16,.5)}
+#v9 .band{position:relative;z-index:3;width:100%;background:#2e342a;color:#eef0e8;display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(18px,5vw,64px);padding:22px clamp(26px,4vw,52px)}
+#v9 .band .it{text-align:center}
+#v9 .band .it .n{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:1.9rem;line-height:1;color:var(--gold)}
+#v9 .band .it .l{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#c7ccbd;margin-top:3px}
+@media(max-width:780px){#v9 .wrap{grid-template-columns:1fr}#v9 .photo{display:none}}
+
+/* ===== V10 Központi minimal ===== */
+#v10 .wrap{position:relative;z-index:3;text-align:center;width:100%;max-width:880px;margin:auto;padding:clamp(56px,8vw,110px) clamp(24px,4vw,40px);display:flex;flex-direction:column;align-items:center}
+#v10 .swatch{display:flex;gap:6px;margin-bottom:26px}
+#v10 .swatch i{width:30px;height:14px;border-radius:3px}
+#v10 .eyebrow{margin-bottom:18px}
+#v10 .h{font-size:clamp(3rem,8vw,6.2rem);font-weight:900}
+#v10 .sub{margin-top:18px;max-width:46ch}#v10 .actions{margin-top:28px;justify-content:center}
+#v10 .fine{margin-top:24px;font-family:"Spline Sans Mono",monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--deep)}
+
+footer{text-align:center;padding:26px 20px 60px;color:#7c8472;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.14em}
+</style>
+</head>
+<body>
+
+<header class="pagehead">
+  <h1>Hero-szekció · 10 egyedi változat</h1>
+  <p>Rögzített irány: <b>Big Shoulders + Public Sans</b> tipográfia, <b>03-as zsálya gradient</b> háttér. Csak a hero elrendezése változik — válaszd ki, melyik tetszik.</p>
+  <div class="tag">10 layout · azonos szöveg, fotó, szín</div>
+</header>
+
+<main class="gallery">
+
+  <!-- V1 -->
+  <section class="concept" id="v1">
+    <div class="meta"><span class="id">01</span><span class="nm">Klasszikus split</span><span class="desc">szöveg balra · fotó jobbra</span></div>
+    <div class="hero"><div class="grain"></div><div class="wrap">
+      <div class="copy"><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="h">A fal,<br>amit <span class="ac">megszeret.</span></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="actions"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="photo"><img src="assets/1000010639-full.webp" alt=""><div class="badge"><div class="n">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <!-- V2 -->
+  <section class="concept" id="v2">
+    <div class="meta"><span class="id">02</span><span class="nm">Fordított, jobbra zárt</span><span class="desc">fotó balra · szöveg jobbra</span></div>
+    <div class="hero"><div class="grain"></div><div class="wrap">
+      <div class="copy"><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="h">A fal,<br>amit <span class="ac">megszeret.</span></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="actions"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="photo"><img src="assets/1000010558-full.webp" alt=""><div class="badge"><div class="n">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <!-- V3 -->
+  <section class="concept" id="v3">
+    <div class="meta"><span class="id">03</span><span class="nm">Teljes képes háttér</span><span class="desc">fotó full-bleed · szöveg alul</span></div>
+    <div class="hero"><div class="cover"><img src="assets/1000010596-full.webp" alt=""></div><div class="grain"></div><div class="wrap">
+      <span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="h">A fal,<br>amit <span class="ac">megszeret.</span></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="actions"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div>
+    </div></div>
+  </section>
+
+  <!-- V4 -->
+  <section class="concept" id="v4">
+    <div class="meta"><span class="id">04</span><span class="nm">Tipográfiai óriás</span><span class="desc">központi · kép nélkül · stat-sor</span></div>
+    <div class="hero"><div class="grain"></div><div class="wrap">
+      <span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="h">A fal, amit <span class="ac">megszeret.</span></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="actions"><a class="btn">Ajánlatkérés →</a><a class="btn ghost">Munkáim →</a></div>
+      <div class="stats"><div class="it"><div class="n">10+</div><div class="l">év tapasztalat</div></div><div class="it"><div class="n">200+</div><div class="l">befejezett munka</div></div><div class="it"><div class="n">5★</div><div class="l">értékelés</div></div></div>
+    </div></div>
+  </section>
+
+  <!-- V5 -->
+  <section class="concept" id="v5">
+    <div class="meta"><span class="id">05</span><span class="nm">Átfedő headline</span><span class="desc">szövegpanel a fotóra lóg</span></div>
+    <div class="hero"><div class="grain"></div><div class="wrap">
+      <div class="copy"><div class="panel"><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="h">A fal,<br>amit <span class="ac">megszeret.</span></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="actions"><a class="btn">Ajánlatkérés →</a></div></div></div>
+      <div class="photo"><img src="assets/1000010636-full.webp" alt=""></div>
+    </div></div>
+  </section>
+
+  <!-- V6 -->
+  <section class="concept" id="v6">
+    <div class="meta"><span class="id">06</span><span class="nm">Magazin felső sáv</span><span class="desc">óriás cím felül · alatta kétoszlop</span></div>
+    <div class="hero"><div class="grain"></div><div class="wrap">
+      <div class="topline"><h2 class="h">A fal, amit <span class="ac">megszeret.</span></h2><span class="yr">EST. 2014 · Budapest</span></div>
+      <div class="lower"><div class="copy"><span class="eyebrow">Festés-mázolás · személyesen</span><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="actions"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span></span></div></div><div class="photo"><img src="assets/1000010597-full.webp" alt=""></div></div>
+    </div></div>
+  </section>
+
+  <!-- V7 -->
+  <section class="concept" id="v7">
+    <div class="meta"><span class="id">07</span><span class="nm">Kollázs (két kép)</span><span class="desc">szöveg + átfedő fotópár</span></div>
+    <div class="hero"><div class="grain"></div><div class="wrap">
+      <div class="copy"><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="h">A fal,<br>amit <span class="ac">megszeret.</span></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="actions"><a class="btn">Ajánlatkérés →</a></div></div>
+      <div class="stack"><div class="photo p1"><img src="assets/1000010639-full.webp" alt=""></div><div class="photo p2"><img src="assets/1000010531-full.webp" alt=""></div><div class="badge"><div class="n">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <!-- V8 -->
+  <section class="concept" id="v8">
+    <div class="meta"><span class="id">08</span><span class="nm">Kártyás overlap</span><span class="desc">széles fotó · szövegkártya rajta</span></div>
+    <div class="hero"><div class="grain"></div><div class="frame">
+      <div class="photo"><img src="assets/1000010597-full.webp" alt=""></div>
+      <div class="card"><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="h">A fal, amit <span class="ac">megszeret.</span></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="actions"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span></span></div></div>
+    </div></div>
+  </section>
+
+  <!-- V9 -->
+  <section class="concept" id="v9">
+    <div class="meta"><span class="id">09</span><span class="nm">Stat-szalag</span><span class="desc">split + sötét adat-sáv alul</span></div>
+    <div class="hero"><div class="grain"></div><div class="wrap">
+      <div class="copy"><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="h">A fal,<br>amit <span class="ac">megszeret.</span></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="actions"><a class="btn">Ajánlatkérés →</a></div></div>
+      <div class="photo"><img src="assets/1000010531-full.webp" alt=""></div>
+    </div>
+    <div class="band"><div class="it"><div class="n">10+</div><div class="l">év tapasztalat</div></div><div class="it"><div class="n">200+</div><div class="l">befejezett munka</div></div><div class="it"><div class="n">1</div><div class="l">szakember végig</div></div><div class="it"><div class="n">5★</div><div class="l">értékelés</div></div></div>
+    </div>
+  </section>
+
+  <!-- V10 -->
+  <section class="concept" id="v10">
+    <div class="meta"><span class="id">10</span><span class="nm">Központi minimal</span><span class="desc">letisztult · csak tipográfia</span></div>
+    <div class="hero"><div class="grain"></div><div class="wrap">
+      <div class="swatch"><i style="background:#eef0e8"></i><i style="background:#cdd3c4"></i><i style="background:#5e6b4e"></i><i style="background:#a98c4a"></i></div>
+      <span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="h">A fal, amit <span class="ac">megszeret.</span></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="actions"><a class="btn">Ajánlatkérés →</a></div>
+      <div class="fine">10+ év tapasztalat · ★★★★★ ajánlással · Budapest és környéke</div>
+    </div></div>
+  </section>
+
+</main>
+
+<footer>12 tipográfia · 03 háttér · 10 hero-layout — válassz egy számot (01–10), és beépítem az igazi oldalra</footer>
+
+</body>
+</html>

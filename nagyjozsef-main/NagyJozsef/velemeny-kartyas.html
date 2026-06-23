@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vélemények — kártyás stílusok</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;800;900&family=Public+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg1:#fbf7ef;--bg2:#f2ece1;--head:#3f1717;--accent:#b7472a;--label:#6d2c1c;--sub:#555555;--gold:#c98a3a;--line:rgba(63,23,23,.14)}
+body{font-family:"Public Sans",system-ui,sans-serif;background:#1c1413;color:#efe7e4;line-height:1.55;-webkit-font-smoothing:antialiased}
+.pagehead{padding:50px clamp(20px,5vw,70px) 16px;max-width:1000px;margin:0 auto;text-align:center}
+.pagehead h1{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(2rem,5vw,3rem)}
+.pagehead p{margin:12px auto 0;color:#b6a9a5;max-width:64ch}
+.gallery{max-width:1240px;margin:0 auto;padding:14px clamp(10px,2.5vw,30px) 90px;display:grid;gap:30px}
+.concept{border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -42px rgba(0,0,0,.85);border:1px solid rgba(255,255,255,.08)}
+.cmeta{display:flex;align-items:baseline;gap:12px;padding:14px 22px;background:#2a1d1b;border-bottom:1px solid rgba(255,255,255,.07)}
+.cmeta .id{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:1.35rem;color:var(--accent)}
+.cmeta .nm{font-weight:700;font-size:1rem}
+.cmeta .desc{margin-left:auto;font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.05em;color:#b09a95;text-transform:uppercase}
+.sec{background:linear-gradient(125deg,var(--bg1),var(--bg2));padding:clamp(40px,5vw,64px) clamp(24px,4vw,54px);color:var(--head)}
+.eyebrow{font-family:"Spline Sans Mono",monospace;text-transform:uppercase;font-size:.72rem;letter-spacing:.26em;color:var(--label);display:block}
+.sec h2{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;color:var(--head);font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.02;margin-top:12px;max-width:20ch}
+.grid{margin-top:clamp(30px,4vw,46px);display:grid;gap:18px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr)}}
+.st{color:var(--gold);letter-spacing:2px;font-size:.95rem}
+.q{color:var(--head);line-height:1.45}
+.by{font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.06em;color:var(--sub);text-transform:uppercase}
+.qm{font-family:"Big Shoulders Display";font-weight:900;color:color-mix(in oklab,var(--accent) 30%,transparent);line-height:.6}
+
+/* A felső idézőjeles, lágy árnyék */
+.A .card{background:#fff;border-radius:16px;padding:28px 26px;box-shadow:0 22px 50px -34px rgba(40,12,8,.45);transition:transform .25s,box-shadow .25s}
+.A .card:hover{transform:translateY(-5px);box-shadow:0 34px 64px -34px rgba(40,12,8,.5)}
+.A .qm{font-size:3.4rem}.A .q{font-size:1.05rem;margin:2px 0 16px}.A .st{margin-bottom:8px;display:block}
+
+/* B bordó fejléc + fehér test */
+.B .card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 22px 50px -36px rgba(40,12,8,.4)}
+.B .top{background:var(--head);color:#fff;padding:16px 22px;display:flex;align-items:center;justify-content:space-between}
+.B .top .st{color:#ffce7a}.B .top .av{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Big Shoulders Display";font-weight:800}
+.B .bd{padding:22px}.B .q{font-size:1rem;margin-bottom:14px}
+
+/* C bal akcent-sáv */
+.C .card{background:#fff;border-radius:12px;padding:24px 24px 24px 26px;border-left:4px solid var(--accent);box-shadow:0 18px 42px -34px rgba(40,12,8,.4)}
+.C .st{margin-bottom:10px;display:block}.C .q{font-size:1.02rem;margin-bottom:14px}
+
+/* D nagy kiemelt */
+.D .grid{grid-template-columns:1fr}
+@media(min-width:820px){.D .grid{grid-template-columns:1.5fr 1fr}}
+.D .feat{background:var(--head);color:#fff;border-radius:18px;padding:clamp(28px,3.4vw,42px);display:flex;flex-direction:column;justify-content:center}
+.D .feat .qm{font-size:4rem;color:#ffb59c}.D .feat .q{color:#fff;font-family:"Big Shoulders Display";font-weight:700;text-transform:uppercase;font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.1;margin:6px 0 16px}
+.D .feat .by{color:#ffb59c}.D .feat .st{color:#ffce7a}
+.D .side{display:grid;gap:16px}
+.D .side .card{background:#fff;border-radius:14px;padding:22px;box-shadow:0 18px 42px -34px rgba(40,12,8,.4)}
+.D .side .q{font-size:.98rem;margin:6px 0 10px}
+
+/* E minimal keretes */
+.E .card{background:transparent;border:1px solid var(--line);border-radius:14px;padding:26px;transition:.25s}
+.E .card:hover{background:#fff;box-shadow:0 22px 48px -36px rgba(40,12,8,.4)}
+.E .st{margin-bottom:10px;display:block}.E .q{font-size:1.02rem;margin-bottom:14px}
+
+/* F elegáns gradient-szegély */
+.F .card{position:relative;background:#fff;border-radius:16px;padding:26px;box-shadow:0 22px 50px -36px rgba(40,12,8,.4)}
+.F .card::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:4px;background:linear-gradient(var(--accent),var(--gold))}
+.F .q{font-size:1.04rem;margin:4px 0 14px}.F .st{margin-bottom:6px;display:block}
+
+footer{text-align:center;padding:20px;color:#8a7a76;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.14em}
+</style>
+</head>
+<body>
+<header class="pagehead">
+  <h1>Vélemények — kártyás stílusok</h1>
+  <p>Kép nélkül, igényes kártyákban. 6 stílus — vidd rá az egeret a hover-effektekért. Válassz egyet.</p>
+</header>
+<main class="gallery" id="gallery"></main>
+<footer>Válassz egy betűt (A–F), és beépítem az igazi index.html vélemény-szekciójába</footer>
+<script>
+const R=[
+ ['Tiszta, precíz munka, és pontosan annyiba került, amennyit megbeszéltünk.','K. Anna · Nyírlugos','A'],
+ ['Évek óta őt hívom, mindig megbízható. A homlokzat újra olyan, mint új korában.','T. Gábor · Nyírbátor','T'],
+ ['Gyors, korrekt, és a végén egy festékfolt sem volt a parkettán.','Sz. Réka · Debrecen','R'],
+];
+const head=`<span class="eyebrow">Az ő szavaikkal</span><h2>Minden vélemény egy szoba, ami megváltozott.</h2>`;
+const V={
+ 'A':{nm:'Idézőjeles, lágy árnyék',desc:'hover-emelkedés',cls:'A',
+   body:`<div class="grid">${R.map(r=>`<div class="card"><span class="qm">&bdquo;</span><span class="st">★★★★★</span><p class="q">${r[0]}</p><div class="by">${r[1]}</div></div>`).join('')}</div>`},
+ 'B':{nm:'Bordó fejléc + fehér test',desc:'avatar betűvel',cls:'B',
+   body:`<div class="grid">${R.map(r=>`<div class="card"><div class="top"><span class="st">★★★★★</span><span class="av">${r[2]}</span></div><div class="bd"><p class="q">${r[0]}</p><div class="by">${r[1]}</div></div></div>`).join('')}</div>`},
+ 'C':{nm:'Bal akcent-sáv',desc:'terrakotta szegély',cls:'C',
+   body:`<div class="grid">${R.map(r=>`<div class="card"><span class="st">★★★★★</span><p class="q">${r[0]}</p><div class="by">${r[1]}</div></div>`).join('')}</div>`},
+ 'D':{nm:'Nagy kiemelt + kisebbek',desc:'1 fő + 2 mellék',cls:'D',
+   body:`<div class="grid"><div class="feat"><span class="qm">&bdquo;</span><p class="q">${R[0][0]}</p><div class="by">${R[0][1]}</div><span class="st" style="margin-top:10px">★★★★★</span></div><div class="side">${R.slice(1).map(r=>`<div class="card"><span class="st">★★★★★</span><p class="q">${r[0]}</p><div class="by">${r[1]}</div></div>`).join('')}</div></div>`},
+ 'E':{nm:'Minimal keretes',desc:'hoverre kitölt',cls:'E',
+   body:`<div class="grid">${R.map(r=>`<div class="card"><span class="st">★★★★★</span><p class="q">${r[0]}</p><div class="by">${r[1]}</div></div>`).join('')}</div>`},
+ 'F':{nm:'Elegáns gradient-szegély',desc:'függőleges akcent',cls:'F',
+   body:`<div class="grid">${R.map(r=>`<div class="card"><span class="st">★★★★★</span><p class="q">${r[0]}</p><div class="by">${r[1]}</div></div>`).join('')}</div>`},
+};
+document.getElementById('gallery').innerHTML=Object.entries(V).map(([id,v])=>`
+  <section class="concept">
+    <div class="cmeta"><span class="id">${id}</span><span class="nm">${v.nm}</span><span class="desc">${v.desc}</span></div>
+    <div class="sec ${v.cls}">${head}${v.body}</div>
+  </section>`).join('');
+</script>
+</body>
+</html>

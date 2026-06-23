@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Referencia — keretes 3 oszlop + extra</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;800;900&family=Public+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg1:#ffffff;--bg2:#eaece4;--head:#3f1717;--accent:#b7472a;--label:#6d2c1c;--sub:#555555;--line:rgba(63,23,23,.14)}
+body{font-family:"Public Sans",system-ui,sans-serif;background:#1c1413;color:#efe7e4;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+.pagehead{padding:50px clamp(20px,5vw,70px) 16px;max-width:1000px;margin:0 auto;text-align:center}
+.pagehead h1{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(2rem,5vw,3rem)}
+.pagehead p{margin:12px auto 0;color:#b6a9a5;max-width:64ch}
+
+.gallery{max-width:1240px;margin:0 auto;padding:14px clamp(10px,2.5vw,30px) 90px;display:grid;gap:30px}
+.concept{border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -42px rgba(0,0,0,.85);border:1px solid rgba(255,255,255,.08)}
+.cmeta{display:flex;align-items:baseline;gap:12px;padding:14px 22px;background:#2a1d1b;border-bottom:1px solid rgba(255,255,255,.07)}
+.cmeta .id{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:1.35rem;color:var(--accent)}
+.cmeta .nm{font-weight:700;font-size:1rem}
+.cmeta .desc{margin-left:auto;font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.05em;color:#b09a95;text-transform:uppercase}
+
+.sec{background:linear-gradient(125deg,var(--bg1),var(--bg2));padding:clamp(36px,4vw,56px) clamp(22px,3.5vw,46px);color:var(--head)}
+.eyebrow{font-family:"Spline Sans Mono",monospace;text-transform:uppercase;font-size:.72rem;letter-spacing:.26em;color:var(--label);display:block}
+.sec h2{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;color:var(--head);font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.02;margin-top:12px;max-width:22ch}
+.grid{margin-top:clamp(30px,4vw,46px);display:grid;gap:18px;grid-template-columns:1fr}
+@media(min-width:560px){.grid{grid-template-columns:1fr 1fr}}
+@media(min-width:840px){.grid{grid-template-columns:1fr 1fr 1fr}}
+
+/* sima keretes alap */
+.tile{position:relative}
+.tile .fr{position:relative;border:3px solid var(--accent);border-radius:6px;overflow:hidden;aspect-ratio:4/3}
+.tile .fr img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.tile:hover .fr img{transform:scale(1.06)}
+.cap{margin-top:10px}
+.cap .pl{font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--label)}
+.cap .t{font-family:"Big Shoulders Display",sans-serif;font-weight:700;text-transform:uppercase;font-size:1.15rem;color:var(--head);margin-top:1px}
+
+/* EXTRA A — eltolt kontúr-keret (hero motívum) */
+.A .tile{padding:10px 10px 0 0}
+.A .tile::before{content:"";position:absolute;top:0;right:0;width:58%;height:56%;border:2px solid color-mix(in oklab,var(--accent) 45%,transparent);border-radius:6px;z-index:0}
+.A .tile .fr{z-index:1}
+
+/* EXTRA B — hover overlay + nagyító */
+.B .tile .fr::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(40,12,8,.78));opacity:0;transition:.3s}
+.B .ov{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;color:#fff;opacity:0;transform:translateY(8px);transition:.3s}
+.B .ov .pl{font-family:"Spline Sans Mono",monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:#ffc7b3}
+.B .ov .t{font-family:"Big Shoulders Display",sans-serif;font-weight:700;text-transform:uppercase;font-size:1.2rem}
+.B .mag{position:absolute;top:12px;right:12px;z-index:3;width:38px;height:38px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.8);transition:.3s}
+.B .mag svg{width:18px;height:18px;color:#fff}
+.B .tile:hover .fr::after,.B .tile:hover .ov,.B .tile:hover .mag{opacity:1;transform:none}
+
+/* EXTRA C — sarok sorszám-badge */
+.C .bn{position:absolute;top:-12px;left:-12px;z-index:3;width:46px;height:46px;border-radius:50%;background:var(--head);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:1.4rem;box-shadow:0 10px 22px -10px rgba(40,12,8,.6)}
+
+/* EXTRA D — hover: keret rajzolódik + felirat felcsúszik */
+.D .tile .fr{border-color:var(--line)}
+.D .corner{position:absolute;inset:0;z-index:3;pointer-events:none}
+.D .corner::before,.D .corner::after{content:"";position:absolute;width:0;height:0;border:2px solid var(--accent);transition:.35s}
+.D .corner::before{top:0;left:0;border-right:none;border-bottom:none}
+.D .corner::after{bottom:0;right:0;border-left:none;border-top:none}
+.D .tile:hover .corner::before,.D .tile:hover .corner::after{width:42%;height:42%}
+.D .cap{max-height:0;opacity:0;overflow:hidden;transition:.35s}
+.D .tile:hover .cap{max-height:60px;opacity:1;margin-top:10px}
+
+footer{text-align:center;padding:20px;color:#8a7a76;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.14em}
+</style>
+</head>
+<body>
+
+<header class="pagehead">
+  <h1>Keretes referencia · 3 oszlop + extra</h1>
+  <p>Sima terrakotta keretes galéria, 3-asával — négyféle „extrával". Vidd rá az egeret a képekre (főleg B és D). Válassz egyet.</p>
+</header>
+
+<main class="gallery" id="gallery"></main>
+<footer>Válassz egy betűt (A–D), és beépítem az igazi index.html referencia-szekciójába</footer>
+
+<script>
+const P=[
+  ['assets/1000010639-full.webp','Hálószoba · Budapest','Hangsúlyfal'],
+  ['assets/1000010531-full.webp','Nappali','Falfelújítás'],
+  ['assets/1000010558-full.webp','Fürdőszoba','Pasztell tónus'],
+  ['assets/1000010596-full.webp','Családi ház','Homlokzat'],
+  ['assets/1000010597-full.webp','Konyha','Mázolás'],
+  ['assets/1000010636-full.webp','Dekorfal','Tapéta'],
+];
+const head=`<span class="eyebrow">Válogatott munkák</span><h2>Referenciák — falak, amiket újra megszerettek.</h2>`;
+const mag=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>`;
+
+function tileHTML(v,p,i){
+  const cap=`<div class="cap"><div class="pl">${p[1]}</div><div class="t">${p[2]}</div></div>`;
+  if(v==='B') return `<div class="tile"><div class="fr"><img src="${p[0]}" alt=""><div class="mag">${mag}</div><div class="ov"><div class="pl">${p[1]}</div><div class="t">${p[2]}</div></div></div></div>`;
+  if(v==='C') return `<div class="tile"><span class="bn">${String(i+1).padStart(2,'0')}</span><div class="fr"><img src="${p[0]}" alt=""></div>${cap}</div>`;
+  if(v==='D') return `<div class="tile"><div class="fr"><img src="${p[0]}" alt=""></div><div class="corner"></div>${cap}</div>`;
+  return `<div class="tile"><div class="fr"><img src="${p[0]}" alt=""></div>${cap}</div>`;
+}
+const V=[
+ ['A','Eltolt kontúr-keret','a hero motívuma'],
+ ['B','Hover overlay + nagyító','sötétül · felirat · ikon'],
+ ['C','Sarok sorszám-badge','számozott munkák'],
+ ['D','Rajzolódó sarokkeret','hoverre keret + felirat'],
+];
+document.getElementById('gallery').innerHTML=V.map(v=>`
+  <section class="concept">
+    <div class="cmeta"><span class="id">${v[0]}</span><span class="nm">${v[1]}</span><span class="desc">${v[2]}</span></div>
+    <div class="sec ${v[0]}">${head}<div class="grid">${P.map((p,i)=>tileHTML(v[0],p,i)).join('')}</div></div>
+  </section>`).join('');
+</script>
+</body>
+</html>

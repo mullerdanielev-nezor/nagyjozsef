@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Képes kártyák — több változat</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;800;900&family=Public+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg1:#ffffff;--bg2:#eaece4;--head:#3f1717;--accent:#b7472a;--label:#6d2c1c;--sub:#555555;--line:rgba(63,23,23,.14)}
+body{font-family:"Public Sans",system-ui,sans-serif;background:#1c1413;color:#efe7e4;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+.pagehead{padding:50px clamp(20px,5vw,70px) 16px;max-width:1000px;margin:0 auto;text-align:center}
+.pagehead h1{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(2rem,5vw,3rem)}
+.pagehead p{margin:12px auto 0;color:#b6a9a5;max-width:64ch}
+
+.gallery{max-width:1240px;margin:0 auto;padding:14px clamp(10px,2.5vw,30px) 90px;display:grid;gap:30px}
+.concept{border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -42px rgba(0,0,0,.85);border:1px solid rgba(255,255,255,.08)}
+.cmeta{display:flex;align-items:baseline;gap:12px;padding:14px 22px;background:#2a1d1b;border-bottom:1px solid rgba(255,255,255,.07)}
+.cmeta .id{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:1.35rem;color:var(--accent)}
+.cmeta .nm{font-weight:700;font-size:1rem}
+.cmeta .desc{margin-left:auto;font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.05em;color:#b09a95;text-transform:uppercase}
+
+.sec{background:linear-gradient(125deg,var(--bg1),var(--bg2));padding:clamp(34px,4vw,52px) clamp(22px,3.5vw,46px);color:var(--head)}
+.body{display:grid;gap:16px}
+@media(min-width:680px){.body{grid-template-columns:1fr 1fr}}
+h3{font-family:"Public Sans",sans-serif;font-weight:700;font-size:1.18rem}
+p.d{color:var(--sub);margin-top:6px;font-size:.95rem}
+.n{font-family:"Spline Sans Mono",monospace;font-size:.74rem;font-weight:600;color:var(--accent)}
+.ph{position:relative;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s}
+.card:hover .ph img{transform:scale(1.05)}
+
+/* A alap fehér */
+.A .card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:0 18px 40px -30px rgba(40,12,8,.4);transition:transform .25s}
+.A .card:hover{transform:translateY(-4px)}
+.A .ph{aspect-ratio:16/10}.A .tx{padding:20px 22px 24px}.A .tx .n{display:block;margin-bottom:8px}
+
+/* B terrakotta keret + eltolt kontúr */
+.B .card{position:relative;background:#fff;border:2px solid var(--accent);border-radius:8px;overflow:hidden;transition:transform .25s}
+.B .card:hover{transform:translateY(-4px)}
+.B .ph{aspect-ratio:16/10}.B .tx{padding:18px 22px 22px}.B .tx .n{display:block;margin-bottom:6px}
+
+/* C szám-badge a képen */
+.C .card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:0 18px 40px -30px rgba(40,12,8,.4);transition:transform .25s}
+.C .card:hover{transform:translateY(-4px)}
+.C .ph{aspect-ratio:16/10}
+.C .ph .bn{position:absolute;top:12px;left:12px;z-index:2;font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:1.5rem;line-height:1;color:#fff;background:var(--accent);width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.C .tx{padding:18px 22px 22px}
+
+/* D oldalsó kép (vízszintes) */
+.D .body{grid-template-columns:1fr}
+.D .card{display:grid;grid-template-columns:42% 1fr;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:0 18px 40px -30px rgba(40,12,8,.4);transition:transform .25s}
+.D .card:hover{transform:translateY(-3px)}
+.D .ph{aspect-ratio:auto;min-height:150px}.D .tx{padding:22px 24px}.D .tx .n{display:block;margin-bottom:6px}
+
+/* E boltív tető */
+.E .card{background:transparent;transition:transform .25s}
+.E .card:hover{transform:translateY(-4px)}
+.E .ph{aspect-ratio:4/5;max-height:320px;border-radius:160px 160px 12px 12px;box-shadow:0 26px 50px -34px rgba(40,12,8,.45)}
+.E .tx{padding:18px 6px 0;text-align:center}.E .tx .n{display:block;margin-bottom:4px}
+
+/* F sötét kártya */
+.F .card{background:var(--head);color:#fff;border-radius:12px;overflow:hidden;transition:transform .25s}
+.F .card:hover{transform:translateY(-4px)}
+.F .ph{aspect-ratio:16/10}.F .tx{padding:20px 22px 24px}
+.F .tx h3{color:#fff}.F .tx p.d{color:rgba(255,255,255,.78)}.F .tx .n{color:#ffb59c;display:block;margin-bottom:8px}
+
+/* G alsó terrakotta sáv */
+.G .card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:0 18px 40px -30px rgba(40,12,8,.4);transition:transform .25s}
+.G .card:hover{transform:translateY(-4px)}
+.G .ph{aspect-ratio:16/10}
+.G .tx{padding:18px 22px 22px;border-top:4px solid var(--accent)}.G .tx .n{display:block;margin-bottom:6px}
+
+/* H hover-feltáruló szöveg */
+.H .card{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/5;cursor:pointer}
+.H .ph{position:absolute;inset:0}
+.H .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(40,12,8,.85))}
+.H .tx{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:20px;color:#fff}
+.H .tx h3{color:#fff}.H .tx .n{color:#ffc7b3}
+.H .tx p.d{color:rgba(255,255,255,.85);max-height:0;opacity:0;overflow:hidden;transition:max-height .35s,opacity .3s,margin .3s}
+.H .card:hover .tx p.d{max-height:80px;opacity:1;margin-top:6px}
+.H .card:hover .ph img{transform:scale(1.06)}
+
+footer{text-align:center;padding:20px;color:#8a7a76;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.14em}
+</style>
+</head>
+<body>
+
+<header class="pagehead">
+  <h1>Képes kártyák — több változat</h1>
+  <p>Mind fotó+szöveg kártya a te képeiddel, de eltérő kivitelben. 8 stílus — vidd rá az egeret a hover-effektekért (főleg H).</p>
+</header>
+
+<main class="gallery" id="gallery"></main>
+<footer>Válassz egy betűt (A–H), és beépítem az igazi index.html szolgáltatás-szekciójába</footer>
+
+<script>
+const S=[
+  ['01','Lakásfestés','Belső falak, mennyezetek festése, glettelés, sarokerősítés.','assets/1000010639-full.webp'],
+  ['02','Homlokzatfestés','Időjárásálló homlokzatfesték, repedésjavítás, alapozás.','assets/1000010596-full.webp'],
+  ['03','Tapétázás','Papír és vinyl tapéták pontos, buborékmentes illesztéssel.','assets/1000010636-full.webp'],
+  ['04','Mázolás, felújítás','Ajtók, ablakok, korlátok mázolása, kisebb javítások.','assets/1000010597-full.webp'],
+];
+const variants=[
+ ['A','Alap fehér kártya','fotó top · 16:10'],
+ ['B','Terrakotta keret','hero-keretre rímel'],
+ ['C','Szám-badge a képen','kör badge'],
+ ['D','Oldalsó kép','vízszintes kártya'],
+ ['E','Boltív tető','íves fotó · galériás'],
+ ['F','Sötét kártya','bordó háttér'],
+ ['G','Alsó terrakotta sáv','színes elválasztó'],
+ ['H','Hover-feltáruló','szöveg a fotón'],
+];
+function cardHTML(v,s){
+  const img=`<div class="ph">${v==='C'?`<span class="bn">${s[0].replace(/^0/,'')}</span>`:''}<img src="${s[3]}" alt=""></div>`;
+  const tx=`<div class="tx">${v==='C'?'':`<span class="n">${s[0]}</span>`}<h3>${s[1]}</h3><p class="d">${s[2]}</p></div>`;
+  return `<div class="card">${img}${tx}</div>`;
+}
+document.getElementById('gallery').innerHTML=variants.map(v=>`
+  <section class="concept">
+    <div class="cmeta"><span class="id">${v[0]}</span><span class="nm">${v[1]}</span><span class="desc">${v[2]}</span></div>
+    <div class="sec ${v[0]}"><div class="body">${S.map(s=>cardHTML(v[0],s)).join('')}</div></div>
+  </section>`).join('');
+</script>
+</body>
+</html>

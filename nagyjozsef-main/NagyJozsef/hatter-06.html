@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>06 Zsálya &amp; gipsz — 8 háttér-design</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Mulish:wght@400;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sage:#cdd3c4; --plaster:#eef0e8; --deep:#5e6b4e; --pine:#2e342a; --gold:#a98c4a;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+body{font-family:"Mulish",system-ui,sans-serif;background:var(--pine);color:#eef0e8;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+.pagehead{padding:56px clamp(20px,5vw,70px) 26px;max-width:1000px;margin:0 auto;text-align:center}
+.pagehead h1{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(2rem,5vw,3.2rem);line-height:1.05}
+.pagehead p{margin-top:12px;color:#aeb4a4;max-width:60ch;margin:12px auto 0}
+.legend{margin-top:20px;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:#7c8472}
+.legend i{display:inline-block;width:26px;height:13px;border-radius:3px;vertical-align:middle;margin:0 2px;border:1px solid rgba(255,255,255,.15)}
+
+.gallery{max-width:1180px;margin:0 auto;padding:18px clamp(14px,3vw,40px) 90px;display:grid;gap:38px}
+.concept{border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -42px rgba(0,0,0,.85);border:1px solid rgba(255,255,255,.07)}
+.meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;padding:16px 22px;background:#252b21;border-bottom:1px solid rgba(255,255,255,.06)}
+.meta .id{font-family:"Spline Sans Mono",monospace;font-size:.92rem;color:var(--gold);font-weight:600}
+.meta .nm{font-family:"Cormorant Garamond",serif;font-size:1.5rem;font-weight:600}
+.meta .how{margin-left:auto;font-family:"Spline Sans Mono",monospace;font-size:.64rem;letter-spacing:.06em;color:#9aa28c;text-transform:uppercase;text-align:right}
+
+.mock{position:relative;min-height:420px;display:grid;align-items:center;overflow:hidden;color:#2e342a}
+.grain{position:absolute;inset:0;background-image:var(--grain);background-size:160px;opacity:.06;mix-blend-mode:multiply;pointer-events:none;z-index:2}
+.mgrid{position:relative;z-index:3;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(20px,4vw,50px);align-items:center;width:100%;max-width:1000px;margin:0 auto;padding:clamp(34px,5vw,56px) clamp(24px,4vw,50px)}
+@media(max-width:760px){.mgrid{grid-template-columns:1fr}.card-photo{display:none}}
+.eyebrow{font-family:"Spline Sans Mono",monospace;text-transform:uppercase;font-size:.66rem;letter-spacing:.26em;display:block;margin-bottom:16px;color:#7a6a4a}
+.htitle{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(2.4rem,5.2vw,3.8rem);line-height:1.02;color:#2e342a}
+.htitle em{font-style:italic;color:#5e6b4e}
+.sub{margin-top:14px;max-width:40ch;font-size:1rem;line-height:1.6;color:#525c4a}
+.row{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:"Spline Sans Mono",monospace;font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;padding:14px 24px;border-radius:100px;background:#5e6b4e;color:#f3f5ee}
+.trust{font-size:.86rem;font-weight:700;color:#2e342a}
+.trust .st{letter-spacing:2px;color:var(--gold)}
+.card-photo{aspect-ratio:3/4;border-radius:8px;overflow:hidden;box-shadow:0 40px 70px -34px rgba(20,26,16,.5);position:relative}
+.card-photo img{width:100%;height:100%;object-fit:cover}
+.float{position:absolute;bottom:-14px;left:-14px;padding:14px 16px;border-radius:6px;max-width:160px;background:#2e342a;color:#eef0e8}
+.float .num{font-family:"Cormorant Garamond",serif;font-size:2rem;line-height:1;color:#cdd3c4}
+.float p{font-size:.78rem;font-weight:700;margin-top:2px;line-height:1.3}
+
+/* base bg layer per concept (z-index 1, under grain) */
+.bg{position:absolute;inset:0;z-index:1}
+
+/* 1. Meszelt vakolat (limewash) */
+#h1 .mock{background:#dfe2d6}
+#h1 .bg{background:
+  radial-gradient(60% 45% at 20% 25%, rgba(238,240,232,.9), transparent 60%),
+  radial-gradient(55% 50% at 80% 30%, rgba(205,211,196,.85), transparent 62%),
+  radial-gradient(70% 60% at 65% 85%, rgba(120,135,108,.28), transparent 60%),
+  radial-gradient(50% 40% at 10% 90%, rgba(238,240,232,.8), transparent 55%),
+  linear-gradient(160deg,#e7e9e0,#cdd3c4)}
+
+/* 2. Diagonális ecsetvonások */
+#h2 .mock{background:#cdd3c4}
+#h2 .bg{background:
+  repeating-linear-gradient(125deg, rgba(238,240,232,.55) 0 22px, rgba(205,211,196,0) 22px 60px),
+  repeating-linear-gradient(125deg, rgba(94,107,78,.10) 0 3px, transparent 3px 40px),
+  linear-gradient(160deg,#e1e4da,#cdd3c4)}
+
+/* 3. Színátmenetes akcentfal */
+#h3 .mock{background:#cdd3c4}
+#h3 .bg{background:linear-gradient(120deg,#eef0e8 0%,#d6dbcd 45%,#9fae8e 100%)}
+
+/* 4. Finom rács / glett */
+#h4 .mock{background:#e4e7dd}
+#h4 .bg{background:
+  linear-gradient(rgba(94,107,78,.07) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(94,107,78,.07) 1px,transparent 1px),
+  linear-gradient(160deg,#e9ebe2,#cdd3c4);
+  background-size:30px 30px,30px 30px,100% 100%}
+
+/* 5. Színkártya-csíkok oldalt */
+#h5 .mock{background:#eef0e8}
+#h5 .bg{background:linear-gradient(160deg,#eef0e8,#dfe2d6)}
+#h5 .mock::after{content:"";position:absolute;top:0;bottom:0;right:0;width:44px;z-index:2;
+  background:linear-gradient(#eef0e8 0 25%,#cdd3c4 25% 50%,#5e6b4e 50% 75%,#a98c4a 75% 100%)}
+
+/* 6. Organikus festékfolt blobok */
+#h6 .mock{background:#e7e9e0}
+#h6 .bg{background:
+  radial-gradient(38% 34% at 78% 22%, rgba(94,107,78,.30), transparent 65%),
+  radial-gradient(32% 40% at 12% 78%, rgba(169,140,74,.22), transparent 64%),
+  radial-gradient(30% 28% at 60% 88%, rgba(205,211,196,.9), transparent 60%),
+  linear-gradient(160deg,#eef0e8,#dfe2d6)}
+
+/* 7. Botanikus zsálya-levél vonalrajz */
+#h7 .mock{background:#e7eae0}
+#h7 .bg{background:linear-gradient(160deg,#eef0e8,#d9ddd0)}
+#h7 .leaf{position:absolute;z-index:1;opacity:.16;color:#5e6b4e}
+#h7 .leaf.a{top:-30px;right:-20px;width:280px}
+#h7 .leaf.b{bottom:-50px;left:-30px;width:230px;transform:rotate(160deg);opacity:.12}
+
+/* 8. Tiszta + szemcse minimál */
+#h8 .mock{background:#e6e9df}
+#h8 .bg{background:linear-gradient(150deg,#eef0e8 0%,#cdd3c4 100%)}
+#h8 .grain{opacity:.10}
+
+footer{text-align:center;padding:26px 20px 60px;color:#7c8472;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.14em}
+</style>
+</head>
+<body>
+
+<header class="pagehead">
+  <h1>06 · Zsálya &amp; gipsz — 8 háttér-design</h1>
+  <p>Ugyanaz a paletta és betűtípus (Cormorant Garamond · Mulish), 8 különböző háttér-megoldással. Mind élő mockup a valódi szövegeddel és fotóddal.</p>
+  <div class="legend">Paletta:
+    <i style="background:#cdd3c4"></i><i style="background:#eef0e8"></i><i style="background:#5e6b4e"></i><i style="background:#2e342a"></i><i style="background:#a98c4a"></i>
+  </div>
+</header>
+
+<main class="gallery">
+
+  <section class="concept" id="h1">
+    <div class="meta"><span class="id">1</span><span class="nm">Meszelt vakolat (limewash)</span><span class="how">Felhős mész-foltok · ajánlott</span></div>
+    <div class="mock"><div class="bg"></div><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal,<br><em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <section class="concept" id="h2">
+    <div class="meta"><span class="id">2</span><span class="nm">Diagonális ecsetvonások</span><span class="how">Ferde húzás-textúra</span></div>
+    <div class="mock"><div class="bg"></div><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal,<br><em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <section class="concept" id="h3">
+    <div class="meta"><span class="id">3</span><span class="nm">Színátmenetes akcentfal</span><span class="how">Lágy diagonális gradient</span></div>
+    <div class="mock"><div class="bg"></div><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal,<br><em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <section class="concept" id="h4">
+    <div class="meta"><span class="id">4</span><span class="nm">Finom rács / glett</span><span class="how">Halvány négyzetháló</span></div>
+    <div class="mock"><div class="bg"></div><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal,<br><em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <section class="concept" id="h5">
+    <div class="meta"><span class="id">5</span><span class="nm">Színkártya-csíkok oldalt</span><span class="how">Festékminta-sáv jobbra</span></div>
+    <div class="mock"><div class="bg"></div><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal,<br><em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <section class="concept" id="h6">
+    <div class="meta"><span class="id">6</span><span class="nm">Organikus festékfoltok</span><span class="how">Lágy blob formák</span></div>
+    <div class="mock"><div class="bg"></div><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal,<br><em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <section class="concept" id="h7">
+    <div class="meta"><span class="id">7</span><span class="nm">Botanikus zsálya-levél</span><span class="how">Vonalrajz a sarkokban</span></div>
+    <div class="mock"><div class="bg"></div>
+      <svg class="leaf a" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M100 180 C40 150 30 70 100 20 C170 70 160 150 100 180 Z"/><path d="M100 30 L100 175"/><path d="M100 70 C75 75 60 90 55 110"/><path d="M100 70 C125 75 140 90 145 110"/><path d="M100 110 C80 113 70 124 66 140"/><path d="M100 110 C120 113 130 124 134 140"/></svg>
+      <svg class="leaf b" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M100 180 C40 150 30 70 100 20 C170 70 160 150 100 180 Z"/><path d="M100 30 L100 175"/><path d="M100 70 C75 75 60 90 55 110"/><path d="M100 70 C125 75 140 90 145 110"/></svg>
+      <div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal,<br><em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+  <section class="concept" id="h8">
+    <div class="meta"><span class="id">8</span><span class="nm">Tiszta + szemcse (minimál)</span><span class="how">Sima gradient + film-grain</span></div>
+    <div class="mock"><div class="bg"></div><div class="grain"></div><div class="mgrid">
+      <div><span class="eyebrow">Festés-mázolás · személyesen</span><h2 class="htitle">A fal,<br><em>amit megszeret.</em></h2><p class="sub">Tiszta munka, korrekt árajánlat — az első hívástól az átadásig egyetlen szakemberrel.</p><div class="row"><a class="btn">Ajánlatkérés →</a><span class="trust"><span class="st">★★★★★</span> ajánlással</span></div></div>
+      <div class="card-photo"><img src="assets/1000010639-full.webp" alt=""><div class="float"><div class="num">10+</div><p>év tapasztalat</p></div></div>
+    </div></div>
+  </section>
+
+</main>
+
+<footer>06 Zsálya &amp; gipsz · háttér-előnézet — válassz egy számot (1–8), és beépítem az index.html-be</footer>
+
+</body>
+</html>

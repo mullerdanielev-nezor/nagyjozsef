@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Szolgáltatás-rész — képes ötletek</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;800;900&family=Public+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg1:#ffffff;--bg2:#eaece4;--head:#3f1717;--accent:#b7472a;--label:#6d2c1c;--sub:#555555;--line:rgba(63,23,23,.14)}
+body{font-family:"Public Sans",system-ui,sans-serif;background:#1c1413;color:#efe7e4;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+.pagehead{padding:50px clamp(20px,5vw,70px) 16px;max-width:1000px;margin:0 auto;text-align:center}
+.pagehead h1{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(2rem,5vw,3rem)}
+.pagehead p{margin:12px auto 0;color:#b6a9a5;max-width:64ch}
+
+.gallery{max-width:1240px;margin:0 auto;padding:14px clamp(10px,2.5vw,30px) 90px;display:grid;gap:30px}
+.concept{border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -42px rgba(0,0,0,.85);border:1px solid rgba(255,255,255,.08)}
+.cmeta{display:flex;align-items:baseline;gap:12px;padding:14px 22px;background:#2a1d1b;border-bottom:1px solid rgba(255,255,255,.07)}
+.cmeta .id{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:1.35rem;color:var(--accent)}
+.cmeta .nm{font-weight:700;font-size:1rem}
+.cmeta .desc{margin-left:auto;font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.05em;color:#b09a95;text-transform:uppercase}
+
+.sec{background:linear-gradient(125deg,var(--bg1),var(--bg2));padding:clamp(40px,5vw,64px) clamp(24px,4vw,54px);color:var(--head)}
+.eyebrow{font-family:"Spline Sans Mono",monospace;text-transform:uppercase;font-size:.72rem;letter-spacing:.26em;color:var(--label);display:block}
+.sec h2{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;color:var(--head);font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.02;margin-top:12px;max-width:20ch}
+.sec .body{margin-top:clamp(30px,4vw,48px)}
+.sec h3{font-family:"Public Sans",sans-serif;font-weight:700;font-size:1.22rem}
+.sec p.d{color:var(--sub);margin-top:6px;font-size:.98rem;max-width:44ch}
+.n{font-family:"Spline Sans Mono",monospace;font-size:.74rem;font-weight:600;color:var(--accent)}
+.ph{position:relative;overflow:hidden;border-radius:10px}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s}
+
+/* V1 képes kártyák */
+.v1 .body{display:grid;gap:16px}
+@media(min-width:680px){.v1 .body{grid-template-columns:1fr 1fr}}
+.v1 .card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:0 18px 40px -30px rgba(40,12,8,.4);transition:transform .25s}
+.v1 .card:hover{transform:translateY(-4px)}.v1 .card:hover .ph img{transform:scale(1.05)}
+.v1 .ph{border-radius:0;aspect-ratio:16/10}
+.v1 .tx{padding:22px 24px 26px}.v1 .tx .n{display:block;margin-bottom:8px}
+
+/* V2 overlay kártyák */
+.v2 .body{display:grid;gap:14px}
+@media(min-width:680px){.v2 .body{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.v2 .body{grid-template-columns:repeat(4,1fr)}}
+.v2 .card{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:3/4}
+.v2 .card .ph{position:absolute;inset:0;border-radius:0}
+.v2 .card .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,12,8,.05) 30%,rgba(40,12,8,.82))}
+.v2 .tx{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:20px;color:#fff}
+.v2 .tx .n{color:#ffc7b3}.v2 .tx h3{color:#fff}.v2 .tx p.d{color:rgba(255,255,255,.82);font-size:.86rem}
+.v2 .card:hover .ph img{transform:scale(1.06)}
+
+/* V3 zigzag */
+.v3 .body{display:grid;gap:clamp(28px,4vw,52px)}
+.v3 .row{display:grid;gap:clamp(20px,4vw,46px);align-items:center}
+@media(min-width:760px){.v3 .row{grid-template-columns:1fr 1fr}.v3 .row:nth-child(even) .ph{order:2}}
+.v3 .ph{aspect-ratio:4/3;box-shadow:0 30px 56px -36px rgba(40,12,8,.45)}
+.v3 .tx .n{display:block;margin-bottom:10px}
+.v3 .tx h3{font-size:1.5rem}
+
+/* V4 feature: nagy kép + lista */
+.v4 .body{display:grid;gap:clamp(24px,4vw,52px)}
+@media(min-width:820px){.v4 .body{grid-template-columns:1fr 1fr;align-items:start}}
+.v4 .feat{position:sticky;top:20px;aspect-ratio:4/5;box-shadow:0 36px 64px -38px rgba(40,12,8,.5)}
+.v4 .feat{border:3px solid var(--accent);border-radius:8px;overflow:hidden}
+.v4 .list{display:grid;gap:2px;border-top:1px solid var(--line)}
+.v4 .i{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid var(--line)}
+.v4 .i .thumb{width:84px;height:64px;border-radius:8px;overflow:hidden;flex-shrink:0}
+.v4 .i .thumb img{width:100%;height:100%;object-fit:cover}
+
+/* V5 mozaik */
+.v5 .body{display:grid;grid-template-columns:1fr 1fr;gap:12px;grid-auto-rows:150px}
+@media(min-width:760px){.v5 .body{grid-auto-rows:180px}}
+.v5 .t{position:relative;border-radius:12px;overflow:hidden}
+.v5 .t .ph{position:absolute;inset:0;border-radius:0}
+.v5 .t .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(40,12,8,.8))}
+.v5 .t .lab{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:16px;color:#fff}
+.v5 .t .lab .n{color:#ffc7b3}.v5 .t .lab h3{color:#fff;font-size:1.15rem}
+.v5 .t:nth-child(1){grid-row:span 2}
+.v5 .t:nth-child(4){grid-column:span 2}
+.v5 .t:hover .ph img{transform:scale(1.06)}
+
+footer{text-align:center;padding:20px;color:#8a7a76;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.14em}
+</style>
+</head>
+<body>
+
+<header class="pagehead">
+  <h1>Szolgáltatás-rész — képes ötletek</h1>
+  <p>A te meglévő fotóiddal, szolgáltatásonként. 5 elrendezés — válassz egyet.</p>
+</header>
+
+<main class="gallery" id="gallery"></main>
+<footer>Válassz egy számot (01–05), és beépítem az igazi index.html szolgáltatás-szekciójába</footer>
+
+<script>
+const S=[
+  ['01','Lakásfestés','Belső falak, mennyezetek festése, glettelés, sarokerősítés — akár bútormozgatással is.','assets/1000010639-full.webp'],
+  ['02','Homlokzatfestés','Időjárásálló homlokzatfesték felhordása, repedések javítása, alapozás.','assets/1000010596-full.webp'],
+  ['03','Tapétázás','Papír és vinyl tapéták pontos illesztéssel, buborékmentes felhelyezéssel.','assets/1000010636-full.webp'],
+  ['04','Mázolás, felújítás','Ajtók, ablakok, korlátok mázolása, kisebb építőipari javítások egy kézből.','assets/1000010597-full.webp'],
+];
+const head=`<span class="eyebrow">Mivel segíthetek</span><h2>Festés-mázolás minden falra, amire szükség van.</h2>`;
+
+const V={
+ '01':{nm:'Képes kártyák',desc:'fotó + szöveg kártya',cls:'v1',
+   body:`<div class="body">${S.map(s=>`<div class="card"><div class="ph"><img src="${s[3]}" alt=""></div><div class="tx"><span class="n">${s[0]}</span><h3>${s[1]}</h3><p class="d">${s[2]}</p></div></div>`).join('')}</div>`},
+ '02':{nm:'Overlay kártyák',desc:'szöveg a fotón',cls:'v2',
+   body:`<div class="body">${S.map(s=>`<div class="card"><div class="ph"><img src="${s[3]}" alt=""></div><div class="tx"><span class="n">${s[0]}</span><h3>${s[1]}</h3><p class="d">${s[2]}</p></div></div>`).join('')}</div>`},
+ '03':{nm:'Váltakozó sorok (zigzag)',desc:'kép-szöveg felváltva',cls:'v3',
+   body:`<div class="body">${S.map(s=>`<div class="row"><div class="ph"><img src="${s[3]}" alt=""></div><div class="tx"><span class="n">${s[0]}</span><h3>${s[1]}</h3><p class="d">${s[2]}</p></div></div>`).join('')}</div>`},
+ '04':{nm:'Nagy kép + lista',desc:'feature fotó + thumbnailes lista',cls:'v4',
+   body:`<div class="body"><div class="feat"><div class="ph" style="position:absolute;inset:0"><img src="${S[0][3]}" alt=""></div></div><div class="list">${S.map(s=>`<div class="i"><div class="thumb"><img src="${s[3]}" alt=""></div><div><h3>${s[1]}</h3><p class="d">${s[2]}</p></div></div>`).join('')}</div></div>`},
+ '05':{nm:'Mozaik',desc:'fotó-rács feliratokkal',cls:'v5',
+   body:`<div class="body">${S.map(s=>`<div class="t"><div class="ph"><img src="${s[3]}" alt=""></div><div class="lab"><span class="n">${s[0]}</span><h3>${s[1]}</h3></div></div>`).join('')}</div>`},
+};
+
+document.getElementById('gallery').innerHTML=Object.entries(V).map(([id,v])=>`
+  <section class="concept">
+    <div class="cmeta"><span class="id">${id}</span><span class="nm">${v.nm}</span><span class="desc">${v.desc}</span></div>
+    <div class="sec ${v.cls}">${head}${v.body}</div>
+  </section>`).join('');
+</script>
+</body>
+</html>

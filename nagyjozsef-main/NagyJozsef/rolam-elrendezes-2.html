@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rólam — újabb elrendezés variációk</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;800;900&family=Public+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg1:#ffffff;--bg2:#eaece4;--head:#3f1717;--accent:#b7472a;--label:#6d2c1c;--sub:#555555;--line:rgba(63,23,23,.16)}
+body{font-family:"Public Sans",system-ui,sans-serif;background:#1c1413;color:#efe7e4;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+.pagehead{padding:50px clamp(20px,5vw,70px) 16px;max-width:1000px;margin:0 auto;text-align:center}
+.pagehead h1{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(2rem,5vw,3rem)}
+.pagehead p{margin:12px auto 0;color:#b6a9a5;max-width:66ch}
+
+.gallery{max-width:1200px;margin:0 auto;padding:14px clamp(10px,2.5vw,30px) 90px;display:grid;gap:30px}
+.concept{border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -42px rgba(0,0,0,.85);border:1px solid rgba(255,255,255,.08)}
+.cmeta{display:flex;align-items:baseline;gap:12px;padding:14px 22px;background:#2a1d1b;border-bottom:1px solid rgba(255,255,255,.07)}
+.cmeta .id{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:1.35rem;color:var(--accent)}
+.cmeta .nm{font-weight:700;font-size:1rem}
+.cmeta .desc{margin-left:auto;font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.05em;color:#b09a95;text-transform:uppercase}
+
+.sec{position:relative;overflow:hidden;padding:clamp(44px,5vw,72px) clamp(24px,4vw,56px);color:var(--head);min-height:480px;
+  background:linear-gradient(125deg,var(--bg1),var(--bg2))}
+.water{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:0;font-family:"Big Shoulders Display",sans-serif;font-weight:900;font-size:clamp(3.4rem,14vw,12rem);line-height:.8;color:transparent;-webkit-text-stroke:2px color-mix(in oklab,var(--accent) 18%,transparent);text-transform:uppercase;white-space:nowrap;pointer-events:none}
+.in{position:relative;z-index:2}
+.eyebrow{font-family:"Spline Sans Mono",monospace;text-transform:uppercase;font-size:.72rem;letter-spacing:.26em;color:var(--label);display:block}
+.pull{font-family:"Big Shoulders Display",sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(1.9rem,4vw,3.2rem);line-height:1.04;color:var(--head)}
+.pull em{font-style:normal;color:var(--accent)}
+.lead{color:var(--sub);font-size:1.05rem;max-width:46ch}
+.sign{font-family:"Big Shoulders Display",sans-serif;font-weight:700;text-transform:uppercase;font-size:1.5rem;color:var(--head)}
+.sign small{display:block;font-family:"Spline Sans Mono",monospace;font-size:.6rem;font-weight:400;letter-spacing:.16em;color:var(--label);text-transform:uppercase;margin-top:3px}
+.portr{border-radius:50%;border:4px solid var(--accent);overflow:hidden;box-shadow:0 30px 60px -34px rgba(40,12,8,.5)}
+.portr img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* F elcsúsztatott + átfedő idézetpanel */
+.F .in{display:grid;align-items:center}
+@media(min-width:780px){.F .in{grid-template-columns:1fr 1fr}}
+.F .portr{width:100%;aspect-ratio:4/5;border-radius:14px}
+.F .panel{background:#fff;border-radius:14px;padding:clamp(22px,3vw,34px);box-shadow:0 30px 60px -40px rgba(40,12,8,.4);border:1px solid var(--line)}
+@media(min-width:780px){.F .panel{margin-left:-22%;z-index:3}}
+.F .lead{margin-top:14px}.F .sign{margin-top:18px}
+
+/* G óriás idézet + sarokportré */
+.G .in{max-width:900px}
+.G .portr{width:clamp(86px,11vw,120px);aspect-ratio:1/1;float:left;margin:6px 22px 6px 0}
+.G .eyebrow{margin-bottom:10px}
+.G .pull{font-size:clamp(2.2rem,5.4vw,4.4rem);line-height:1.0}
+.G .lead{margin-top:18px;clear:both}.G .sign{margin-top:18px}
+
+/* H kártyás */
+.H .in{display:grid;gap:16px}
+@media(min-width:760px){.H .in{grid-template-columns:.9fr 1.1fr auto;align-items:stretch}}
+.H .card{background:#fff;border-radius:14px;border:1px solid var(--line);box-shadow:0 22px 46px -34px rgba(40,12,8,.4);overflow:hidden}
+.H .card.pc .portr{width:100%;height:100%;aspect-ratio:4/5;border-radius:0;border:none}
+.H .card.qc{padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;justify-content:center}
+.H .card.qc .lead{margin-top:14px}.H .card.qc .sign{margin-top:18px}
+.H .card.sc{background:var(--head);color:#fff;padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-width:150px}
+.H .card.sc .nn{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:3.4rem;line-height:1;color:#ffb59c}
+.H .card.sc .ll{font-size:.8rem;font-weight:600;margin-top:6px}
+
+/* I aláírás-fókusz */
+.I .in{text-align:center;max-width:840px;margin:0 auto}
+.I .portr{width:clamp(120px,16vw,160px);aspect-ratio:1/1;margin:0 auto 18px}
+.I .bigname{font-family:"Big Shoulders Display",sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(2.6rem,8vw,6rem);line-height:.92;color:var(--head)}
+.I .bigname em{font-style:normal;color:var(--accent)}
+.I .role{font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--label);margin-top:10px}
+.I .lead{margin:20px auto 0}
+
+/* J magazin dropcap */
+.J .in{display:grid;gap:clamp(24px,4vw,52px)}
+@media(min-width:780px){.J .in{grid-template-columns:.95fr 1.05fr}}
+.J .portr{width:100%;aspect-ratio:3/4;border-radius:12px}
+.J .col .eyebrow{margin-bottom:10px}
+.J .col .lead{margin-top:14px;font-size:1.08rem;column-count:1}
+.J .col .lead::first-letter{float:left;font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:3.4rem;line-height:.8;padding:4px 10px 0 0;color:var(--accent)}
+.J .col .sign{margin-top:18px}
+
+/* K szabad húzás + rácsra illesztés */
+.K .canvas{position:relative;min-height:560px;overflow:hidden;background-image:radial-gradient(rgba(63,23,23,.06) 1px,transparent 1.5px);background-size:24px 24px}
+.K .drag{position:absolute;cursor:grab;touch-action:none;padding:6px 8px;border-radius:6px;outline:1.5px dashed transparent;max-width:min(86%,460px)}
+.K .drag:hover{outline-color:color-mix(in oklab,var(--accent) 45%,transparent)}
+.K .drag.grabbing{cursor:grabbing;outline-color:var(--accent);outline-style:solid}
+.K .d-portr{padding:0}.K .d-portr .portr{width:clamp(140px,18vw,190px);aspect-ratio:1/1}
+.K .toolbar{position:relative;z-index:5;display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.K .toolbar button{font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:9px 14px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--head);cursor:pointer}
+.K .toolbar button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.K .hint{font-family:"Spline Sans Mono",monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--label);align-self:center}
+.K .out{position:relative;z-index:5;margin-top:12px;font-family:"Spline Sans Mono",monospace;font-size:.72rem;color:var(--sub);background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;white-space:pre-wrap;display:none}
+
+footer{text-align:center;padding:20px;color:#8a7a76;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.14em}
+</style>
+</head>
+<body>
+
+<header class="pagehead">
+  <h1>„Rólam" — újabb variációk</h1>
+  <p>Hat új elrendezés (F–K). A K egy másik húzható változat, ami <b>rácsra illeszt</b> (snap), így rendezettebb a kézi pozicionálás.</p>
+</header>
+
+<main class="gallery" id="gallery"></main>
+<footer>Válassz egy betűt (F–K). A K-ban rendezz, másold a pozíciókat, és küldd el.</footer>
+
+<script>
+const portrait='assets/1000010531-full.webp';
+const NAME='NAGY JÓZSEF';
+const eyebrow='<span class="eyebrow">Aki a munka mögött áll</span>';
+const pull='<div class="pull">„Én megyek ki, én festek,<br><em>és én állok mögötte.</em>"</div>';
+const lead='<p class="lead">Nagy József vagyok, egyéni vállalkozó szobafestő. Én megyek ki Önhöz, én végzem el a munkát, és én veszem fel a telefont évek múlva is. Nincs alvállalkozó, nincs váltott csapat.</p>';
+const sign='<div class="sign">Nagy József<small>egyéni vállalkozó · szobafestő</small></div>';
+const portrHTML='<div class="portr"><img src="'+portrait+'" alt=""></div>';
+
+const statics={
+ 'F':{nm:'Elcsúsztatott + átfedő panel',desc:'idézet a képre lóg',html:`${portrHTML}<div class="panel">${eyebrow}${pull}${lead}${sign}</div>`},
+ 'G':{nm:'Óriás idézet + sarokportré',desc:'körbefuttatott szöveg',html:`${portrHTML}${eyebrow}${pull}${lead}${sign}`},
+ 'H':{nm:'Kártyás',desc:'portré · idézet · stat',html:`<div class="card pc">${portrHTML}</div><div class="card qc">${eyebrow}${pull}${lead}${sign}</div><div class="card sc"><span class="nn">10+</span><span class="ll">év<br>tapasztalat</span></div>`},
+ 'I':{nm:'Aláírás-fókusz',desc:'óriás név',html:`${portrHTML}<div class="bigname">Nagy <em>József</em></div><div class="role">egyéni vállalkozó · szobafestő</div>${lead}`},
+ 'J':{nm:'Magazin dropcap',desc:'kép + iniciálés szöveg',html:`${portrHTML}<div class="col">${eyebrow}${pull}${lead}${sign}</div>`},
+};
+
+let html=Object.entries(statics).map(([id,v])=>`
+  <section class="concept">
+    <div class="cmeta"><span class="id">${id}</span><span class="nm">${v.nm}</span><span class="desc">${v.desc}</span></div>
+    <div class="sec ${id}"><div class="water">${NAME}</div><div class="in">${v.html}</div></div>
+  </section>`).join('');
+
+html+=`
+  <section class="concept">
+    <div class="cmeta"><span class="id">K</span><span class="nm">Szabad húzás + rács-snap</span><span class="desc">rendezett kézi pozicionálás</span></div>
+    <div class="sec K">
+      <div class="toolbar">
+        <button class="primary" id="copyPos">Pozíciók másolása</button>
+        <button id="resetPos">Alaphelyzet</button>
+        <span class="hint">↳ Húzd a blokkokat — 2%-os rácsra illeszt</span>
+      </div>
+      <div class="water">${NAME}</div>
+      <div class="canvas" id="canvas">
+        <div class="drag d-portr" data-k="portré" style="left:6%;top:8%">${portrHTML}</div>
+        <div class="drag" data-k="címke" style="left:42%;top:12%">${eyebrow}</div>
+        <div class="drag" data-k="idézet" style="left:42%;top:24%">${pull}</div>
+        <div class="drag" data-k="szöveg" style="left:42%;top:60%">${lead}</div>
+        <div class="drag" data-k="aláírás" style="left:8%;top:80%">${sign}</div>
+      </div>
+      <div class="out" id="out"></div>
+    </div>
+  </section>`;
+
+document.getElementById('gallery').innerHTML=html;
+
+(function(){
+  const canvas=document.getElementById('canvas');if(!canvas)return;
+  const items=canvas.querySelectorAll('.drag');
+  const init=[...items].map(el=>({el,left:el.style.left,top:el.style.top}));
+  const snap=v=>Math.round(v/2)*2;
+  let active=null,offX=0,offY=0;
+  items.forEach(el=>{
+    el.addEventListener('pointerdown',e=>{active=el;el.classList.add('grabbing');el.style.zIndex=20;const r=el.getBoundingClientRect();offX=e.clientX-r.left;offY=e.clientY-r.top;el.setPointerCapture(e.pointerId);});
+    el.addEventListener('pointermove',e=>{if(active!==el)return;const c=canvas.getBoundingClientRect();let x=e.clientX-c.left-offX,y=e.clientY-c.top-offY;x=Math.max(0,Math.min(c.width-el.offsetWidth,x));y=Math.max(0,Math.min(c.height-el.offsetHeight,y));el.style.left=snap(x/c.width*100)+'%';el.style.top=snap(y/c.height*100)+'%';});
+    el.addEventListener('pointerup',()=>{if(active===el){el.classList.remove('grabbing');active=null;}});
+  });
+  document.getElementById('resetPos').onclick=()=>{init.forEach(i=>{i.el.style.left=i.left;i.el.style.top=i.top;});document.getElementById('out').style.display='none';};
+  document.getElementById('copyPos').onclick=()=>{const lines=[...items].map(el=>`${el.dataset.k.padEnd(8,' ')}: bal ${el.style.left}, fent ${el.style.top}`);const txt='RÓLAM (K) pozíciók:\n'+lines.join('\n');const out=document.getElementById('out');out.textContent=txt;out.style.display='block';navigator.clipboard&&navigator.clipboard.writeText(txt);};
+})();
+</script>
+</body>
+</html>

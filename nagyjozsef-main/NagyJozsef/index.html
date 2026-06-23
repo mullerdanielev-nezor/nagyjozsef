@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nagy József — Szobafestő, festés-mázolás személyesen</title>
+<meta name="description" content="Festés-mázolás, homlokzatfestés, tapétázás Nagy Józseftől, egyéni vállalkozó szobafestőtől. Egy ember, az első hívástól az átadásig — korrekt árajánlat, tiszta munka." />
+<meta property="og:title" content="Nagy József — Szobafestő, személyesen" />
+<meta property="og:description" content="A kopott fal helyett egy fal, amit megszeret. Egyetlen ember, az első hívástól az átadásig." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800;900&family=Public+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.14/lenis.min.js"></script>
+
+<style>
+:root{
+  --clay:#b7472a; --linen:#ffffff; --ink:#3f1717; --slate:#555555; --gold:#b7472a; --mist:#eaece4; --pine:#1a1a1a;
+  --label:#6d2c1c; --btn:#1a1a1a; --btntext:#ffffff;
+  --bg-a:#ffffff; --bg-b:#eaece4; --accent:#b7472a; --paper:#ffffff; --type:#3f1717; --soft:#555555;
+  --maxw:1240px; --gap:clamp(18px,4vw,46px);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Public Sans",system-ui,sans-serif;color:var(--type);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.55}
+
+.preloader{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#f4efe6;transition:transform .85s cubic-bezier(.76,0,.24,1),opacity .5s ease .25s}
+.preloader.done{transform:translateY(-100%);opacity:0;pointer-events:none}
+.pl-inner{text-align:center;padding:0 24px}
+.pl-eyebrow{display:block;font-family:"Spline Sans Mono",monospace;text-transform:uppercase;font-size:.7rem;letter-spacing:.26em;color:var(--label);opacity:0;animation:plFade .8s ease .15s forwards}
+.pl-name{display:block;margin-top:14px;font-family:"Big Shoulders Display",sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(3rem,10vw,7rem);line-height:.9;color:var(--type);opacity:0;transform:translateY(18px);animation:plRise .9s cubic-bezier(.2,.7,.2,1) .28s forwards}
+.pl-name em{font-style:normal;color:var(--accent)}
+.pl-line{height:2px;width:0;margin:18px auto 0;background:linear-gradient(90deg,transparent,var(--accent),transparent);animation:plLine .8s ease .62s forwards}
+@keyframes plFade{to{opacity:.9}}
+@keyframes plRise{to{opacity:1;transform:none}}
+@keyframes plLine{to{width:min(300px,62vw)}}
+@media (prefers-reduced-motion: reduce){.pl-eyebrow,.pl-name,.pl-line{animation-duration:.01s}}
+.atmosphere{position:fixed;inset:0;z-index:-2;background:radial-gradient(120% 80% at 78% 8%, color-mix(in oklab, var(--bg-a) 88%, #fff) 0%, transparent 48%),linear-gradient(180deg, var(--bg-a) 0%, var(--bg-b) 100%)}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:var(--grain);background-size:160px;opacity:.05;mix-blend-mode:multiply}
+.page-strip{position:fixed;top:0;bottom:0;right:0;z-index:35;pointer-events:none;width:clamp(14px,2vw,30px);opacity:.3;background:linear-gradient(var(--mist) 0 25%,color-mix(in oklab,var(--accent) 60%,#fff) 25% 50%,var(--accent) 50% 75%,var(--type) 75% 100%)}
+.sdiv{height:2px;width:min(var(--maxw),calc(100% - 2*var(--gap)));margin:0 auto;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.5}
+.brushdeco{position:relative;z-index:0}
+.brushdeco::after{content:"";position:absolute;z-index:-1;pointer-events:none;width:clamp(220px,30vw,400px);height:84px;opacity:.12;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 380 80'%3E%3Cpath fill='%23b7472a' d='M10,40 C60,18 120,16 180,30 C230,42 300,38 360,22 C372,18 378,30 366,38 C300,62 220,64 160,52 C110,42 60,46 18,58 C6,62 0,46 10,40 Z'/%3E%3C/svg%3E") no-repeat center/contain}
+.brushdeco.br-tr::after{top:8%;right:-24px}
+.brushdeco.br-bl::after{bottom:8%;left:-24px;transform:scaleX(-1)}
+.callbanner{background:var(--type);color:#f4ece2;position:relative;z-index:1}
+.cb-inner{display:flex;align-items:center;justify-content:space-between;gap:18px 30px;flex-wrap:wrap;max-width:var(--maxw);margin:0 auto;padding:clamp(22px,3vw,34px) var(--gap)}
+.cb-eyebrow{font-family:"Spline Sans Mono",monospace;text-transform:uppercase;font-size:.66rem;letter-spacing:.22em;color:#ffb59c}
+.cb-h{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(1.6rem,3.4vw,2.6rem);line-height:1;margin-top:5px}
+.cb-h em{font-style:normal;color:#e8975f}
+.cb-phone{display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:#fff;color:var(--type);border-radius:100px;padding:11px 22px 11px 11px;flex-shrink:0;transition:transform .3s}
+.cb-phone:hover{transform:translateY(-2px)}
+.cb-phone .ring{width:40px;height:40px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cb-phone .ring svg{width:18px;height:18px;color:#fff}
+.cb-phone .lab{font-family:"Spline Sans Mono",monospace;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--label)}
+.cb-phone .num{font-family:"Spline Sans Mono",monospace;font-size:.98rem;font-weight:700}
+
+h1,h2,h3,.display{font-family:"Big Shoulders Display",system-ui,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.005em;line-height:1.04;text-wrap:balance}
+.eyebrow{font-family:"Spline Sans Mono",monospace;text-transform:uppercase;font-size:.72rem;letter-spacing:.28em;color:var(--label)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gap)}
+section{position:relative}
+.ph img,img.cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+/* bar + menu */
+.bar{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(18px,4vw,46px);transition:padding .3s,box-shadow .4s;background:#f4efe6}
+.bar::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.55}
+.bar.scrolled{backdrop-filter:blur(11px);box-shadow:0 8px 24px -18px rgba(40,12,8,.5);padding-top:12px;padding-bottom:12px}
+.brand{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.02em;font-size:1.4rem;color:var(--type);text-decoration:none;line-height:1;z-index:42}
+.brand small{font-family:"Spline Sans Mono",monospace;display:block;font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--soft);margin-top:4px}
+.nav{display:flex;align-items:center;gap:clamp(14px,2vw,30px)}
+.nav>a{font-family:"Spline Sans Mono",monospace;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--type);opacity:.78;transition:color .3s,opacity .25s;position:relative}
+.nav>a:hover{opacity:1}
+.nav>a.link::after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:1px;background:var(--accent);transition:right .3s}
+.nav>a.link:hover::after{right:0}
+.navcta{border:1px solid color-mix(in oklab,var(--type) 30%,transparent);border-radius:100px;padding:9px 16px;opacity:1 !important;transition:.3s}
+.navcta:hover{background:var(--type);color:var(--paper) !important;border-color:var(--type)}
+.burger{display:none;z-index:42;width:42px;height:42px;border:none;background:none;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.burger span{display:block;width:24px;height:2px;background:var(--type);transition:.35s}
+.burger.open span:nth-child(1){transform:translateY(4px) rotate(45deg);background:var(--type)}
+.burger.open span:nth-child(2){transform:translateY(-4px) rotate(-45deg);background:var(--type)}
+.menu-overlay{position:fixed;inset:0;z-index:39;background:color-mix(in oklab,var(--paper) 97%,#fff);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.menu-overlay.open{opacity:1;visibility:visible}
+.menu-overlay nav{display:flex;flex-direction:column;gap:6px;text-align:center}
+.menu-overlay nav a{font-family:"Big Shoulders Display",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.01em;font-size:2.6rem;text-decoration:none;color:var(--type);padding:6px;transition:.25s}
+.menu-overlay nav a:hover{color:var(--accent)}
+.menu-overlay .ov-call{font-family:"Spline Sans Mono",monospace;font-style:normal;font-size:1rem;margin-top:18px;color:var(--accent);letter-spacing:.08em}
+@media(max-width:880px){.nav{display:none}.burger{display:flex}}
+
+/* sticky call pill */
+.callpill{position:fixed;z-index:41;right:clamp(16px,3vw,40px);bottom:clamp(16px,3vw,40px);display:flex;align-items:center;gap:12px;padding:11px 22px 11px 11px;border-radius:100px;background:var(--paper);color:var(--type);border:2px solid var(--accent);text-decoration:none;box-shadow:0 16px 36px -22px rgba(40,12,8,.42);transition:transform .3s,box-shadow .3s}
+.callpill:hover{transform:translateY(-3px)}
+.callpill .ring{width:38px;height:38px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callpill .ring svg{width:18px;height:18px}
+.callpill .lab{font-family:"Spline Sans Mono",monospace;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--label)}
+.callpill .num{font-family:"Spline Sans Mono",monospace;font-size:.95rem;font-weight:700;color:var(--type)}
+@media(max-width:420px){.callpill .txt{display:none}.callpill{padding:12px}}
+
+/* HERO — magazin masthead (full-width cím) */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding:clamp(104px,13vh,142px) 0 clamp(28px,5vh,56px)}
+.hero .hwrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--gap)}
+.hero-strip{position:absolute;top:0;bottom:0;right:0;z-index:1;width:clamp(16px,2vw,30px);background:linear-gradient(var(--mist) 0 25%,color-mix(in oklab,var(--accent) 60%,#fff) 25% 50%,var(--accent) 50% 75%,var(--type) 75% 100%)}
+.hero .toprow{display:flex;justify-content:space-between;align-items:center;gap:18px;font-family:"Spline Sans Mono",monospace;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--label);border-bottom:1px solid color-mix(in oklab,var(--type) 28%,transparent);padding-bottom:16px}
+.hero .masthead{width:100%;display:block;margin-top:8px}
+.hero .masthead text{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;fill:var(--type)}
+.hero .masthead .ac{fill:var(--gold)}
+.hero .lower{margin-top:clamp(18px,2.6vh,32px);display:grid;gap:clamp(20px,3vw,44px);align-items:center}
+@media(min-width:900px){.hero .lower{grid-template-columns:1fr 1.2fr}}
+.hero-copy{color:var(--type)}
+.hero-copy .eyebrow{margin-bottom:14px;font-size:.84rem;letter-spacing:.24em}
+.hero .sub{max-width:46ch;font-size:clamp(1.12rem,1.55vw,1.4rem);color:var(--soft);line-height:1.6}
+.hero .actions{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;gap:20px}
+.hero .cta-btn{display:inline-flex;align-items:center;gap:10px;background:var(--btn);color:var(--btntext);text-decoration:none;font-family:"Spline Sans Mono",monospace;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;padding:18px 32px;border-radius:100px;transition:transform .3s,box-shadow .3s;box-shadow:0 16px 34px -14px rgba(26,26,26,.45)}
+.hero .cta-btn:hover{transform:translateY(-3px)}
+.hero .trust{display:flex;align-items:center;gap:10px;font-size:1rem;font-weight:700;color:var(--type)}
+.hero .trust .stars{color:var(--gold);letter-spacing:2px}
+.hero-photo-frame{position:relative;padding:16px 16px 0 0}
+.hero-photo-frame::before{content:"";position:absolute;top:0;right:0;width:62%;height:64%;border:2px solid color-mix(in oklab,var(--accent) 55%,transparent);border-radius:6px;z-index:0}
+.hero-photo{position:relative;z-index:1;aspect-ratio:4/3;max-height:min(56svh,540px);border:3px solid var(--accent);border-radius:5px;overflow:hidden;box-shadow:0 40px 70px -36px rgba(40,12,8,.42)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(1.03) contrast(1.02)}
+@media(max-width:899px){.hero{height:auto;min-height:100svh}.hero-photo{max-height:46svh}}
+
+
+/* SERVICES */
+.services{padding:clamp(90px,12vw,160px) 0;background:#fbf8f2}
+.services h2{font-size:clamp(2rem,4.6vw,3.6rem);max-width:30ch;margin-top:14px}
+.svc-grid{margin-top:clamp(40px,5vw,64px);display:grid;gap:16px}
+@media(min-width:680px){.svc-grid{grid-template-columns:1fr 1fr}}
+.svc-card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid color-mix(in oklab,var(--type) 12%,transparent);box-shadow:0 18px 40px -30px rgba(40,12,8,.4);transition:transform .25s}
+.svc-card:hover{transform:translateY(-4px)}
+.svc-card .ph{position:relative;aspect-ratio:16/10;overflow:hidden}
+.svc-card .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s}
+.svc-card:hover .ph img{transform:scale(1.05)}
+.svc-card .tx{padding:18px 22px 22px;border-top:4px solid var(--accent)}
+.svc-card .tx .n{font-family:"Spline Sans Mono",monospace;font-size:.74rem;font-weight:600;color:var(--accent);display:block;margin-bottom:6px}
+.svc-card h3{font-family:"Public Sans",sans-serif;font-weight:700;text-transform:none;letter-spacing:0;font-size:1.22rem}
+.svc-card p{color:var(--soft);max-width:42ch;margin-top:6px}
+
+/* PERSON */
+.person{padding:clamp(46px,6vw,82px) 0;position:relative;overflow:hidden;text-align:center;background:#f4efe6}
+.person .water{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:0;font-family:"Big Shoulders Display",sans-serif;font-weight:900;font-size:clamp(4rem,18vw,16rem);line-height:.8;color:transparent;-webkit-text-stroke:2px color-mix(in oklab,var(--accent) 22%,transparent);text-transform:uppercase;white-space:nowrap;pointer-events:none;user-select:none}
+.person .inner{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 var(--gap)}
+.person .portr{width:clamp(190px,24vw,300px);aspect-ratio:1/1;border-radius:50%;margin:0 auto 16px;border:4px solid var(--accent);overflow:hidden;box-shadow:0 30px 56px -32px rgba(40,12,8,.5)}
+.person .portr img{width:100%;height:100%;object-fit:cover}
+.person .inner .eyebrow{display:inline-block;margin-bottom:10px}
+.person .bigname{font-family:"Big Shoulders Display",sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(2.6rem,7.5vw,5.6rem);line-height:.9;color:var(--type)}
+.person .bigname em{font-style:normal;color:var(--accent)}
+.person .role{font-family:"Spline Sans Mono",monospace;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--label);margin-top:14px}
+.person .inner p.lead{margin:14px auto 0;font-size:1.04rem;color:var(--soft);max-width:50ch}
+.person .sign{margin-top:18px;font-family:"Big Shoulders Display",sans-serif;font-weight:700;text-transform:uppercase;font-size:1.4rem;color:var(--type)}
+.person .sign small{display:block;font-family:"Spline Sans Mono",monospace;font-size:.62rem;font-weight:400;letter-spacing:.16em;color:var(--label);text-transform:uppercase;margin-top:4px}
+.person .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(30px,6vw,86px);align-items:center}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:4px;overflow:hidden;box-shadow:0 50px 90px -50px rgba(20,12,6,.65);background:linear-gradient(155deg,#caa37c 0%,#8a6a4c 55%,#5d4733 100%)}
+.portrait .tile{position:absolute;inset:0;z-index:2;background-repeat:no-repeat}
+.portrait .label{position:absolute;left:18px;bottom:16px;z-index:5;color:#f4ead9;font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;opacity:.85;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.person h2{font-size:clamp(2rem,4.4vw,3.6rem);max-width:14ch}
+.person h2 em{font-style:italic}
+.person p.lead{margin-top:22px;font-size:1.1rem;color:var(--soft);max-width:48ch}
+.person ul{list-style:none;margin:30px 0 0;display:grid;gap:2px}
+.person li{display:flex;align-items:baseline;gap:14px;padding:11px 0;border-top:1px solid color-mix(in oklab,var(--type) 14%,transparent)}
+.person li .n{font-family:"Spline Sans Mono",monospace;font-size:.72rem;color:var(--accent);min-width:34px}
+.person li b{font-weight:600}
+.person li span{color:var(--soft);font-size:.96rem}
+.person .nope{margin-top:30px;font-family:"Public Sans",sans-serif;font-weight:600;font-size:clamp(1.15rem,2vw,1.7rem);line-height:1.3}
+.person .nope b{font-style:normal;font-weight:480;color:var(--accent)}
+
+/* PORTFOLIO */
+.work{background:color-mix(in oklab,var(--type) 92%,#000);color:var(--mist)}
+.work .intro{padding:clamp(80px,11vw,150px) 0 0}
+.work .eyebrow{color:rgba(255,255,255,.5)}
+.work h2{color:#f3ece0;font-size:clamp(2rem,5vw,4rem);max-width:18ch;margin-top:14px}
+.track-pin{height:100svh;display:flex;align-items:center;overflow:hidden}
+.track{display:flex;gap:clamp(20px,3vw,46px);padding:0 clamp(28px,7vw,120px);will-change:transform}
+.proj{flex:0 0 min(78vw,560px)}
+.proj .img{position:relative;aspect-ratio:5/6;border-radius:5px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(0,0,0,.7);background:#2a2520}
+.proj .img .ph{position:absolute;inset:0}
+.proj .img .ph::after{content:"";position:absolute;inset:0;background:var(--grain);background-size:150px;opacity:.1;mix-blend-mode:overlay}
+.proj .img .meta{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:22px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.6))}
+.proj .img .meta .place{font-family:"Spline Sans Mono",monospace;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.proj .img .meta .name{font-family:"Big Shoulders Display",sans-serif;font-weight:700;text-transform:uppercase;font-size:1.7rem;color:#fff;margin-top:4px}
+.proj .story{margin-top:22px;display:grid;gap:14px}
+.proj .story .row{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:baseline}
+.proj .story .row .k{font-family:"Spline Sans Mono",monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45);padding-top:3px}
+.proj .story .row .v{color:#e7e0d4;font-size:.98rem}
+.proj .story .row.res .v{color:#fff;font-family:"Public Sans",sans-serif;font-weight:600;font-size:1.08rem}
+.work .scrollhint{padding:0 0 clamp(60px,8vw,110px);text-align:center;font-family:"Spline Sans Mono",monospace;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+@media(max-width:760px){.track-pin{height:auto;padding:30px 0 10px}.track{flex-direction:column;overflow:visible;transform:none !important}.proj{flex:none;width:100%}}
+
+/* REFERENCES (keretes 3 oszlop) */
+.refs{padding:clamp(80px,11vw,150px) 0;background:#fdfbf7}
+.refs .wrap{max-width:min(1620px,96vw)}
+.refs h2{font-size:clamp(2rem,4.6vw,3.6rem);max-width:32ch;margin-top:14px}
+.ref-grid{margin-top:clamp(40px,5vw,64px);display:grid;gap:24px 20px;grid-template-columns:1fr}
+@media(min-width:560px){.ref-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:860px){.ref-grid{grid-template-columns:1fr 1fr 1fr}}
+.ref-tile{position:relative;padding:10px 10px 0 0}
+.ref-tile::before{content:"";position:absolute;top:0;right:0;width:58%;height:56%;border:2px solid color-mix(in oklab,var(--accent) 45%,transparent);border-radius:6px;z-index:0}
+.ref-tile .fr{position:relative;z-index:1;border:3px solid var(--accent);border-radius:6px;overflow:hidden;aspect-ratio:16/10}
+.ref-tile .fr img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.ref-tile:hover .fr img{transform:scale(1.06)}
+.ref-tile .cap{margin-top:10px}
+.ref-tile .cap .pl{font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--label)}
+.ref-tile .cap .t{font-family:"Big Shoulders Display",sans-serif;font-weight:700;text-transform:uppercase;font-size:1.2rem;color:var(--type);margin-top:1px}
+
+/* PROCESS */
+.process{padding:clamp(90px,13vw,180px) 0;background:#f7f3ec}
+.process h2{font-size:clamp(2rem,4.6vw,3.6rem);max-width:28ch;margin-top:14px}
+.steps{margin-top:clamp(40px,5vw,66px);display:grid;gap:28px}
+@media(min-width:820px){.steps{grid-template-columns:repeat(5,1fr);gap:12px}}
+.step{position:relative;text-align:center}
+.step .dot{position:relative;z-index:1;width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;background:var(--paper);border:3px solid var(--accent);font-family:"Big Shoulders Display",sans-serif;font-size:1.8rem;font-weight:800;color:var(--accent);transition:.3s}
+@media(min-width:820px){.step:not(:last-child)::after{content:"";position:absolute;top:36px;left:62%;right:-38%;height:2px;background:color-mix(in oklab,var(--type) 16%,transparent);z-index:0}}
+.step.on .dot{background:var(--accent);color:#fff}
+.step h3{font-size:1.2rem;margin-top:2px}
+.step p{margin:6px auto 0;color:var(--soft);font-size:.9rem;max-width:30ch}
+.step .when{font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+
+/* AREAS */
+.areas{padding:clamp(80px,11vw,160px) 0;background:#f1ede3}
+.areas h2{font-size:clamp(2rem,4vw,3.2rem);margin-top:10px}
+.areas .sub{color:var(--soft);margin-top:14px;max-width:42ch}
+.areas-grid{display:grid;gap:clamp(28px,4vw,56px);align-items:stretch}
+@media(min-width:860px){.areas-grid{grid-template-columns:0.8fr 1.2fr}}
+.areas-copy{display:flex;flex-direction:column;justify-content:center}
+.cta-map{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-family:"Spline Sans Mono",monospace;font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;background:var(--btn);color:var(--btntext);padding:14px 24px;border-radius:100px;text-decoration:none;margin-top:20px;transition:transform .3s}
+.cta-map:hover{transform:translateY(-2px)}
+.mapwrap{position:relative;max-width:880px;margin:clamp(40px,6vw,70px) auto 0;aspect-ratio:16/11}
+.mapwrap svg{width:100%;height:100%;overflow:visible}
+.region{fill:color-mix(in oklab,var(--accent) 10%,transparent);stroke:color-mix(in oklab,var(--accent) 45%,transparent);stroke-width:1.4;stroke-dasharray:1600;stroke-dashoffset:1600}
+.road{stroke:color-mix(in oklab,var(--type) 18%,transparent);stroke-width:1;fill:none}
+.pin{opacity:0}
+.pin circle.core{fill:var(--accent)}
+.pin circle.ring{fill:none;stroke:var(--accent);stroke-width:1.5;opacity:.5}
+.pin text{font-family:"Spline Sans Mono",monospace;font-size:13px;letter-spacing:.06em;fill:var(--type);text-transform:uppercase}
+.mapbox{border:3px solid var(--accent);border-radius:12px;overflow:hidden;box-shadow:0 30px 60px -40px rgba(40,12,8,.45);background:#e8e2d6;min-height:360px}
+.mapbox iframe{width:100%;height:100%;min-height:360px;border:0;display:block;filter:sepia(.4) saturate(1.2) hue-rotate(-10deg) contrast(.97) brightness(1.02)}
+.map-link{display:inline-block;margin-top:16px;font-family:"Spline Sans Mono",monospace;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+.map-link:hover{text-decoration:underline}
+.area-list{list-style:none;display:flex;flex-wrap:wrap;justify-content:flex-start;gap:9px;margin:20px 0 0;padding:0}
+.area-list li{font-family:"Spline Sans Mono",monospace;font-size:.8rem;letter-spacing:.05em;padding:12px 18px;border:1px solid color-mix(in oklab,var(--accent) 40%,transparent);border-radius:100px;color:var(--type);background:color-mix(in oklab,var(--paper) 55%,transparent);opacity:0;transform:translateY(10px)}
+@media(max-width:760px){.mapwrap{display:none}.area-list{display:flex}}
+
+/* REVIEWS */
+.reviews{padding:clamp(80px,11vw,160px) 0;background:#fbf7ef}
+.reviews h2{font-size:clamp(2rem,4.4vw,3.4rem);max-width:30ch;margin-top:14px}
+.reviews .disclaimer{margin-top:10px;font-size:.82rem;color:var(--soft)}
+.rgrid2{margin-top:clamp(40px,5vw,64px);display:grid;gap:18px}
+@media(min-width:820px){.rgrid2{grid-template-columns:1.5fr 1fr}}
+.rfeat{background:var(--type);color:#fff;border-radius:18px;padding:clamp(28px,3.4vw,42px);display:flex;flex-direction:column;justify-content:center}
+.rfeat .qm{display:block;font-family:"Big Shoulders Display",sans-serif;font-weight:900;font-size:3.2rem;line-height:.7;height:.7em;color:#ffb59c;margin-bottom:14px}
+.rfeat .q{color:#fff;font-family:"Big Shoulders Display",sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.12;margin:0 0 16px}
+.rfeat .by{font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#ffb59c}
+.rfeat .st{color:#d9a23b;letter-spacing:2px;margin-top:10px}
+.rside{display:grid;gap:16px}
+.rcard{background:#fff;border-radius:14px;padding:24px;box-shadow:0 18px 42px -34px rgba(40,12,8,.4);border:1px solid color-mix(in oklab,var(--type) 10%,transparent)}
+.rcard .st{color:#c98a3a;letter-spacing:2px;font-size:.92rem}
+.rcard .q{color:var(--type);margin:8px 0 10px;line-height:1.45}
+.rcard .by{font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+.rgrid{margin-top:clamp(46px,6vw,80px);display:grid;gap:clamp(30px,5vw,70px)}
+.review{display:grid;grid-template-columns:0.85fr 1fr;gap:clamp(24px,4vw,56px);align-items:center}
+.review:nth-child(even){grid-template-columns:1fr 0.85fr}
+.review:nth-child(even) .rimg{order:2}
+.rimg{position:relative;aspect-ratio:4/3;border-radius:5px;overflow:hidden;box-shadow:0 40px 80px -45px rgba(20,12,6,.6);background:#2a2520}
+.rimg .ph{position:absolute;inset:0}
+.rimg .ph::after{content:"";position:absolute;inset:0;background:var(--grain);background-size:150px;opacity:.1;mix-blend-mode:overlay}
+.rimg .chip{position:absolute;left:16px;top:16px;z-index:2;background:color-mix(in oklab,var(--paper) 85%,transparent);backdrop-filter:blur(6px);font-family:"Spline Sans Mono",monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;padding:7px 11px;border-radius:100px;color:var(--type)}
+.review blockquote{font-family:"Public Sans",sans-serif;font-size:clamp(1.3rem,2.4vw,2rem);font-weight:600;line-height:1.32}
+.review .by{margin-top:18px;font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.12em;color:var(--soft)}
+.review .res{margin-top:14px;display:inline-block;border-top:1px solid var(--accent);padding-top:10px;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+@media(max-width:760px){.review,.review:nth-child(even){grid-template-columns:1fr}.review:nth-child(even) .rimg{order:0}}
+
+/* FAQ */
+.faq{padding:clamp(80px,11vw,150px) 0;background:#f5f0e8;text-align:center}
+.faq h2{font-size:clamp(2rem,4.4vw,3.4rem);max-width:26ch;margin:14px auto 0}
+.faq-list{margin:clamp(40px,5vw,64px) auto 0;max-width:760px;text-align:left}
+.faq-item{border-top:1px solid color-mix(in oklab,var(--type) 16%,transparent)}
+.faq-item:last-child{border-bottom:1px solid color-mix(in oklab,var(--type) 16%,transparent)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:24px 4px;background:none;border:none;cursor:pointer;text-align:left;font-family:"Public Sans",sans-serif;font-weight:700;font-size:1.18rem;color:var(--type)}
+.faq-q .plus{font-family:"Spline Sans Mono",monospace;font-size:1.3rem;color:var(--accent);transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-q .plus{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-a p{padding:0 4px 24px;color:var(--soft);max-width:60ch;font-size:1rem;line-height:1.65}
+
+/* QUOTE FORM */
+.quote{padding:clamp(80px,12vw,160px) 0;position:relative;overflow:hidden;background:#faf6ef}
+.quote-grid{display:grid;gap:clamp(28px,4vw,60px);align-items:start}
+@media(min-width:880px){.quote-grid{grid-template-columns:1fr 1fr}}
+.quote-intro h2{font-size:clamp(2.2rem,5vw,3.6rem);margin-top:12px}
+.quote-intro h2 em{font-style:normal;color:var(--accent)}
+.quote .lead{color:var(--soft);margin-top:16px;max-width:42ch;font-size:1.06rem}
+.qpoints{list-style:none;margin:22px 0 0;display:grid;gap:9px}
+.qpoints li{display:flex;align-items:flex-start;gap:10px;color:var(--type);font-weight:600}
+.qpoints li::before{content:"✓";color:var(--accent);font-weight:800}
+.qcontact{margin-top:24px;display:flex;flex-wrap:wrap;gap:8px 24px}
+.qc{font-family:"Spline Sans Mono",monospace;font-size:.92rem;color:var(--accent);text-decoration:none}
+.qc:hover{text-decoration:underline}
+.quote-form{background:#fff;border:1px solid color-mix(in oklab,var(--type) 12%,transparent);border-radius:18px;padding:clamp(24px,3vw,38px);box-shadow:0 30px 64px -44px rgba(40,12,8,.45);display:grid;gap:16px}
+.quote-form label{display:flex;flex-direction:column;gap:7px;font-family:"Spline Sans Mono",monospace;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--label)}
+.quote-form input,.quote-form textarea{font-family:"Public Sans",sans-serif;font-size:1rem;color:var(--type);background:#faf7f1;border:1px solid color-mix(in oklab,var(--type) 14%,transparent);border-radius:10px;padding:13px 14px;width:100%;resize:vertical}
+.quote-form input::placeholder,.quote-form textarea::placeholder{color:color-mix(in oklab,var(--type) 42%,transparent)}
+.quote-form input:focus,.quote-form textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in oklab,var(--accent) 18%,transparent)}
+.row2{display:grid;gap:16px}
+@media(min-width:520px){.row2{grid-template-columns:1fr 1fr}}
+.qsubmit{justify-self:start;font-family:"Spline Sans Mono",monospace;font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:.84rem;background:var(--btn);color:#fff;border:none;border-radius:100px;padding:16px 28px;cursor:pointer;transition:transform .3s}
+.qsubmit:hover{transform:translateY(-2px)}
+.qnote{font-size:.78rem;color:var(--soft);margin-top:2px}
+footer{padding:40px 0 90px;text-align:center;color:var(--soft);font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;line-height:1.8}
+
+.rev{opacity:0;transform:translateY(28px)}
+@media(max-width:760px){.person .grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion: reduce){.rev{opacity:1 !important;transform:none !important}.hero .scrollcue .line::after{animation:none}.area-list li{opacity:1 !important;transform:none !important}}
+</style>
+</head>
+<body>
+
+<div class="preloader" id="preloader">
+  <div class="pl-inner">
+    <span class="pl-eyebrow">Festés-mázolás · személyesen</span>
+    <span class="pl-name">Nagy <em>József</em></span>
+    <div class="pl-line"></div>
+  </div>
+</div>
+
+<div class="atmosphere"></div>
+<div class="grain"></div>
+<div class="page-strip"></div>
+
+<header class="bar" id="bar">
+  <a class="brand" href="#top">Nagy József<small>Festés-mázolás · személyesen</small></a>
+  <nav class="nav">
+    <a class="link" href="#szolgaltatasok">Szolgáltatások</a>
+    <a class="link" href="#work">Munkáim</a>
+    <a class="link" href="#process">Folyamat</a>
+    <a class="link" href="#reviews">Vélemények</a>
+    <a class="navcta" href="#final">Ajánlatkérés</a>
+  </nav>
+  <button class="burger" id="burger" aria-label="Menü megnyitása" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<div class="menu-overlay" id="overlay">
+  <nav>
+    <a href="#szolgaltatasok">Szolgáltatások</a>
+    <a href="#work">Munkáim</a>
+    <a href="#process">Folyamat</a>
+    <a href="#reviews">Vélemények</a>
+    <a href="#gyik">GYIK</a>
+    <a href="#final">Ajánlatkérés</a>
+    <a class="ov-call" href="tel:+36706039556">06 70 603 9556</a>
+  </nav>
+</div>
+
+<a class="callpill" href="tel:+36706039556">
+  <span class="ring"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" style="color:#f5f1eb"><path d="M70 30c10 0 18 24 18 32s-12 14-12 22c0 16 38 54 54 54 8 0 14-12 22-12s32 8 32 18c0 16-14 32-32 32-44 0-104-60-104-104 0-18 16-32 22-42z"/></svg></span>
+  <span class="txt"><span class="lab">Hívjon most</span><br><span class="num">06 70 603 9556</span></span>
+</a>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-strip"></div>
+  <div class="hwrap">
+    <div class="toprow rev"><span>Festés-mázolás · személyesen</span><span>Budapest és környéke</span></div>
+    <svg class="masthead rev" viewBox="0 0 1000 116" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A fal, amit megszeret.">
+      <text x="0" y="94" textLength="1000" lengthAdjust="spacingAndGlyphs" font-size="112">A FAL, AMIT <tspan class="ac">MEGSZERET.</tspan></text>
+    </svg>
+    <div class="lower">
+      <div class="hero-copy rev">
+        <span class="eyebrow">Tiszta munka · korrekt árajánlat</span>
+        <p class="sub">Kopott, fáradt vagy egyszerűen személytelen a fal otthonában? Festés-mázolással új hangulatot kap a lakása — az első hívástól az átadásig egyetlen szakemberrel.</p>
+        <div class="actions">
+          <a href="#final" class="cta-btn">Ajánlatkérés →</a>
+          <span class="trust"><span class="stars">★★★★★</span>Elégedett megrendelők ajánlásával</span>
+        </div>
+      </div>
+      <div class="hero-photo-frame rev">
+        <div class="hero-photo"><img id="heroPhoto" src="assets/1000010639-full.webp" alt="Nagy József festő munkája"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sdiv"></div>
+
+<!-- SERVICES -->
+<section class="services brushdeco br-tr" id="szolgaltatasok">
+  <div class="wrap">
+    <div class="eyebrow rev">Mivel segíthetek</div>
+    <h2 class="rev">Festés-mázolás minden falra, amire szükség van.</h2>
+    <div class="svc-grid">
+      <div class="svc-card rev"><div class="ph"><img src="assets/1000010639-full.webp" alt="Lakásfestés munka"></div><div class="tx"><span class="n">01</span><h3>Lakásfestés</h3><p>Belső falak, mennyezetek festése, glettelés, sarokerősítés — akár bútormozgatással is.</p></div></div>
+      <div class="svc-card rev"><div class="ph"><img src="assets/1000010596-full.webp" alt="Homlokzatfestés munka"></div><div class="tx"><span class="n">02</span><h3>Homlokzatfestés</h3><p>Időjárásálló homlokzatfesték felhordása, repedések javítása, alapozás.</p></div></div>
+      <div class="svc-card rev"><div class="ph"><img src="assets/1000010636-full.webp" alt="Tapétázás munka"></div><div class="tx"><span class="n">03</span><h3>Tapétázás</h3><p>Papír és vinyl tapéták pontos illesztéssel, buborékmentes felhelyezéssel.</p></div></div>
+      <div class="svc-card rev"><div class="ph"><img src="assets/1000010597-full.webp" alt="Mázolás, felújítás munka"></div><div class="tx"><span class="n">04</span><h3>Mázolás, felújítás</h3><p>Ajtók, ablakok, korlátok mázolása, kisebb építőipari javítások egy kézből.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="sdiv"></div>
+
+<!-- PERSON -->
+<section class="person brushdeco br-bl" id="person">
+  <div class="water" aria-hidden="true">NAGY JÓZSEF</div>
+  <div class="inner">
+    <div class="portr rev"><img src="assets/nagy-jozsef.png" alt="Nagy József, szobafestő"></div>
+    <span class="eyebrow rev">Aki a munka mögött áll</span>
+    <div class="bigname rev">Nagy <em>József</em></div>
+    <p class="lead rev">Nem cégként dolgozom, ahol minden lépéshez más arc érkezik — én megyek ki Önhöz, én végzem el a munkát, és én veszem fel a telefont évek múlva is. Nincs alvállalkozó, nincs összevont csapat, nincs ügyfélszolgálat: csak az ember, aki ott áll az otthonában.</p>
+    <div class="sign rev">Nagy József<small>egyéni vállalkozó · szobafestő</small></div>
+  </div>
+</section>
+
+<div class="sdiv"></div>
+
+<!-- REFERENCES -->
+<section class="refs brushdeco br-bl" id="work">
+  <div class="wrap">
+    <div class="eyebrow rev">Válogatott munkák</div>
+    <h2 class="rev">Referenciák — falak, amiket újra megszerettek.</h2>
+    <div class="ref-grid">
+      <article class="ref-tile rev"><div class="fr"><img src="assets/1000010531-full.webp" alt="Terrakotta hangsúlyos fal" loading="lazy" decoding="async"></div><div class="cap"><div class="pl">Hálószoba · Budapest</div><div class="t">Hangsúlyfal</div></div></article>
+      <article class="ref-tile rev"><div class="fr"><img src="assets/1000010639-full.webp" alt="Sötétkék, arany mintás fal" loading="lazy" decoding="async"></div><div class="cap"><div class="pl">Hálószoba</div><div class="t">Grafikus minta</div></div></article>
+      <article class="ref-tile rev"><div class="fr"><img src="assets/1000010596-full.webp" alt="Dekor téglaburkolat" loading="lazy" decoding="async"></div><div class="cap"><div class="pl">Terasz</div><div class="t">Dekor téglafal</div></div></article>
+      <article class="ref-tile rev"><div class="fr"><img src="assets/1000010558-full.webp" alt="Pasztell rózsaszín fal" loading="lazy" decoding="async"></div><div class="cap"><div class="pl">Fürdőszoba</div><div class="t">Pasztell tónus</div></div></article>
+      <article class="ref-tile rev"><div class="fr"><img src="assets/1000010597-full.webp" alt="Mázolás munka" loading="lazy" decoding="async"></div><div class="cap"><div class="pl">Konyha</div><div class="t">Mázolás, felújítás</div></div></article>
+      <article class="ref-tile rev"><div class="fr"><img src="assets/1000010636-full.webp" alt="Dekorfal tapéta" loading="lazy" decoding="async"></div><div class="cap"><div class="pl">Dekorfal</div><div class="t">Tapétázás</div></div></article>
+    </div>
+  </div>
+</section>
+
+<div class="sdiv"></div>
+
+<!-- PROCESS -->
+<section class="process brushdeco br-tr" id="process">
+  <div class="wrap">
+    <div class="eyebrow rev">Hogyan zajlik</div>
+    <h2 class="rev">Öt lépés, egy ember, semmi meglepetés.</h2>
+    <div class="steps" id="steps">
+      <div class="step" data-step="0"><div class="dot">1</div>
+        <div><div class="when">Általában még aznap</div><h3>Felhív</h3>
+        <p>Engem ér el, nem egy központot. Beszélünk a falról, a hangulatról, amit szeretne. Öt perc alatt kiderül a lényeg.</p></div></div>
+      <div class="step" data-step="1"><div class="dot">2</div>
+        <div><div class="when">Ingyenes · kötöttség nélkül</div><h3>Kimegyek és felmérek</h3>
+        <p>Kimegyek, megnézem a falakat, a felületet, és átbeszéljük, mi lenne a legjobb megoldás. A felmérés ingyenes.</p></div></div>
+      <div class="step" data-step="2"><div class="dot">3</div>
+        <div><div class="when">Egy-két napon belül</div><h3>Egy világos ajánlatot kap</h3>
+        <p>Fix ár, érthető nyelven. Mit festek, mivel, és mibe kerül — amit megbeszéltünk, annyit fizet.</p></div></div>
+      <div class="step" data-step="3"><div class="dot">4</div>
+        <div><div class="when">A munka méretétől függ</div><h3>Felfestem</h3>
+        <p>Tiszta munka, leterített bútorok, rendezett vonalak, és úgy hagyom az otthonát, ahogy találtam — csak szebben. Indulás előtt mindent átnézünk együtt.</p></div></div>
+      <div class="step" data-step="4"><div class="dot">5</div>
+        <div><div class="when">Amíg csak az otthona</div><h3>Maradok az elérhetősége</h3>
+        <p>Ha bármi gond adódna, visszamegyek és helyszínen orvosoljuk. Mindig ugyanaz az ember.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="sdiv"></div>
+
+<!-- AREAS -->
+<section class="areas brushdeco br-bl" id="areas">
+  <div class="wrap areas-grid">
+    <div class="areas-copy">
+      <div class="eyebrow rev">Hol dolgozom</div>
+      <h2 class="rev">Nyírlugos és környéke</h2>
+      <p class="sub rev">Nyírlugosról dolgozom, a környező településeken is — a pontos munkaterületet telefonon egyezzük le.</p>
+      <ul class="area-list" id="areaList">
+        <li>Nyírlugos</li><li>Nyírbátor</li><li>Nyíradony</li><li>Nyírbéltek</li><li>Penészlek</li><li>Debrecen</li><li>Nyíregyháza</li>
+      </ul>
+      <a class="cta-map rev" href="tel:+36706039556">Hívjon · 06 70 603 9556</a>
+    </div>
+    <div class="mapbox rev">
+      <iframe title="Nyírlugos és környéke térkép" src="https://www.openstreetmap.org/export/embed.html?bbox=21.86%2C47.62%2C22.22%2C47.77&layer=mapnik&marker=47.6928%2C22.0419" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<div class="sdiv"></div>
+
+<!-- REVIEWS -->
+<section class="reviews brushdeco br-tr" id="reviews">
+  <div class="wrap">
+    <div class="eyebrow rev">Az ő szavaikkal</div>
+    <h2 class="rev">Minden vélemény egy szoba, ami megváltozott.</h2>
+    <p class="disclaimer rev">Demó szöveg — kérésére valódi véleményekre cserélem, amint rendelkezésre állnak.</p>
+    <div class="rgrid2">
+      <div class="rfeat rev">
+        <span class="qm">&bdquo;</span>
+        <p class="q">Pontosan azt kaptam, amit megbeszéltünk — semmi felárazás a végén. A nappali úgy néz ki, mintha kicseréltük volna a bútorokat is, pedig csak a falak lettek újak.</p>
+        <div class="by">— Kovács Anita · Nyírlugos</div>
+        <span class="st">★★★★★</span>
+      </div>
+      <div class="rside">
+        <div class="rcard rev"><span class="st">★★★★★</span><p class="q">„Felhívtam, másnap kijött felmérni, egy héten belül kész volt. Tiszta munka, a parkettán egy festékfolt sem maradt utána.”</p><div class="by">— Tóth Gábor · Nyírbátor</div></div>
+        <div class="rcard rev"><span class="st">★★★★★</span><p class="q">„Az idős édesanyámnak festett ki. Türelmes volt, mindent letakart és elpakolt, a végén úgy hagyta a lakást, ahogy találta.”</p><div class="by">— Szabó Réka · Debrecen</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sdiv"></div>
+
+<!-- FAQ -->
+<section class="faq brushdeco br-bl" id="gyik">
+  <div class="wrap">
+    <div class="eyebrow rev">Gyakori kérdések</div>
+    <h2 class="rev">Amit a megrendelők leggyakrabban kérdeznek.</h2>
+    <div class="faq-list">
+      <div class="faq-item rev">
+        <button class="faq-q">Mennyi idő alatt kapok árajánlatot?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Telefonos leírás vagy helyszíni szemle alapján általában 24 órán belül küldöm a pontos árajánlatot.</p></div>
+      </div>
+      <div class="faq-item rev">
+        <button class="faq-q">Kell-e nekem festéket, eszközöket biztosítanom?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Nem, minden szerszámot és alapanyagot én biztosítok. Konkrét márkát vagy színt is szívesen beépítek az árajánlatba.</p></div>
+      </div>
+      <div class="faq-item rev">
+        <button class="faq-q">Mennyi idő alatt készül el egy átlagos lakásfestés?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Egy átlagos, 2-3 szobás lakás festése jellemzően 3-5 munkanapot vesz igénybe, ezt mindig pontosan megbeszéljük előre.</p></div>
+      </div>
+      <div class="faq-item rev">
+        <button class="faq-q">Mozgatni kell a bútorokat, vagy ezt Ön elvégzi?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Kérésre a kisebb bútorokat én mozgatom és letakarom, így a munka zökkenőmentesen halad.</p></div>
+      </div>
+      <div class="faq-item rev">
+        <button class="faq-q">Ad garanciát az elvégzett munkára?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Igen, minden elvégzett munkára garanciát vállalok. Ha bármilyen probléma adódna, visszamegyek és helyszínen orvosoljuk.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALL BANNER -->
+<section class="callbanner">
+  <div class="cb-inner">
+    <div class="cb-text">
+      <span class="cb-eyebrow">Nincs ügyfélszolgálat</span>
+      <p class="cb-h">Tudja, <em>kit hív.</em></p>
+    </div>
+    <a class="cb-phone" href="tel:+36706039556">
+      <span class="ring"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M70 30c10 0 18 24 18 32s-12 14-12 22c0 16 38 54 54 54 8 0 14-12 22-12s32 8 32 18c0 16-14 32-32 32-44 0-104-60-104-104 0-18 16-32 22-42z"/></svg></span>
+      <span><span class="lab">Hívjon most</span><br><span class="num">06 70 603 9556</span></span>
+    </a>
+  </div>
+</section>
+
+<!-- QUOTE FORM -->
+<section class="quote" id="final">
+  <div class="wrap quote-grid">
+    <div class="quote-intro rev">
+      <span class="eyebrow">Ingyenes · kötöttség nélkül</span>
+      <h2>Kérjen <em>árajánlatot</em></h2>
+      <p class="lead">Írja le pár sorban, mit szeretne festetni — legkésőbb másnap visszahívom egy korrekt, érthető árajánlattal. A helyszíni felmérés ingyenes.</p>
+      <ul class="qpoints">
+        <li>Válasz általában még aznap</li>
+        <li>Fix ár, rejtett tételek nélkül</li>
+        <li>Egy ember az elejétől a végéig</li>
+      </ul>
+      <div class="qcontact">
+        <a class="qc" href="tel:+36706039556">06 70 603 9556</a>
+        <a class="qc" href="mailto:jozyefn@gmail.com">jozyefn@gmail.com</a>
+      </div>
+    </div>
+    <form class="quote-form rev" id="quoteForm">
+      <label>Név<input type="text" name="nev" required placeholder="Az Ön neve"></label>
+      <div class="row2">
+        <label>Telefon<input type="tel" name="tel" required placeholder="06 ..."></label>
+        <label>Email<input type="email" name="email" placeholder="nev@email.hu"></label>
+      </div>
+      <label>Mit szeretne festetni?<textarea name="uzenet" rows="4" required placeholder="Pl. nappali + előszoba festése, kb. 40 m², fehér falak…"></textarea></label>
+      <button type="submit" class="qsubmit">Ajánlatkérés küldése →</button>
+      <p class="qnote">A küldés az Ön email-programját nyitja meg a kitöltött adatokkal. Nagy József E.V. · szobafestő · ingyenes helyszíni felmérés</p>
+    </form>
+  </div>
+</section>
+
+<footer>© <span id="yr"></span> · Nagy József E.V. — Szobafestő<br>A munkaterület-térkép és a vélemények illusztratívak, kérésre valós adatokra cserélem.</footer>
+
+</main>
+
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* preloader */
+(function(){const p=document.getElementById('preloader');if(!p)return;
+  const hide=()=>p.classList.add('done');
+  setTimeout(hide,1700);
+})();
+
+const qf=document.getElementById('quoteForm');
+if(qf){qf.addEventListener('submit',e=>{
+  e.preventDefault();
+  const f=e.target;
+  const subj=encodeURIComponent('Ajánlatkérés – '+(f.nev.value||'Nagy József'));
+  const body=encodeURIComponent(`Név: ${f.nev.value}\nTelefon: ${f.tel.value}\nEmail: ${f.email.value}\n\nMit szeretne festetni:\n${f.uzenet.value}`);
+  window.location.href=`mailto:jozyefn@gmail.com?subject=${subj}&body=${body}`;
+});}
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+let lenis=null;
+if(!reduce && window.Lenis){
+  lenis=new Lenis({lerp:0.09,wheelMultiplier:1});
+  function raf(t){lenis.raf(t);requestAnimationFrame(raf);}
+  requestAnimationFrame(raf);
+}
+
+const burger=document.getElementById('burger'),overlay=document.getElementById('overlay'),bar=document.getElementById('bar');
+function toggleMenu(force){
+  const open=(typeof force==='boolean')?force:!overlay.classList.contains('open');
+  overlay.classList.toggle('open',open);
+  burger.classList.toggle('open',open);
+  burger.setAttribute('aria-expanded',open);
+  if(lenis){ open?lenis.stop():lenis.start(); }
+  document.body.style.overflow=open?'hidden':'';
+}
+burger.addEventListener('click',()=>toggleMenu());
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href'); if(id.length<2) return;
+    const el=document.querySelector(id); if(!el) return;
+    e.preventDefault(); toggleMenu(false);
+    if(lenis){ lenis.scrollTo(el,{offset:-70}); }
+    else{ const y=el.getBoundingClientRect().top+window.pageYOffset-70; window.scrollTo({top:y,behavior:reduce?'auto':'smooth'}); }
+  });
+});
+
+function onScroll(){ bar.classList.toggle('scrolled', window.scrollY>40); }
+window.addEventListener('scroll',onScroll,{passive:true});
+if(lenis) lenis.on('scroll',onScroll);
+onScroll();
+
+/* FAQ accordion */
+document.querySelectorAll('.faq-item').forEach(item=>{
+  const q=item.querySelector('.faq-q'),a=item.querySelector('.faq-a');
+  q.addEventListener('click',()=>{
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(o=>{o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null;});
+    if(!isOpen){ item.classList.add('open'); a.style.maxHeight=a.scrollHeight+'px'; }
+  });
+});
+
+if(window.gsap && window.ScrollTrigger){
+  gsap.registerPlugin(ScrollTrigger);
+  if(lenis){ lenis.on('scroll',ScrollTrigger.update); }
+
+  gsap.to('.hero-copy',{yPercent:-16,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('#heroPhoto',{scale:1.07,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+
+  /* reveals */
+  gsap.utils.toArray('.rev').forEach(el=>{gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%'}});});
+
+  /* PORTFOLIO horizontal */
+  const track=document.getElementById('track');
+  if(track && window.innerWidth>760){
+    const dist=()=>track.scrollWidth-window.innerWidth+(window.innerWidth*0.12);
+    gsap.to(track,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#trackpin',start:'top top',end:()=>'+='+dist(),pin:true,scrub:1,invalidateOnRefresh:true}});
+  }
+
+  /* PROCESS */
+  gsap.utils.toArray('.step').forEach((s,i)=>{
+    gsap.from(s,{opacity:0,y:24,duration:.6,ease:'power3.out',delay:i*0.08,scrollTrigger:{trigger:'#steps',start:'top 80%'}});
+  });
+
+  /* AREA chips reveal */
+  gsap.utils.toArray('#areaList li').forEach((li,i)=>{
+    gsap.to(li,{opacity:1,y:0,duration:.5,ease:'power2.out',scrollTrigger:{trigger:'#areas',start:'top 78%'},delay:i*0.08});
+  });
+
+  /* PORTRAIT -> photo shatter */
+  (function(){
+    const pr=document.getElementById('portrait');if(!pr)return;
+    const img=pr.dataset.img;const cols=3,rows=4,tiles=[];
+    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+      const t=document.createElement('div');t.className='tile';
+      t.style.clipPath=`inset(${r/rows*100}% ${100-(c+1)/cols*100}% ${100-(r+1)/rows*100}% ${c/cols*100}%)`;
+      t.style.backgroundImage=`url('${img}')`;
+      t.style.backgroundSize='100% 100%';
+      pr.appendChild(t);tiles.push({el:t,c,r});
+    }
+    if(reduce)return;
+    tiles.forEach(({el,c,r})=>{
+      const dx=(c-1)*gsap.utils.random(40,120), dy=(r-1.5)*gsap.utils.random(20,70);
+      gsap.to(el,{xPercent:dx,yPercent:dy,rotation:gsap.utils.random(-8,8),opacity:0,ease:'none',scrollTrigger:{trigger:'#person',start:'center center',end:'bottom top',scrub:true}});
+    });
+  })();
+
+  ScrollTrigger.refresh();
+}
+</script>
+</body>
+</html>
